@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EVOMotor", "EVOMotor\EVOMotor.vcxproj", "{50F0BDE4-4C02-4423-BD50-DE77D3FD94B6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "asdf", "asdf\asdf.vcxproj", "{25B7CD59-5D1C-48BA-9959-C81DEB0A7D9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50F0BDE4-4C02-4423-BD50-DE77D3FD94B6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{50F0BDE4-4C02-4423-BD50-DE77D3FD94B6}.Debug|Win32.Build.0 = Debug|Win32
+		{50F0BDE4-4C02-4423-BD50-DE77D3FD94B6}.Release|Win32.ActiveCfg = Release|Win32
+		{50F0BDE4-4C02-4423-BD50-DE77D3FD94B6}.Release|Win32.Build.0 = Release|Win32
+		{25B7CD59-5D1C-48BA-9959-C81DEB0A7D9E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{25B7CD59-5D1C-48BA-9959-C81DEB0A7D9E}.Debug|Win32.Build.0 = Debug|Win32
+		{25B7CD59-5D1C-48BA-9959-C81DEB0A7D9E}.Release|Win32.ActiveCfg = Release|Win32
+		{25B7CD59-5D1C-48BA-9959-C81DEB0A7D9E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
