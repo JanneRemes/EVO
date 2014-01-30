@@ -78,9 +78,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Include\Platform\debug.h" />
     <ClInclude Include="Include\Platform\FileReader.h" />
     <ClInclude Include="Include\Platform\Window.h" />

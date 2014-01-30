@@ -1,5 +1,10 @@
 #pragma once
-#include "Platform\Window.h"
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <stdarg.h>
+#include <incl\GL\glew.h>
+#include <incl\GLFW\glfw3.h>
 
 void writeLog(const char* text, ...)
 {
