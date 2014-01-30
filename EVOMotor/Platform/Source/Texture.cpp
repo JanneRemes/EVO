@@ -1,15 +1,48 @@
 #include "Platform/Texture.h"
 
 
-Texture::Texture(const char * imagepath)
+Texture::Texture(GLubyte* data,int width,int height,int depth):
+_data(data),
+_width(width),
+_height(height),
+_depth(depth)
 {
-
+	init();
 }
+Texture::Texture(GLubyte* data):
+_data(data),
+_width(10),
+_height(10)
+{
+	init();
+}
+
 
 
 Texture::~Texture(void)
 {
 
+}
+
+void Texture::init()
+{
+	int format = _depth == 24 ? GL_RGB : GL_RGBA;
+
+	glGenTextures(1, &_textureID);
+	
+	glBindTexture(GL_TEXTURE_2D, _textureID);
+
+	glTexImage2D(GL_TEXTURE_2D,0 , format, _width, _height,0,format,GL_UNSIGNED_BYTE,_data);
+
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 GLubyte* Texture::loadTGA(const std::string& fileName, tgaHeader &header)
@@ -48,4 +81,7 @@ GLubyte* Texture::loadTGA(const std::string& fileName, tgaHeader &header)
 	file.close();
 
 	return data;
+
+
 }
+
