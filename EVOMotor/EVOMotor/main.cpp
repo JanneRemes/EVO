@@ -1,6 +1,6 @@
-#include "debug.h"
+#include "Platform/debug.h"
+#include "Platform/Window.h"
 
-#include "Window.h"
 int main(void)
 {
     /* Initialize the library */
