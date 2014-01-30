@@ -17,6 +17,7 @@ private:
 
 	FILE* file;
 	std::string filepath;
+	
 
 	unsigned int _length;
 };
