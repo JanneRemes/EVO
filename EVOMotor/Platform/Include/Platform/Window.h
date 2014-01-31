@@ -8,10 +8,9 @@
 #include <stdlib.h>
 #include <sstream>
 #include <fstream>
-#include <incl\GL\glew.h>
-#include <incl\GLFW\glfw3.h>
-#include <incl\glm\glm.hpp>
-#include <incl\glm\gtx\transform.hpp>
+#include <incl/GL/glew.h>
+#include <incl/GLFW/glfw3.h>
+//#include <incl/glm/ext.hpp>
 
 class Window
 {
@@ -21,8 +20,9 @@ public:
 	int CreateWindow(int height, int width,const char* name);
 	bool isOpen();
 	void pollEvents();
-private:
 	GLFWwindow* window;
+
+private:
 };
 
 #endif

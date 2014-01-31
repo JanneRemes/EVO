@@ -1,5 +1,6 @@
-#pragma once
-#include "Window.h"
+#ifndef DEBUG_H_
+#define DEBUG_H_
+#include "Platform/Window.h"
 
 void writeLog(const char* text, ...)
 {
@@ -16,3 +17,11 @@ void checkGLError(const char* op)
 		writeLog("after /s() glError (0x%x)\n", op, error);
 	}
 }
+
+static void printGLString(const char *name, GLenum s) 
+{
+    const char *v = (const char *) glGetString(s);
+    writeLog("GL %s = %s\n", name, v);
+}
+
+#endif

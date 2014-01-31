@@ -35,6 +35,6 @@ bool Window::isOpen()
 
 void Window::pollEvents()
 {
-	glfwSwapBuffers(window);
+	//swapbuffer
     glfwPollEvents();
 }
