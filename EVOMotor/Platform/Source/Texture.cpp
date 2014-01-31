@@ -1,5 +1,5 @@
 #include "Platform/Texture.h"
-
+#include <time.h>
 
 Texture::Texture(GLubyte* data,int width,int height,int depth):
 _data(data),
@@ -81,7 +81,21 @@ GLubyte* Texture::loadTGA(const std::string& fileName, tgaHeader &header)
 	file.close();
 
 	return data;
-
-
 }
 
+GLuint Texture::getTextureObject() const
+{
+	return _textureID;
+}
+
+
+Texture* Texture::generateRandom(glm::vec2& size)
+{
+	const int length = size.x * size.y * 4;
+	GLubyte* pixelData = new GLubyte[length];
+	for(int i = 0; i < length; i++)
+	{
+		pixelData[i] = rand() % 255;
+	}
+	return new Texture(pixelData, (int)size.x, (int)size.y, 24);
+}

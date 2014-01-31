@@ -1,6 +1,25 @@
 #include "Platform/FileReader.h"
 
 
+std::string FileReader::loadFile(const std::string& fileName)
+{
+	std::stringstream stream;
+	std::ifstream file;
+	file.open(fileName, std::ios::in);
+
+	if(file.is_open())
+	{
+		stream << file.rdbuf();
+		file.close();
+		return stream.str();
+	}
+	else
+	{
+		std::cout << "File not found" << std::endl;
+	}
+	return "";
+}
+
 FileReader::FileReader(const char* path)
 {
 	filepath = path;

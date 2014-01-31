@@ -80,11 +80,15 @@
   <ItemGroup>
     <ClInclude Include="Include\Platform\debug.h" />
     <ClInclude Include="Include\Platform\FileReader.h" />
+    <ClInclude Include="Include\Platform\Graphics.h" />
+    <ClInclude Include="Include\Platform\Shader.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
     <ClInclude Include="Include\Platform\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FileReader.cpp" />
+    <ClCompile Include="Source\Graphics.cpp" />
+    <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
