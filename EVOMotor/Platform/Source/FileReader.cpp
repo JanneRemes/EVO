@@ -1,5 +1,5 @@
 #include "Platform/FileReader.h"
-
+#include <cassert>
 
 std::string FileReader::loadFile(const std::string& fileName)
 {
@@ -21,44 +21,49 @@ std::string FileReader::loadFile(const std::string& fileName)
 }
 
 FileReader::FileReader(const char* path)
+	: filepath(path)
 {
-	filepath = path;
-	file = fopen(filepath.c_str(),"rb");
-
-	//Check if file is found
-	if(!file)
-	{
-		writeLog("\n-----------------\nFile opening failed! File not found?\n-----------------\n");
-		return;
-	}
-
-	fseek(file, 0, SEEK_END);
-	_length = ftell(file);
-	fseek(file, 0, SEEK_SET);
 }
 
+void FileReader::open(bool isBinary)
+{
+	std::ios_base::openmode mode = std::ios::in;
+	if(isBinary)
+	{
+		mode |= std::ios::binary;
+	}
+	stream.open(filepath,mode);
+
+	assert(stream.is_open());
+
+	seek(std::ios::end,0);
+	//stream.seekg(std::ios::end);
+	_length = stream.tellg();
+	//stream.seekg(std::ios::beg);
+	seek(std::ios::beg,0);
+	
+}
 
 FileReader::~FileReader(void)
 {
-	//Close file
-	fclose(file);
 }
 
-bool FileReader::seek(int offset, int relation)
+int FileReader::tell()
+{
+	return stream.tellg();
+}
+void FileReader::seek(int offset, int relation)
 {
 	//Seek file
-	if(fseek(file, offset, relation) != 1)
-		return true;
-	return false;
+	stream.seekg(offset,relation);
+	assert(stream.good());
 }
 
-bool FileReader::read(unsigned int count, void*buffer)
+void FileReader::read(unsigned int count, char* buffer)
 {
 	//If found file, read it
-	if(file != NULL)
-		if(fread(buffer, 1, count, file)==count)
-			return true;
-	return false;
+	stream.read(buffer,count);
+	assert(stream.good());
 }
 
 unsigned int FileReader::length()

@@ -6,8 +6,6 @@
 #include <string>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <sstream>
-#include <fstream>
 #include <incl/GL/glew.h>
 #include <incl/GLFW/glfw3.h>
 //#include <incl/glm/ext.hpp>

@@ -1,4 +1,5 @@
 #include "Platform/Graphics.h"
+#include "Platform/debug.h"
 
 int Graphics::screenHeight = 0;
 int Graphics::screenWidth = 0;
@@ -17,35 +18,40 @@ Graphics::~Graphics() {}
 void Graphics::clear(float r, float g, float b) const
 {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//checkGLError
+	checkGLError("glBlendFunc");
 	glEnable(GL_BLEND);
-	//checkGLError
-
+	checkGLError("glEnable");
 	glFrontFace(GL_CCW);
-	//checkGLError
-	//glEnable(GL_CULL_FACE);
+	checkGLError("glFrontFace");
+
 	glDisable(GL_CULL_FACE);
-	//glEnable(GL_CULL_FACE);
+	checkGLError("glDisable");
 
 	glEnable(GL_DEPTH_TEST);
-	//checkGLError
+	checkGLError("GL_DEPTH_TEST");
 	glDepthFunc(GL_LEQUAL);
-	//checkGLError
+	checkGLError("glDepthFunc");
 
 	glClearColor(r,g,b,1.0f);
-	//checkGLError
+	checkGLError("glClearColor");
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	//checkGLError
+	checkGLError("glClear");
+}
+
+void Graphics::draw(GLFWwindow* window)
+{
+	glfwSwapBuffers(window);
 }
 
 void Graphics::init()
 {
-	//printGLString("Version", GL_VERSION);
-	//printGLString("Vendor", GL_VENDOR);
-	//printGLString("Renderer", GL_RENDER);
-	//printGLString("Extensions", GL_EXTENSIONS);
+	printGLString("Version", GL_VERSION);
+	printGLString("Vendor", GL_VENDOR);
+	printGLString("Renderer", GL_RENDER);
+	printGLString("Extensions", GL_EXTENSIONS);
 
-	//writeLog("screenwidth:%d, screenheight:%d", screenWidth, screenHeight);
+	writeLog("screenwidth: %d, screenheight: %d", screenWidth, screenHeight);
 	glViewport(0,0,screenWidth,screenHeight);
-	//checkglerror
+	checkGLError("glViewport");
 }
+

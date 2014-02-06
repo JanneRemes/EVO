@@ -2,7 +2,6 @@
 #define GRAPHICS_H_
 
 #include "Platform/Window.h"
-//#include "Platform/debug.h"
 
 class Graphics
 {
@@ -13,6 +12,7 @@ public:
 
 	void clear(float r, float g, float b) const;
 	void init();
+	void draw(GLFWwindow* window);
 
 	static int screenWidth;
 	static int screenHeight;

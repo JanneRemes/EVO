@@ -1,8 +1,9 @@
 #ifndef DEBUG_H_
 #define DEBUG_H_
+
 #include "Platform/Window.h"
 
-void writeLog(const char* text, ...)
+static void writeLog(const char* text, ...)
 {
 	va_list v;
 	va_start(v, text);
@@ -10,7 +11,7 @@ void writeLog(const char* text, ...)
 	va_end(v);
 }
 
-void checkGLError(const char* op)
+static void checkGLError(const char* op)
 {
 	for(GLint error = glGetError(); error; error = glGetError())
 	{
