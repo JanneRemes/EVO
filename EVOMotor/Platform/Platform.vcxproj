@@ -81,15 +81,23 @@
     <ClInclude Include="Include\Platform\debug.h" />
     <ClInclude Include="Include\Platform\FileReader.h" />
     <ClInclude Include="Include\Platform\Graphics.h" />
+    <ClInclude Include="Include\Platform\IndexData.h" />
+    <ClInclude Include="Include\Platform\Object.h" />
     <ClInclude Include="Include\Platform\Shader.h" />
+    <ClInclude Include="Include\Platform\SpriteObject.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
+    <ClInclude Include="Include\Platform\VertexData.h" />
     <ClInclude Include="Include\Platform\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FileReader.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
+    <ClCompile Include="Source\IndexData.cpp" />
+    <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\SpriteObject.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
+    <ClCompile Include="Source\VertexData.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

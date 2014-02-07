@@ -15,7 +15,7 @@ static void checkGLError(const char* op)
 {
 	for(GLint error = glGetError(); error; error = glGetError())
 	{
-		writeLog("after /s() glError (0x%x)\n", op, error);
+		writeLog("after %s() glError (0x%x)\n", op, error);
 	}
 }
 

@@ -1,9 +1,9 @@
 #include "Platform/Shader.h"
 #include "Platform/debug.h"
 
-Shader::Shader()
-{
-}
+//Shader::Shader()
+//{
+//}
 
 Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFilePath):
 	_program(0),
@@ -25,27 +25,28 @@ bool Shader::init()
 GLuint Shader::getUniformLocation(const char* name) const
 {
 	glUseProgram(_program);
+	checkGLError("glUseProgram");
 	GLuint location = glGetUniformLocation(_program, name);
-	//checkglerror here
+	checkGLError("glGetUniformLocation");
 	return location;
 }
 
 void Shader::setUniform(const char* name, float value)
 {
 	glUniform1f(getUniformLocation(name), value);
-	//checkglerror
+	checkGLError("glUniform1f");
 }
 
 void Shader::setUniform(const char* name, int value)
 {
 	glUniform1i(getUniformLocation(name), value);
-	//checkglerror
+	checkGLError("glUniform1i");
 }
 
 void Shader::setUniform(const char* name, const float* matrixData)
 {
 	glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, matrixData);
-	//checkglerror
+	checkGLError("glUniformMatrix4fv");
 }
 
 GLuint Shader::program() const
@@ -55,11 +56,14 @@ GLuint Shader::program() const
 
 GLuint Shader::loadShader(GLenum shaderType, const char* source)
 {
+	checkGLError("mika on vika!");
 	GLuint shader = glCreateShader(shaderType);
 	if (shader)
 	{
 		glShaderSource(shader, 1, &source, NULL);
+		checkGLError("glShaderSource");
 		glCompileShader(shader);
+		checkGLError("glCompileShader");
 		GLint compiled = 0;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
 		if (!compiled)
@@ -76,6 +80,7 @@ GLuint Shader::loadShader(GLenum shaderType, const char* source)
 					free(buf);
 				}
 				glDeleteShader(shader);
+				checkGLError("glDeleteShader");
 				shader = 0;
 			}
 		}
@@ -85,14 +90,14 @@ GLuint Shader::loadShader(GLenum shaderType, const char* source)
 
 void Shader::createProgram()
 {
-	_vertexShader = loadShader(GL_VERTEX_SHADER,  fileReader.loadFile(_vertexFilePath).c_str());
+	_vertexShader = loadShader(GL_VERTEX_SHADER,  fileReader->loadFile(_vertexFilePath).c_str());
 	if (!_vertexShader)
 	{
 		std::cout << "vertexshader failed!" << std::endl;
 		return;
 	}
 	
-	_fragmentShader = loadShader(GL_FRAGMENT_SHADER,  fileReader.loadFile(_fragmentFilePath).c_str());
+	_fragmentShader = loadShader(GL_FRAGMENT_SHADER,  fileReader->loadFile(_fragmentFilePath).c_str());
 	if (!_vertexShader)
 	{
 		std::cout << "fragmentshader failed!" << std::endl;
@@ -100,16 +105,17 @@ void Shader::createProgram()
 	}
 
 	_program = glCreateProgram();
-	//checkglerror
+	checkGLError("glCreateProgram");
 
 	if (_program)
 	{
 		glAttachShader(_program, _vertexShader);
-		//checkglerror
+		checkGLError("glAttachShader");
 		glAttachShader(_program, _fragmentShader);
-		//checkglerror
+		checkGLError("glAttachShader");
 
 		glLinkProgram(_program);
+		checkGLError("glLinkProgram");
 		GLint linkStatus = GL_FALSE;
 
 		glGetProgramiv(_program, GL_LINK_STATUS, &linkStatus);

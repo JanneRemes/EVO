@@ -1,5 +1,6 @@
 #include "Platform/Texture.h"
 #include <time.h>
+#include "Platform/debug.h"
 
 Texture::Texture(GLubyte* data,int width,int height,int depth):
 _data(data),
@@ -45,6 +46,18 @@ void Texture::init()
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+void Texture::bind(Shader* shader)
+{
+	glActiveTexture(GL_TEXTURE0);
+	checkGLError("glActiveTexture");
+
+	glBindTexture(GL_TEXTURE_2D, _textureID);
+	checkGLError("glBindTextures");
+
+	shader->setUniform("vSampler", 0);
+}
+
+
 GLubyte* Texture::loadTGA(const std::string& fileName, tgaHeader &header)
 {
 	std::ifstream file;
@@ -88,7 +101,6 @@ GLuint Texture::getTextureObject() const
 	return _textureID;
 }
 
-
 Texture* Texture::generateRandom(glm::vec2& size)
 {
 	const int length = size.x * size.y * 4;
@@ -98,4 +110,12 @@ Texture* Texture::generateRandom(glm::vec2& size)
 		pixelData[i] = rand() % 255;
 	}
 	return new Texture(pixelData, (int)size.x, (int)size.y, 24);
+}
+
+Texture* Texture::load(const std::string &fileName)
+{
+	tgaHeader header;
+	GLubyte* data = loadTGA(fileName, header);
+	writeLog("\ntexturesize: %d\n",sizeof(data));
+	return new Texture(data, header.width, header.height, header.depth);
 }

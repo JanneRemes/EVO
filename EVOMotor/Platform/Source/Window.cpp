@@ -8,10 +8,17 @@ Window::Window(void)
 
 Window::~Window(void)
 {
+    glfwTerminate();
 }
 
 int Window::CreateWindow(int height, int width,const char* name)
 {
+	glewExperimental = GL_TRUE;
+	glewInit();
+	
+    if (!glfwInit())
+        return -1;
+
 	window = glfwCreateWindow(height, width, name , NULL, NULL);
     if (!window)
     {
@@ -22,8 +29,6 @@ int Window::CreateWindow(int height, int width,const char* name)
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-	glewExperimental = GL_TRUE;
-	glewInit();
 
 	return 0;
 }

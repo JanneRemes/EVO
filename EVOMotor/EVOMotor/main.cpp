@@ -6,25 +6,32 @@
 int main(void)
 {
     /* Initialize the library */
-    if (!glfwInit())
-        return -1;
 
 
 	Window* window = new Window();
 	window->CreateWindow(Engine::windowWidth,Engine::windowHeight,"I made dis");
 	Engine* engine;
-	engine = new Engine;
+	engine = new Engine();
 	engine->init();
+
+	float deltaTime = 0.0f;
+	float newTime = 0.0f;
+	float oldTime = 0.0f;
 
     /* Create a windowed mode window and its OpenGL context */
 	while(window->isOpen())
 	{
+		oldTime = newTime;
+		newTime = Engine::getTotalTime();
+		deltaTime = newTime - oldTime;
 		window->pollEvents();
 		engine->update();
 		engine->draw(window->window);
+
+		std::cout << deltaTime <<std::endl;
 	}
 
 	delete engine;
-    glfwTerminate();
+	delete window;
     return 0;
 }

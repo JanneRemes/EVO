@@ -5,6 +5,8 @@
 #include "Platform/Graphics.h"
 #include "Platform/FileReader.h"
 #include "Platform/Texture.h"
+#include "Platform/SpriteObject.h"
+#include "Platform/Shader.h"
 
 class Engine
 {
@@ -17,13 +19,16 @@ public:
 
 	static int windowWidth;
 	static int windowHeight;
+	static float getTotalTime();
 
 private:
 	Graphics* graphics;
 	Engine* engine;
+	Shader* shader;
 	Window* window;
 	FileReader* fileReader;
 	Texture* texture;
+	SpriteObject* sprite;
 };
 
 #endif

@@ -6,7 +6,6 @@
 class Graphics
 {
 public:
-	Graphics();
 	Graphics(int width, int height);
 	~Graphics();
 
