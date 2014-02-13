@@ -11,9 +11,14 @@ Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFil
 	_fragmentShader(0),
 	_vertexFilePath(vertexFilePath),
 	_fragmentFilePath(fragmentFilePath),
-	_inUse(false)
+	_inUse(false),
+	fileReader("Assets/Shaders")
 {
 	init();
+}
+
+Shader::~Shader()
+{
 }
 
 bool Shader::init() 
@@ -90,14 +95,15 @@ GLuint Shader::loadShader(GLenum shaderType, const char* source)
 
 void Shader::createProgram()
 {
-	_vertexShader = loadShader(GL_VERTEX_SHADER,  fileReader->loadFile(_vertexFilePath).c_str());
+
+	_vertexShader = loadShader(GL_VERTEX_SHADER,  fileReader.loadFile(_vertexFilePath).c_str());
 	if (!_vertexShader)
 	{
 		std::cout << "vertexshader failed!" << std::endl;
 		return;
 	}
 	
-	_fragmentShader = loadShader(GL_FRAGMENT_SHADER,  fileReader->loadFile(_fragmentFilePath).c_str());
+	_fragmentShader = loadShader(GL_FRAGMENT_SHADER,  fileReader.loadFile(_fragmentFilePath).c_str());
 	if (!_vertexShader)
 	{
 		std::cout << "fragmentshader failed!" << std::endl;

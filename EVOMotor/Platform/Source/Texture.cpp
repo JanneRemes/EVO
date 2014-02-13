@@ -2,6 +2,10 @@
 #include <time.h>
 #include "Platform/debug.h"
 
+Texture::Texture()
+{
+}
+
 Texture::Texture(GLubyte* data,int width,int height,int depth):
 _data(data),
 _width(width),
@@ -116,6 +120,6 @@ Texture* Texture::load(const std::string &fileName)
 {
 	tgaHeader header;
 	GLubyte* data = loadTGA(fileName, header);
-	writeLog("\ntexturesize: %d\n",sizeof(data));
+	writeLog("\ntexturesize: %d\n",sizeof(*data));
 	return new Texture(data, header.width, header.height, header.depth);
 }

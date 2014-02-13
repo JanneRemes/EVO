@@ -2,31 +2,34 @@
 #include "Platform/debug.h"
 
 VertexData::VertexData(std::vector<GLfloat> &data)
+	: _data(data)
 {
 	init();
 }
 
-VertexData::VertexData(std::vector<glm::vec3> &data)
-{
-	for(int i = 0; i < data.size(); i++)
-	{
-		_data.push_back(data[i].x);
-		_data.push_back(data[i].y);
-		_data.push_back(data[i].z);
-	}
-	init();
-}
-
-VertexData::VertexData(std::vector<glm::vec2> &data)
-{
-	for(int i = 0; i < data.size(); i++)
-	{
-		_data.push_back(data[i].x);
-		_data.push_back(data[i].y);
-	}
-
-	init();
-}
+//VertexData::VertexData(std::vector<glm::vec3> &data)
+//	: _data(data)
+//{
+//	for(int i = 0; i < data.size(); i++)
+//	{
+//		_data.push_back(data[i].x);
+//		_data.push_back(data[i].y);
+//		_data.push_back(data[i].z);
+//	}
+//	init();
+//}
+//
+//VertexData::VertexData(std::vector<glm::vec2> &data)
+//	: _data(data)
+//{
+//	for(int i = 0; i < data.size(); i++)
+//	{
+//		_data.push_back(data[i].x);
+//		_data.push_back(data[i].y);
+//	}
+//
+//	init();
+//}
 
 VertexData::~VertexData()
 {

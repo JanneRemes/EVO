@@ -26,7 +26,7 @@ private:
 	GLuint loadShader(GLenum shaderType, const char* source);
 	void createProgram();
 
-	FileReader* fileReader;
+	FileReader fileReader;
 	std::string _vertexFilePath;
 	std::string _fragmentFilePath;
 	GLuint _program;

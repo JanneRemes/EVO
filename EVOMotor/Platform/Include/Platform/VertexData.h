@@ -9,9 +9,9 @@ class VertexData
 {
 public:
 
-	VertexData(std::vector<GLfloat> &data);
+	VertexData(std::vector<GLfloat> &data);/*
 	VertexData(std::vector<glm::vec3> &data);
-	VertexData(std::vector<glm::vec2> &data);
+	VertexData(std::vector<glm::vec2> &data);*/
 	~VertexData();
 
 	void bindBuffers();
@@ -25,6 +25,8 @@ private:
 
 	GLuint _vertexBufferObject;
 	std::vector<GLfloat> _data;
+	//
+
 
 };
 

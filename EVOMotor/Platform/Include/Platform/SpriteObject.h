@@ -16,7 +16,7 @@ public:
 	void setVertexData(VertexData* vertexData);
 	void setColor(glm::vec4 color);
 
-	virtual void draw();
+	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
 private:
 

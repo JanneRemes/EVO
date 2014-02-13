@@ -87,6 +87,7 @@
     <ClInclude Include="Include\Platform\SpriteObject.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
     <ClInclude Include="Include\Platform\VertexData.h" />
+    <ClInclude Include="Include\Platform\Viewport.h" />
     <ClInclude Include="Include\Platform\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,7 @@
     <ClCompile Include="Source\SpriteObject.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\VertexData.cpp" />
+    <ClCompile Include="Source\Viewport.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

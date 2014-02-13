@@ -18,6 +18,7 @@ struct tgaHeader
 class Texture
 {
 public:
+	Texture();
 	Texture(GLubyte* data,int width,int height,int depth);
 	Texture(GLubyte* data);
 	~Texture(void);

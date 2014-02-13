@@ -27,7 +27,7 @@ SpriteObject::~SpriteObject(void)
 
 void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 {
-	setPosition(glm::vec2(x, y));
+	setPosition(glm::vec3(x, y, 0));
 
 	std::vector<GLfloat> data(32);
 
@@ -58,14 +58,25 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 
 }
 
-void SpriteObject::draw()
+void SpriteObject::setColor(glm::vec4 color)
+{
+	GLfloat colors[] = {color.x, color.y, color.z, color.w};
+	for(int i = 2; i <32; i += 8)
+	{
+		_vertexData->setData(GL_ARRAY_BUFFER, sizeof(GLfloat)*i, sizeof(GLfloat)*4, colors);
+	}
+}
+
+void SpriteObject::draw(glm::mat4 &projectionMatrix)
 {
 	glUseProgram(_shader->program());
 
 	if (_texture)
 		_texture->bind(_shader);
+	glm::mat4 model = getMatrix();
+	glm::vec4 gl_Position = projectionMatrix * model * glm::vec4(100,100, 0, 1.0);
 
-	_shader->setUniform("projection", glm::value_ptr(_projectionMatrix)); 
+	_shader->setUniform("projection", glm::value_ptr(projectionMatrix)); 
 	_shader->setUniform("model", glm::value_ptr(getMatrix())); 
 
 	static const int stride = sizeof(GLfloat)*8;

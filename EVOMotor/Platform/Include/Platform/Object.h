@@ -13,7 +13,7 @@ public:
 	virtual ~Object();
 
 	virtual void update(float dt) = 0;
-	virtual void draw() = 0;
+	virtual void draw(glm::mat4 &projectionMatrix) = 0;
 
 	void setPosition(const glm::vec3& position);
 	void setPosition(const glm::vec2& position);

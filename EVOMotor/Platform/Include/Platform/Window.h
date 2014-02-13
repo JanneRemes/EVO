@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <incl/GL/glew.h>
 #include <incl/GLFW/glfw3.h>
+#include <incl/glm/glm.hpp>
 //#include <incl/glm/ext.hpp>
 
 class Window

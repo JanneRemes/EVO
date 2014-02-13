@@ -20,7 +20,7 @@ std::string FileReader::loadFile(const std::string& fileName)
 	return "";
 }
 
-FileReader::FileReader(const char* path)
+FileReader::FileReader(const std::string path)
 	: filepath(path)
 {
 }

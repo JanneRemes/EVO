@@ -28,7 +28,7 @@ int main(void)
 		engine->update();
 		engine->draw(window->window);
 
-		std::cout << deltaTime <<std::endl;
+		//std::cout << deltaTime <<std::endl;
 	}
 
 	delete engine;

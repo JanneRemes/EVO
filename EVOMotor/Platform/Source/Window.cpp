@@ -13,9 +13,6 @@ Window::~Window(void)
 
 int Window::CreateWindow(int height, int width,const char* name)
 {
-	glewExperimental = GL_TRUE;
-	glewInit();
-	
     if (!glfwInit())
         return -1;
 
@@ -28,6 +25,13 @@ int Window::CreateWindow(int height, int width,const char* name)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+	
+	
+	glewExperimental = GL_TRUE;
+	// TODO: implement error checking properly
+	GLenum res = glewInit();
+
+	const GLubyte* string = glewGetErrorString(res);
 
 
 	return 0;

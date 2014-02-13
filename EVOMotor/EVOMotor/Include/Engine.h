@@ -7,6 +7,7 @@
 #include "Platform/Texture.h"
 #include "Platform/SpriteObject.h"
 #include "Platform/Shader.h"
+#include "Platform/Viewport.h"
 
 class Engine
 {
@@ -29,6 +30,9 @@ private:
 	FileReader* fileReader;
 	Texture* texture;
 	SpriteObject* sprite;
+	Viewport* viewport;
+
+	float red,blue,green;
 };
 
 #endif
