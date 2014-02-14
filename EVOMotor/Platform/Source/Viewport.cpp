@@ -14,7 +14,5 @@ Viewport::~Viewport()
 
 void Viewport::draw(Object* object)
 {
-	
 	object->draw(projectionMatrix);
-
 }

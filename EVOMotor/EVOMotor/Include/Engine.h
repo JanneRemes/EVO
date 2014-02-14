@@ -29,7 +29,9 @@ private:
 	Window* window;
 	FileReader* fileReader;
 	Texture* texture;
+	Texture* texture2;
 	SpriteObject* sprite;
+	SpriteObject* sprite2;
 	Viewport* viewport;
 
 	float red,blue,green;

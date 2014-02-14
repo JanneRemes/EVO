@@ -20,6 +20,7 @@ void Engine::init()
 	tgaHeader header;
 	graphics = new Graphics(windowWidth,windowHeight);
 	texture = Texture::load("Assets/Waluigi.tga");
+	texture2 = Texture::load("Assets/vanaja.tga");
 	shader = new Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 
 	//graphics->init();
@@ -28,6 +29,9 @@ void Engine::init()
 	/*texture loadTGA("Assets/kuva.tga",header);*/
 
 	sprite = new SpriteObject(200, 200, 200, 200, texture, shader);
+	
+	sprite2 = new SpriteObject(400, 400, 200, 200, texture2, shader);
+
 	viewport = new Viewport((float)windowWidth,(float)windowHeight);
 
 	red = 0;
@@ -44,14 +48,18 @@ void Engine::update()
 	sprite->setPosition(rand()%10+100,rand()%10+100);
 	sprite->setRotationZ(rand()%10);
 	sprite->setColor(glm::vec4(red,green,blue,1.f));
+
+	sprite2->setPosition(rand()%10+500,rand()%10+300);
+	sprite2->setRotationZ(rand()%10);
+	sprite2->setColor(glm::vec4(red,green,blue,1.f));
 }
 
 void Engine::draw(GLFWwindow* window)
-{
-	
+{	
 	graphics->clear(1.0f,0.0f,1.0f);
 
 	viewport->draw(sprite);
+	viewport->draw(sprite2);
 
 	graphics->draw(window);
 }
