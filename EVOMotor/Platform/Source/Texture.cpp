@@ -23,7 +23,6 @@ _height(10)
 }
 
 
-
 Texture::~Texture(void)
 {
 

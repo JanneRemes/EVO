@@ -11,10 +11,13 @@ Window::~Window(void)
     glfwTerminate();
 }
 
-int Window::CreateWindow(int height, int width,const char* name)
+int Window::createWindow(int height, int width,const char* name)
 {
     if (!glfwInit())
         return -1;
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
 	window = glfwCreateWindow(height, width, name , NULL, NULL);
     if (!window)
@@ -47,3 +50,4 @@ void Window::pollEvents()
 	//swapbuffer
     glfwPollEvents();
 }
+

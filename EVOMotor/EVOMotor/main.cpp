@@ -9,7 +9,7 @@ int main(void)
 
 
 	Window* window = new Window();
-	window->CreateWindow(Engine::windowWidth,Engine::windowHeight,"I made dis");
+	window->createWindow(Engine::windowWidth,Engine::windowHeight,"I made dis");
 	Engine* engine;
 	engine = new Engine();
 	engine->init();

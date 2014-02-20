@@ -32,8 +32,8 @@ public:
 	static Texture* blank;
 
 	static GLubyte* loadTGA(const std::string& fileName, tgaHeader &header);
-private:
 
+private:
 	void init();
 
 	GLubyte* _data;

@@ -83,15 +83,16 @@
     <ClInclude Include="Include\Platform\Graphics.h" />
     <ClInclude Include="Include\Platform\IndexData.h" />
     <ClInclude Include="Include\Platform\Object.h" />
+    <ClInclude Include="Include\Platform\OpenGL.hpp" />
     <ClInclude Include="Include\Platform\Shader.h" />
     <ClInclude Include="Include\Platform\SpriteObject.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
     <ClInclude Include="Include\Platform\VertexData.h" />
     <ClInclude Include="Include\Platform\Viewport.h" />
     <ClInclude Include="Include\Platform\Window.h" />
+    <ClInclude Include="Include\Platform\Win\FileReader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\FileReader.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\IndexData.cpp" />
     <ClCompile Include="Source\Object.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="Source\VertexData.cpp" />
     <ClCompile Include="Source\Viewport.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Source\Win\FileReader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
