@@ -7,7 +7,7 @@
 
 class Object
 {
-
+	//asetetaan arvoja ja positioneita hyvin paljon
 public:
 	Object();
 	virtual ~Object();

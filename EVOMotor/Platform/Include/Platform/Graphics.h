@@ -5,6 +5,7 @@
 
 class Graphics
 {
+	//annetaan/alustetaan arvoja/muuttujia
 public:
 	Graphics(int width, int height);
 	~Graphics();

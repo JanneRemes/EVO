@@ -1,6 +1,7 @@
 #include "Platform/FileReader.h"
 #include <cassert>
 
+//
 std::string FileReader::loadFile(const std::string& fileName)
 {
 	std::stringstream stream;
