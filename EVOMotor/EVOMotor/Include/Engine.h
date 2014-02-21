@@ -8,6 +8,7 @@
 #include "Platform/SpriteObject.h"
 #include "Platform/Shader.h"
 #include "Platform/Viewport.h"
+#include "Platform/SpriteBatch.h"
 
 class Engine
 {
@@ -16,7 +17,7 @@ public:
 	~Engine(void);
 	void init();
 	void update();
-	void draw(GLFWwindow* window);
+	void draw();
 
 	static int windowWidth;
 	static int windowHeight;
@@ -26,12 +27,8 @@ private:
 	Graphics* graphics;
 	Engine* engine;
 	Shader* shader;
-	Window* window;
 	FileReader* fileReader;
-	Texture* texture;
-	Texture* texture2;
-	SpriteObject* sprite;
-	SpriteObject* sprite2;
+	SpriteBatch* spriteBatch;
 	Viewport* viewport;
 
 	float red,blue,green;

@@ -48,7 +48,7 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 	data[14] = 0.0f;	data[15] = 0.0f;
 	data[22] = 1.0f;	data[23] = 1.0f;
 	data[30] = 1.0f;	data[31] = 0.0f;
-
+	
 	_vertexData = new VertexData(data);
 
 	const GLushort iData[] = { 0, 1, 2, 2, 1, 3 };

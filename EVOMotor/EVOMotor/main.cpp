@@ -7,7 +7,6 @@ int main(void)
 {
     /* Initialize the library */
 
-
 	Window* window = new Window();
 	window->createWindow(Engine::windowWidth,Engine::windowHeight,"I made dis");
 	Engine* engine;
@@ -26,8 +25,8 @@ int main(void)
 		deltaTime = newTime - oldTime;
 		window->pollEvents();
 		engine->update();
-		engine->draw(window->window);
-
+		engine->draw();
+		window->SwapBuffers();
 		//std::cout << deltaTime <<std::endl;
 	}
 

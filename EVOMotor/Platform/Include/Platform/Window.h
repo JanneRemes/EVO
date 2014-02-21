@@ -1,24 +1,7 @@
-#ifndef WINDOW_H_
-#define WINDOW_H_
+#if defined(WIN32)
+#include <Platform/Win/Window.h>
 
-#include <iostream>
-#include <Platform/OpenGL.hpp>
-#include <string>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <incl/glm/glm.hpp>
-
-class Window
-{
-public:
-	Window(void);
-	~Window(void);
-	int createWindow(int height, int width, const char* name);
-	bool isOpen();
-	void pollEvents();
-	GLFWwindow* window;
-
-private:
-};
+#elif __ANDROID__
+#include <Platform/Android/AndroidWindow.h>
 
 #endif

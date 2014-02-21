@@ -51,3 +51,7 @@ void Window::pollEvents()
     glfwPollEvents();
 }
 
+void Window::SwapBuffers()
+{
+	glfwSwapBuffers(window);
+}

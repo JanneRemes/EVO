@@ -12,7 +12,7 @@ public:
 
 	void clear(float r, float g, float b) const;
 	void init();
-	void draw(GLFWwindow* window);
+	//void draw(GLFWwindow* window);
 
 	static int screenWidth;
 	static int screenHeight;

@@ -85,24 +85,27 @@
     <ClInclude Include="Include\Platform\Object.h" />
     <ClInclude Include="Include\Platform\OpenGL.hpp" />
     <ClInclude Include="Include\Platform\Shader.h" />
+    <ClInclude Include="Include\Platform\SpriteBatch.h" />
     <ClInclude Include="Include\Platform\SpriteObject.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
     <ClInclude Include="Include\Platform\VertexData.h" />
     <ClInclude Include="Include\Platform\Viewport.h" />
     <ClInclude Include="Include\Platform\Window.h" />
     <ClInclude Include="Include\Platform\Win\FileReader.h" />
+    <ClInclude Include="Include\Platform\Win\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\IndexData.cpp" />
     <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\SpriteBatch.cpp" />
     <ClCompile Include="Source\SpriteObject.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\VertexData.cpp" />
     <ClCompile Include="Source\Viewport.cpp" />
-    <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\Win\FileReader.cpp" />
+    <ClCompile Include="Source\Win\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

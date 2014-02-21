@@ -46,12 +46,12 @@ void Graphics::clear(float r, float g, float b) const
 	checkGLError("glClear");
 }
 
-//delete this shit/android ei toimi tämän kakan takia
-void Graphics::draw(GLFWwindow* window)
-{
-	//This function swaps the front and back buffers of the specified window
-	glfwSwapBuffers(window);
-}
+////delete this shit/android ei toimi tämän kakan takia
+//void Graphics::draw(GLFWwindow* window)
+//{
+//	//This function swaps the front and back buffers of the specified window
+//	glfwSwapBuffers(window);
+//}
 
 
 void Graphics::init()
