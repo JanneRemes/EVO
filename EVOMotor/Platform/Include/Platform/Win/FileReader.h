@@ -5,6 +5,19 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <string>
+#include <Platform/OpenGL.hpp>
+
+struct tgaHeader
+{
+	GLubyte idLength;
+	GLubyte colorMapType;
+	GLubyte type;
+	GLushort width;
+	GLushort height;
+	GLubyte depth;
+	GLubyte descriptor;
+};
 
 class FileReader
 {
@@ -16,9 +29,11 @@ public:
 	void open(bool isBinary);
 	void seek(int offset, int origin);
 	void read(unsigned int count, char* buffer);
+
 	unsigned int length();
 	int tell();
 	std::string loadFile(const std::string& fileName);
+	static GLubyte* loadTGA(const std::string &fileName, tgaHeader &header);
 
 private:
 

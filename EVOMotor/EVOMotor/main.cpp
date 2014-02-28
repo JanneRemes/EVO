@@ -3,6 +3,8 @@
 #include "Platform/Texture.h"
 #include "Include/Engine.h"
 
+float getTotalTime();
+
 int main(void)
 {
     /* Initialize the library */
@@ -21,7 +23,7 @@ int main(void)
 	while(window->isOpen())
 	{
 		oldTime = newTime;
-		newTime = Engine::getTotalTime();
+		newTime = getTotalTime();
 		deltaTime = newTime - oldTime;
 		window->pollEvents();
 		engine->update();
@@ -33,4 +35,10 @@ int main(void)
 	delete engine;
 	delete window;
     return 0;
+}
+
+
+float getTotalTime()
+{
+	return glfwGetTime();
 }

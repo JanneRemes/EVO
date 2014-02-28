@@ -1,19 +1,27 @@
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
 
-#include "Platform/Window.h"
 #include "Platform/Shader.h"
+#include "Platform/FileReader.h"
+#include <iostream>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <Platform/OpenGL.hpp>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <iostream>
 
-struct tgaHeader
-{
-	GLubyte idLength;
-	GLubyte colorMapType;
-	GLubyte type;
-	GLushort width;
-	GLushort height;
-	GLubyte depth;
-	GLubyte descriptor;
-};
+//struct tgaHeader
+//{
+//	GLubyte idLength;
+//	GLubyte colorMapType;
+//	GLubyte type;
+//	GLushort width;
+//	GLushort height;
+//	GLubyte depth;
+//	GLubyte descriptor;
+//};
 
 class Texture
 {
@@ -31,7 +39,7 @@ public:
 	static Texture* generateBlank();
 	static Texture* blank;
 
-	static GLubyte* loadTGA(const std::string& fileName, tgaHeader &header);
+	//static GLubyte* loadTGA(const std::string& fileName, tgaHeader &header);
 
 private:
 	void init();

@@ -1,7 +1,9 @@
 #ifndef GRAPHICS_H_
 #define GRAPHICS_H_
 
-#include "Platform/Window.h"
+#include <iostream>
+#include <Platform/OpenGL.hpp>
+#include <stdlib.h>
 
 class Graphics
 {

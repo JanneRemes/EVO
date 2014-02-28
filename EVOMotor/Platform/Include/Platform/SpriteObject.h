@@ -1,6 +1,11 @@
 #ifndef SPRITEOBJECT_H_
 #define SPRITEOBJECT_H_
-#include "Platform/Window.h"
+
+#include <iostream>
+#include <Platform/OpenGL.hpp>
+#include <string>
+#include <stdlib.h>
+#include <incl/glm/glm.hpp>
 #include "Platform/Shader.h"
 #include "Platform/Texture.h"
 #include "Platform/VertexData.h"

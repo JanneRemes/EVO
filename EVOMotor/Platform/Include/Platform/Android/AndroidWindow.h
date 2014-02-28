@@ -5,7 +5,7 @@
 #include <GLES2/gl2.h>
 
 #include <android/sensor.h>
-#include <android/_native_app_glue.h>
+//#include <android/_native_app_glue.h>
 
 class AndroidWindow
 {
@@ -13,7 +13,7 @@ public:
 	AndroidWindow(int width, int height, const char* title);
 	~AndroidWindow();
 	bool isOpen();
-	void pollEvents(Scene& scene);
+	void pollEvents();
 	void close();
 
 	static int getKey(int key);

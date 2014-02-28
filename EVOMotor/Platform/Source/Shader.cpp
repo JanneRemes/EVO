@@ -12,7 +12,7 @@ Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFil
 	_vertexFilePath(vertexFilePath),
 	_fragmentFilePath(fragmentFilePath),
 	_inUse(false),
-	fileReader("Assets/Shaders")
+	fileReader("string")
 {
 	init();
 }
@@ -81,7 +81,7 @@ GLuint Shader::loadShader(GLenum shaderType, const char* source)
 				if (buf)
 				{
 					glGetShaderInfoLog(shader, infoLen, NULL, buf);
-					std::cout << "Could not compile shader %d: \n%s \n"<<shaderType<<" "<<buf<<std::endl;
+					writeLog("Could not compile shader %d: \n%s \n", shaderType, buf);
 					free(buf);
 				}
 				glDeleteShader(shader);
@@ -95,18 +95,18 @@ GLuint Shader::loadShader(GLenum shaderType, const char* source)
 
 void Shader::createProgram()
 {
-
+	//////////////////FIX LOADFILE
 	_vertexShader = loadShader(GL_VERTEX_SHADER,  fileReader.loadFile(_vertexFilePath).c_str());
 	if (!_vertexShader)
 	{
-		std::cout << "vertexshader failed!" << std::endl;
+		writeLog("Vertexshader failed");
 		return;
 	}
 	
 	_fragmentShader = loadShader(GL_FRAGMENT_SHADER,  fileReader.loadFile(_fragmentFilePath).c_str());
-	if (!_vertexShader)
+	if (!_fragmentShader)
 	{
-		std::cout << "fragmentshader failed!" << std::endl;
+		writeLog("Fragmentshader failed");
 		return;
 	}
 
@@ -128,7 +128,7 @@ void Shader::createProgram()
 
 		if (linkStatus != GL_TRUE)
 		{
-			std::cout<<"Could not link program\n";
+			writeLog("Program link failed");
 			GLint bufLength = 0;
 			glGetProgramiv(_program, GL_INFO_LOG_LENGTH, &bufLength);
 			if (bufLength)
@@ -137,7 +137,7 @@ void Shader::createProgram()
 				if (buf)
 				{
 					glGetProgramInfoLog(_program, bufLength, NULL, buf);
-					std::cout<<"Could not link program:\n%s"<<buf<<"\n";
+					writeLog("Could not link program:\n%s", buf);
 					free(buf);
 				}
 			}

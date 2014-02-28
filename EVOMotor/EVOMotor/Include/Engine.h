@@ -10,18 +10,24 @@
 #include "Platform/Viewport.h"
 #include "Platform/SpriteBatch.h"
 
+#include <stdlib.h>
+
 class Engine
 {
 public:
 	Engine(void);
 	~Engine(void);
+
+	bool isInit();
+	
+
 	void init();
+	void deInit();
 	void update();
 	void draw();
 
 	static int windowWidth;
 	static int windowHeight;
-	static float getTotalTime();
 
 private:
 	Graphics* graphics;
@@ -30,6 +36,8 @@ private:
 	FileReader* fileReader;
 	SpriteBatch* spriteBatch;
 	Viewport* viewport;
+
+	bool initialized;
 
 	float red,blue,green;
 };

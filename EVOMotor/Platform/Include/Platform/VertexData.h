@@ -2,7 +2,10 @@
 #define VERTEXDATA_H_
 
 #include <vector>
-#include "Platform/Window.h"
+
+#include <iostream>
+#include <Platform/OpenGL.hpp>
+#include <stdlib.h>
 #include "Platform/Shader.h"
 
 class VertexData

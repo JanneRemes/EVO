@@ -1,7 +1,10 @@
 #ifndef VIEWPORT_H_
 #define VIEWPORT_H_
 
-#include "Platform/Window.h"
+
+#include <iostream>
+#include <Platform/OpenGL.hpp>
+#include <stdlib.h>
 #include <incl/glm/glm.hpp>
 #include "Platform/Object.h"
 

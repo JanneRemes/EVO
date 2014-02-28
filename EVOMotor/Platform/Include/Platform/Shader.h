@@ -1,11 +1,13 @@
 #ifndef SHADER_H_
 #define SHADER_H_
 
-#include "Platform/Window.h"
 #include "Platform/FileReader.h"
 #include <incl/glm/glm.hpp>
 #include <incl/glm/gtx/transform.hpp>
-#include "incl/glm/matrix.hpp"
+#include <incl/glm/matrix.hpp>
+#include <iostream>
+#include <Platform/OpenGL.hpp>
+#include <string>
 
 class Shader
 {
