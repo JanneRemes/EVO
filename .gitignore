@@ -20,6 +20,7 @@
 *.ilk
 *.log
 #*.lib
+*.pdb
 *.sbr
 *.sdf
 *.opensdf
@@ -45,6 +46,7 @@ _ReSharper*/
 #Project files
 [Bb]uild/
 
+
 #Subversion files
 .svn
 
@@ -68,4 +70,6 @@ packages/
 #Test files
 *.testsettings
 **/obj/
-EVOMotor/Build/
+
+#Android
+EVOMotor/Android/libs/
