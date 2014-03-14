@@ -9,6 +9,7 @@
 #include "Platform/Shader.h"
 #include "Platform/Viewport.h"
 #include "Platform/SpriteBatch.h"
+#include "Platform/Input.h"
 
 #include <stdlib.h>
 
@@ -19,12 +20,12 @@ public:
 	~Engine(void);
 
 	bool isInit();
-	
 
 	void init();
 	void deInit();
 	void update();
 	void draw();
+	void KeyboardInput();
 
 	static int windowWidth;
 	static int windowHeight;
@@ -36,10 +37,13 @@ private:
 	FileReader* fileReader;
 	SpriteBatch* spriteBatch;
 	Viewport* viewport;
+	Input* input;
 
 	bool initialized;
 
 	float red,blue,green;
+	int posX, posY;
+	int posX2, posY2;
 };
 
 #endif

@@ -60,6 +60,18 @@
     <ClInclude Include="Include\Platform\SpriteBatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Platform\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win\Keyboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win\Mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Texture.cpp">
@@ -93,6 +105,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SpriteBatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

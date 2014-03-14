@@ -1,8 +1,14 @@
 #include "Platform/Window.h"
+#include "Platform/debug.h"
 
+GLFWwindow* Window::window = 0;
+int Window::winWidth = 0;
+int Window::winHeight = 0;
 
 Window::Window(void)
 {
+	wHeigth = 0;
+	wWidth = 0;
 }
 
 
@@ -16,10 +22,13 @@ int Window::createWindow(int height, int width,const char* name)
     if (!glfwInit())
         return -1;
 
+	winWidth = width;
+	winHeight = height;
+
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
-	window = glfwCreateWindow(height, width, name , NULL, NULL);
+	window = glfwCreateWindow(width, height, name , NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -36,6 +45,7 @@ int Window::createWindow(int height, int width,const char* name)
 
 	const GLubyte* string = glewGetErrorString(res);
 
+	glfwSetWindowSizeCallback(Window::window, window_size_callback);
 
 	return 0;
 }
@@ -54,4 +64,18 @@ void Window::pollEvents()
 void Window::SwapBuffers()
 {
 	glfwSwapBuffers(window);
+}
+
+glm::vec2 Window::getWindowSize()
+{
+	glfwGetWindowSize(Window::window, &wWidth, &wHeigth);
+	return glm::vec2((float)wWidth,(float)wHeigth);
+}
+
+void Window::window_size_callback(GLFWwindow* window, int width, int height)
+{
+	winWidth = width;
+	winHeight = height;
+	glViewport(0,0,width,height);
+	//glfwSetFramebufferSizeCallback(Window::window, width, height);
 }

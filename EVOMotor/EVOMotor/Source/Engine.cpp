@@ -5,8 +5,8 @@
 #include <time.h>
 
 
-int Engine::windowWidth = 700;
-int Engine::windowHeight = 500;
+int Engine::windowWidth =  0;
+int Engine::windowHeight = 0;
 
 Engine::Engine(void)
 {
@@ -27,28 +27,25 @@ bool Engine::isInit()
 
 void Engine::init()
 {
-	graphics = new Graphics(windowWidth,windowHeight);
-	viewport = new Viewport((float)windowWidth,(float)windowHeight);
+	graphics = new Graphics(Window::winWidth,Window::winHeight);
+	viewport = new Viewport(Window::winWidth,Window::winHeight);
 	spriteBatch = new SpriteBatch();
+	input = new Input();
 	shader = new Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 	
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,200,200);
-	spriteBatch->addObject("Assets/vanaja.tga",100,100,400,400);
-	//graphics->init();
-	//fileReader->loadFile("Assets/imadethis.txt");
-
-	/*texture loadTGA("Assets/kuva.tga",header);*/
-
-	//sprite = new SpriteObject(200, 200, 200, 200, texture, shader);
-	
-	//sprite2 = new SpriteObject(400, 400, 200, 200, texture2, shader);
-
+	spriteBatch->addObject("Assets/Weegee.tga",170,170,400,400);
 
 	red = 0;
 	blue = 0;
 	green = 0;
 
+	posX = 0;
+	posY = 0;
+
+	posX2 = 0;
+	posY2 = 0;
 	initialized = true;
 }
 
@@ -59,19 +56,77 @@ void Engine::deInit()
 
 void Engine::update()
 {
+	KeyboardInput();
+
 	red = rand()%2+0.01f;
 	blue = rand()%2+0.01f;
 	green = rand()%2+0.01f;
 
 	spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteList[1]->setPosition(rand()%10+500,rand()%10+300);
+	spriteBatch->spriteList[1]->setPosition(rand()%10+500+posX2,rand()%10+300+posY2);
+
+	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
+	spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
 
 }
 
 void Engine::draw()
 {	
-	graphics->clear(1.0f,0.0f,1.0f);
+	graphics->clear(0.0f,0.0f,0.0f);
 
 	spriteBatch->draw(viewport);
+}
+
+void Engine::KeyboardInput()
+{
+	if(input->keyPress(evo::Keys::Down))
+	{
+		posY -= 10;
+	}
+	if(input->keyPress(evo::Keys::Up))
+	{
+		posY += 10;
+	}
+	if(input->keyPress(evo::Keys::Left))
+	{
+		posX -= 10;
+	}
+	if(input->keyPress(evo::Keys::Right))
+	{
+		posX += 10;
+	}
+
+	if(input->MouseButtonPress(evo::buttons::MouseLeft))
+	{
+		posX = input->getCursorPos().x;
+		posY = input->getCursorPos().y;
+	}
+
+	if(input->MouseButtonPress(evo::buttons::MouseRight))
+	{
+		writeLog("mouse right");
+	}
+
+	if(input->MouseButtonPress(evo::buttons::MouseMiddle))
+	{
+		writeLog("mouse middle");
+	}
+
+	if(input->keyPress(evo::Keys::S))
+	{
+		posY2 -= 10;
+	}
+	if(input->keyPress(evo::Keys::W))
+	{
+		posY2 += 10;
+	}
+	if(input->keyPress(evo::Keys::A))
+	{
+		posX2 -= 10;
+	}
+	if(input->keyPress(evo::Keys::D))
+	{
+		posX2 += 10;
+	}
 
 }

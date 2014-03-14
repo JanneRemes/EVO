@@ -16,9 +16,14 @@ public:
 	int createWindow(int height, int width, const char* name);
 	bool isOpen();
 	void pollEvents();
-	GLFWwindow* window;
+	static GLFWwindow* window;
 	void SwapBuffers();
-
+	int wHeigth, wWidth;
+	glm::vec2 getWindowSize();
+	static void window_size_callback(GLFWwindow* window, int width, int height);
+	static int winHeight;
+	static int winWidth;
+	
 private:
 };
 
