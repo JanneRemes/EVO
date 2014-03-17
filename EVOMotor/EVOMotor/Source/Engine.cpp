@@ -1,5 +1,6 @@
 #include "Include/Engine.h"
 #include "Platform/debug.h"
+#include "Platform/Leak.h"
 
 #include <iostream>
 #include <time.h>

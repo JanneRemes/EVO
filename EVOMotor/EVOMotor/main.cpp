@@ -3,6 +3,8 @@
 #include "Platform/Texture.h"
 #include "Include/Engine.h"
 #include "Platform/Input.h"
+#include "Platform/New.h"
+#include "Platform/Leak.h"
 
 float getTotalTime();
 int main(void)
@@ -22,7 +24,30 @@ int main(void)
 	float oldTime = 0.0f;
 	/*bool isKeyPressed;
 	isKeyPressed = false;*/
+
+	class A
+	{
+	public:
+		A()
+		{
+			writeLog("A ctor\n");
+		}
+
+		~A()
+		{
+			writeLog("A dtor\n");
+		}
+
+		int _i;
+	};
 		
+	Leak leak;
+
+	A* a = EVO_NEW A();
+	delete a;
+
+	A* b = EVO_NEW A[3u];
+	delete[] b;
 
     /* Create a windowed mode window and its OpenGL context */
 	while(window->isOpen())

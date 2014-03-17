@@ -83,6 +83,8 @@
     <ClInclude Include="Include\Platform\Graphics.h" />
     <ClInclude Include="Include\Platform\IndexData.h" />
     <ClInclude Include="Include\Platform\Input.h" />
+    <ClInclude Include="Include\Platform\Leak.h" />
+    <ClInclude Include="Include\Platform\New.h" />
     <ClInclude Include="Include\Platform\Object.h" />
     <ClInclude Include="Include\Platform\OpenGL.hpp" />
     <ClInclude Include="Include\Platform\Shader.h" />
@@ -101,6 +103,8 @@
   <ItemGroup>
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\IndexData.cpp" />
+    <ClCompile Include="Source\Leak.cpp" />
+    <ClCompile Include="Source\New.cpp" />
     <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\SpriteBatch.cpp" />
