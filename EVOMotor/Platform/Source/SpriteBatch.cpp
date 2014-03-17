@@ -1,5 +1,7 @@
 #include "Platform/SpriteBatch.h"
 #include "Platform/debug.h"
+#include "Platform/New.h"
+#include "Platform/Leak.h"
 
 SpriteBatch::SpriteBatch()
 {
@@ -23,7 +25,7 @@ void SpriteBatch::addObject(	std::string Path,
 	checkGLError("ENNEN!!");
 	texture = Texture::load(Path);
 	checkGLError("NYT!!");
-	sprite = new SpriteObject(PosX,PosY,Width,Height,texture,shader);
+	sprite = EVO_NEW SpriteObject(PosX,PosY,Width,Height,texture,shader);
 	spriteList.push_back(sprite);
 
 }

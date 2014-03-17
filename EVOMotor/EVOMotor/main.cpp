@@ -6,17 +6,21 @@
 #include "Platform/New.h"
 #include "Platform/Leak.h"
 
+
+
 float getTotalTime();
 int main(void)
 {
+	Leak leak;
+
     /* Initialize the library */
 	int Width = 700;
 	int Height = 500;
 
-	Window* window = new Window();
+	Window* window = EVO_NEW Window();
 	window->createWindow(Height,Width,"I made dis");
 	Engine* engine;
-	engine = new Engine();
+	engine = EVO_NEW Engine();
 	engine->init();
 
 	float deltaTime = 0.0f;
@@ -41,7 +45,7 @@ int main(void)
 		int _i;
 	};
 		
-	Leak leak;
+	
 
 	A* a = EVO_NEW A();
 	delete a;

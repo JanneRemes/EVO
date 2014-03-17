@@ -19,7 +19,7 @@ Leak::~Leak()
 	Pointers::const_iterator end = _pointers.end();
 
 	for(Pointers::const_iterator i = _pointers.begin(); i != end; ++i)
-		writeLog("MEMORY LEAK DETECTED @ %s line %u", i->second.file, i->second.line);
+		writeLog("MEMORY LEAK DETECTED @ %s line %u\n", i->second.file, i->second.line);
 
 	_instance = NULL;
 }

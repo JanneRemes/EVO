@@ -3,6 +3,8 @@
 #include "Platform/Graphics.h"
 #include <vector>
 #include <incl\glm\gtc\type_ptr.hpp>
+#include "Platform/New.h"
+#include "Platform/Leak.h"
 
 SpriteObject::SpriteObject(int x,int y,int width,int height,Texture* texture, Shader* shader):
 	_shader(shader),
@@ -23,6 +25,7 @@ SpriteObject::~SpriteObject(void)
 {
 	delete _texture;
 	delete _vertexData;
+	delete _indexData;
 }
 
 void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
@@ -49,12 +52,12 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 	data[22] = 1.0f;	data[23] = 1.0f;
 	data[30] = 1.0f;	data[31] = 0.0f;
 	
-	_vertexData = new VertexData(data);
+	_vertexData = EVO_NEW VertexData(data);
 
 	const GLushort iData[] = { 0, 1, 2, 2, 1, 3 };
 	std::vector<GLushort> indexData(iData, iData+6);
 
-	_indexData = new IndexData(indexData);
+	_indexData = EVO_NEW IndexData(indexData);
 
 }
 

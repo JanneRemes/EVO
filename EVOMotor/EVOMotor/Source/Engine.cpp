@@ -1,5 +1,6 @@
 #include "Include/Engine.h"
 #include "Platform/debug.h"
+#include "Platform/New.h"
 #include "Platform/Leak.h"
 
 #include <iostream>
@@ -16,6 +17,8 @@ Engine::Engine(void)
 
 Engine::~Engine(void)
 {
+	delete input;
+	delete spriteBatch;
 	delete graphics;
 	delete shader;
 	delete viewport;
@@ -28,11 +31,11 @@ bool Engine::isInit()
 
 void Engine::init()
 {
-	graphics = new Graphics(Window::winWidth,Window::winHeight);
-	viewport = new Viewport(Window::winWidth,Window::winHeight);
-	spriteBatch = new SpriteBatch();
-	input = new Input();
-	shader = new Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
+	graphics = EVO_NEW Graphics(Window::winWidth,Window::winHeight);
+	viewport = EVO_NEW Viewport(Window::winWidth,Window::winHeight);
+	spriteBatch = EVO_NEW SpriteBatch();
+	input = EVO_NEW Input();
+	shader = EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 	
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,200,200);

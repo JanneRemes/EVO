@@ -1,6 +1,8 @@
 #include "Platform/Texture.h"
 #include <time.h>
 #include "Platform/debug.h"
+#include "Platform/New.h"
+#include "Platform/Leak.h"
 
 Texture::Texture()
 {
@@ -107,12 +109,12 @@ GLuint Texture::getTextureObject() const
 Texture* Texture::generateRandom(glm::vec2& size)
 {
 	const int length = size.x * size.y * 4;
-	GLubyte* pixelData = new GLubyte[length];
+	GLubyte* pixelData = EVO_NEW GLubyte[length];
 	for(int i = 0; i < length; i++)
 	{
 		pixelData[i] = rand() % 255;
 	}
-	return new Texture(pixelData, (int)size.x, (int)size.y, 24);
+	return EVO_NEW Texture(pixelData, (int)size.x, (int)size.y, 24);
 }
 
 Texture* Texture::load(const std::string &fileName)
@@ -120,5 +122,5 @@ Texture* Texture::load(const std::string &fileName)
 	tgaHeader header;
 	GLubyte* data = FileReader::loadTGA(fileName, header);
 	writeLog("\ntexturesize: %d\n",sizeof(*data));
-	return new Texture(data, header.width, header.height, header.depth);
+	return EVO_NEW Texture(data, header.width, header.height, header.depth);
 }

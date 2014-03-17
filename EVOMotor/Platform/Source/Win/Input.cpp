@@ -1,13 +1,14 @@
 #include "Platform/Input.h"
 #include "Platform/debug.h"
-
+#include "Platform/New.h"
+#include "Platform/Leak.h"
 
 Input::Input()
 {
 	isKeyPressed = false;
 	isMouseButtonPressed = false;
-	posX = new double(0);
-	posY = new double(0);
+	posX = EVO_NEW double(0);
+	posY = EVO_NEW double(0);
 	X = 0;
 	Y = 0;
 	//glfwSetInputMode(Window::window, GLFW_STICKY_KEYS, 1);
@@ -15,7 +16,8 @@ Input::Input()
 
 Input::~Input()
 {
-
+	delete posX;
+	delete posY;
 }
 
 bool Input::keyPress(int key)
