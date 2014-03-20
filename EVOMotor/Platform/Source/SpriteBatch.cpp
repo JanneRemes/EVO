@@ -33,7 +33,6 @@ void SpriteBatch::addObject(	std::string Path,
 void SpriteBatch::init(Shader* s)
 {
 	shader = s;
-
 }
 
 void SpriteBatch::draw(Viewport* viewport)

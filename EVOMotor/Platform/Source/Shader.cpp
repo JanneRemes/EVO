@@ -61,7 +61,7 @@ GLuint Shader::program() const
 
 GLuint Shader::loadShader(GLenum shaderType, const char* source)
 {
-	checkGLError("mika on vika!");
+	//checkGLError("mika on vika!");
 	GLuint shader = glCreateShader(shaderType);
 	if (shader)
 	{

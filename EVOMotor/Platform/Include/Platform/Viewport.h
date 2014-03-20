@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <incl/glm/glm.hpp>
 #include "Platform/Object.h"
+#include "Platform/Camera.h"
+
 
 
 class Viewport
@@ -17,7 +19,13 @@ public:
 	~Viewport();
 	glm::mat4 projectionMatrix;
 	void draw(Object* object);
+	glm::mat4 viewMatrix;
+	Camera* camera;
+	glm::vec3 movement;
+	void moveCamera(float X, float Y);
 
+private:
+	float width, height;
 };
 
 #endif

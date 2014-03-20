@@ -29,30 +29,6 @@ int main(void)
 	/*bool isKeyPressed;
 	isKeyPressed = false;*/
 
-	class A
-	{
-	public:
-		A()
-		{
-			writeLog("A ctor\n");
-		}
-
-		~A()
-		{
-			writeLog("A dtor\n");
-		}
-
-		int _i;
-	};
-		
-	
-
-	A* a = EVO_NEW A();
-	delete a;
-
-	A* b = EVO_NEW A[3u];
-	delete[] b;
-
     /* Create a windowed mode window and its OpenGL context */
 	while(window->isOpen())
 	{

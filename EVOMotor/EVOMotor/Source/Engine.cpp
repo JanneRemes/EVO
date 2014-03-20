@@ -85,19 +85,19 @@ void Engine::KeyboardInput()
 {
 	if(input->keyPress(evo::Keys::Down))
 	{
-		posY -= 10;
+		viewport->moveCamera(0,-5.01f);
 	}
 	if(input->keyPress(evo::Keys::Up))
 	{
-		posY += 10;
+		viewport->moveCamera(0,5.01f);
 	}
 	if(input->keyPress(evo::Keys::Left))
 	{
-		posX -= 10;
+		viewport->moveCamera(-5.01f,0);
 	}
 	if(input->keyPress(evo::Keys::Right))
 	{
-		posX += 10;
+		viewport->moveCamera(5.01f,0);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))

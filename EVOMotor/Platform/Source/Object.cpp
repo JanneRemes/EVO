@@ -1,16 +1,13 @@
 #include "Platform/Object.h"
 #include "Platform/Graphics.h"
 
-//konstruktori jossa alustetaan tietoja 
 Object::Object():
 	_position(glm::vec3::_null), //= position = (glm::vec3::_null)
-	_rotation(0), // = rotation = 0
+	_rotation(0),				// = rotation = 0
 	_scale(glm::vec3(1,1,1)), // = scale = (glm::vec3(1,1,1))
 	_recalculateMatrix(true) // = recalculateMatrix = true
 {
-	//setPosition(_position);
 	setScale(_scale);
-	//setRotation(_rotation);
 }
 
 Object::~Object() {}

@@ -23,7 +23,9 @@ public:
 	static void window_size_callback(GLFWwindow* window, int width, int height);
 	static int winHeight;
 	static int winWidth;
-	
+
+	void PositionCheck(int, int);
+
 private:
 };
 
