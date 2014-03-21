@@ -11,7 +11,6 @@ Input::Input()
 	posY = EVO_NEW double(0);
 	X = 0;
 	Y = 0;
-	
 	//glfwSetInputMode(Window::window, GLFW_STICKY_KEYS, 1);
 }
 
@@ -76,8 +75,8 @@ glm::vec2 Input::getCursorPos()
 	int wHeigth, wWidth;
 	glfwGetWindowSize(Window::window, &wWidth, &wHeigth);
 
-	Y = wHeigth - *posY - Viewport::cameraPosY;
-	X = *posX - Viewport::cameraPosX;
+	Y = wHeigth - *posY;
+	X = *posX;
 	return glm::vec2(X,Y);
 }
 

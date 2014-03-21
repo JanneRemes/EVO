@@ -40,7 +40,6 @@ void Engine::init()
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
 	spriteBatch->addObject("Assets/Weegee.tga",170,170,0,0);
-	spriteBatch->addObject("Assets/tausta.tga",700, 500, 0, 0); 
 
 	red = 0;
 	blue = 0;
@@ -72,9 +71,9 @@ void Engine::update()
 
 	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
 	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
-	spriteBatch->spriteList[0]->setPosition(0,0);
-	spriteBatch->spriteList[1]->setPosition(posX2,posY2);
-	spriteBatch->spriteList[2]->setPosition(0,0);
+
+	spriteBatch->spriteList[0]->setPosition(posX,posY);
+	spriteBatch->spriteList[1]->setPosition(0,0);
 }
 
 void Engine::draw()
@@ -88,35 +87,35 @@ void Engine::KeyboardInput()
 {
 	if(input->keyPress(evo::Keys::Down))
 	{
-		viewport->moveCamera(0,-5.0f);
+		viewport->moveCamera(0,-5.01f);
 	}
 	if(input->keyPress(evo::Keys::Up))
 	{
-		viewport->moveCamera(0,5.0f);
+		viewport->moveCamera(0,5.01f);
 	}
 	if(input->keyPress(evo::Keys::Left))
 	{
-		viewport->moveCamera(-5.0f,0);
+		viewport->moveCamera(-5.01f,0);
 	}
 	if(input->keyPress(evo::Keys::Right))
 	{
-		viewport->moveCamera(5.0f,0);
+		viewport->moveCamera(5.01f,0);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))
 	{
-		if(viewport->cameraZoom >= 1.1f)
-		viewport->Zoom(-0.1f);
+		posX = input->getCursorPos().x;
+		posY = input->getCursorPos().y;
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseRight))
 	{
-		viewport->Zoom(0.1f);
+		writeLog("mouse right");
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseMiddle))
 	{
-		viewport->setCameraPos(input->getCursorPos().x,input->getCursorPos().y);
+		writeLog("mouse middle");
 	}
 
 	if(input->keyPress(evo::Keys::S))
@@ -135,8 +134,5 @@ void Engine::KeyboardInput()
 	{
 		posX2 += 10;
 	}
-	if(input->keyPress(evo::Keys::R))
-	{
-		//viewport->moveCamera(0,0);
-	}
+
 }

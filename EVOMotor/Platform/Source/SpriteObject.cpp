@@ -34,8 +34,10 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 
 	std::vector<GLfloat> data(32);
 
-	data[0] = -width / 2.0f;	data[1] = -height / 2.0f;
+	//x							//y
+	data[0] = -width / 2.0f;	data[1] = height / 2.0f;
 	data[8] = data[0];			data[9] = data[1] - height;
+
 	data[16] = data[0] + width;	data[17] = data[1];
 	data[24] = data[0] + width; data[25] = data[1] - height;
 
