@@ -39,6 +39,11 @@ void SpriteBatch::draw(Viewport* viewport)
 {
 	for(int i = 0; i < spriteList.size(); i++)
 	{
+		//spriteList[i]->setScale(Viewport::cameraZoom);
+		//spriteList[i]->setPosition(
+		//	spriteList[i]->getPosition().x * Viewport::cameraZoom,
+		//	spriteList[i]->getPosition().y * Viewport::cameraZoom);
 		viewport->draw(spriteList[i]);
+
 	}
 }

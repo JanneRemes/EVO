@@ -23,8 +23,11 @@ public:
 	Camera* camera;
 	glm::vec3 movement;
 	void moveCamera(float X, float Y);
+	void setCameraPos(float X, float Y);
 	static float cameraPosX;
 	static float cameraPosY;
+	static float cameraZoom;
+	void Zoom(float value);
 
 private:
 	float width, height;

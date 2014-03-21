@@ -38,8 +38,9 @@ void Engine::init()
 	shader = EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 	
 	spriteBatch->init(shader);
-	spriteBatch->addObject("Assets/Waluigi.tga",200,200,200,200);
-	spriteBatch->addObject("Assets/Weegee.tga",170,170,400,400);
+	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
+	spriteBatch->addObject("Assets/Weegee.tga",170,170,0,0);
+	spriteBatch->addObject("Assets/tausta.tga",700, 500, 0, 0); 
 
 	red = 0;
 	blue = 0;
@@ -66,12 +67,14 @@ void Engine::update()
 	blue = rand()%2+0.01f;
 	green = rand()%2+0.01f;
 
-	spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteList[1]->setPosition(rand()%10+500+posX2,rand()%10+300+posY2);
+	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
+	//spriteBatch->spriteList[1]->setPosition(rand()%10+500+posX2,rand()%10+300+posY2);
 
 	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
-
+	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
+	spriteBatch->spriteList[0]->setPosition(0,0);
+	spriteBatch->spriteList[1]->setPosition(posX2,posY2);
+	spriteBatch->spriteList[2]->setPosition(0,0);
 }
 
 void Engine::draw()
@@ -102,19 +105,18 @@ void Engine::KeyboardInput()
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))
 	{
-		posX = input->getCursorPos().x;
-		posY = input->getCursorPos().y;
+		if(viewport->cameraZoom >= 1.1f)
+		viewport->Zoom(-0.1f);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseRight))
 	{
-		writeLog("mouse right");
+		viewport->Zoom(0.1f);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseMiddle))
 	{
-		viewport->moveCamera(input->getCursorPos().x,0.f);
-		viewport->moveCamera(0.f,input->getCursorPos().y);
+		viewport->setCameraPos(input->getCursorPos().x,input->getCursorPos().y);
 	}
 
 	if(input->keyPress(evo::Keys::S))
@@ -133,5 +135,8 @@ void Engine::KeyboardInput()
 	{
 		posX2 += 10;
 	}
-
+	if(input->keyPress(evo::Keys::R))
+	{
+		//viewport->moveCamera(0,0);
+	}
 }

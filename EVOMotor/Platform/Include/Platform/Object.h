@@ -30,6 +30,9 @@ public:
 	glm::vec3& getScale();
 	glm::vec3& getPosition();
 	glm::mat4& getMatrix();
+	float getWidth();
+	float getHeight();
+
 
 protected:
 
