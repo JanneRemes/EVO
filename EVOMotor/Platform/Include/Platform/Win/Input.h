@@ -6,6 +6,7 @@
 #include "Platform/Win/Window.h"
 #include "Platform/Win/Keyboard.h"
 #include "Platform/Win/Mouse.h"
+#include "Platform/Viewport.h"
 #include <incl/glm/glm.hpp>
 
 class Input

@@ -3,6 +3,7 @@
 #include "Platform/New.h"
 #include "Platform/Leak.h"
 
+Camera* Viewport::camera =  nullptr;
 
 Viewport::Viewport(float width,float height)
 {
@@ -12,6 +13,7 @@ Viewport::Viewport(float width,float height)
 	movement = glm::vec3(0.f,0.f,0.f);
 	viewMatrix = glm::translate(movement); 
 	camera = EVO_NEW Camera();
+	camera->setPosition(0,0);
 }
 
 Viewport::~Viewport()
@@ -24,9 +26,9 @@ void Viewport::draw(Object* object)
 	//float width = Window::winWidth;
 	//float height = Window::winHeight;
 
-		width = Window::winWidth; height = Window::winHeight;
-		projectionMatrix = glm::ortho(0.f,width,0.f,height, 0.1f, 100.f)* viewMatrix;
-		//projectionMatrix *= viewMatrix;
+	width = Window::winWidth; height = Window::winHeight;
+	projectionMatrix = glm::ortho(0.f,width,0.f,height, 0.1f, 100.f)* viewMatrix;
+	//projectionMatrix *= viewMatrix;
 	
 	object->draw(projectionMatrix);
 }

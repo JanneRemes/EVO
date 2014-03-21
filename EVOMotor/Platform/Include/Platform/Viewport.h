@@ -20,12 +20,12 @@ public:
 	glm::mat4 projectionMatrix;
 	void draw(Object* object);
 	glm::mat4 viewMatrix;
-	Camera* camera;
+	static Camera* camera;
 	glm::vec3 movement;
 	void moveCamera(float X, float Y);
+
 
 private:
 	float width, height;
 };
-
 #endif
