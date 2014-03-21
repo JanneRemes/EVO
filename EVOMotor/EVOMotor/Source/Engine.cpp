@@ -31,11 +31,11 @@ bool Engine::isInit()
 
 void Engine::init()
 {
-	graphics = EVO_NEW Graphics(Window::winWidth,Window::winHeight);
-	viewport = EVO_NEW Viewport(Window::winWidth,Window::winHeight);
-	spriteBatch = EVO_NEW SpriteBatch();
-	input = EVO_NEW Input();
-	shader = EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
+	graphics =		EVO_NEW Graphics(Window::winWidth,Window::winHeight);
+	viewport =		EVO_NEW Viewport(Window::winWidth,Window::winHeight);
+	spriteBatch =	EVO_NEW SpriteBatch();
+	input =			EVO_NEW Input();
+	shader =		EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
 	
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
@@ -67,13 +67,13 @@ void Engine::update()
 	green = rand()%2+0.01f;
 
 	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	//spriteBatch->spriteList[1]->setPosition(rand()%10+500+posX2,rand()%10+300+posY2);
+	spriteBatch->spriteList[1]->setPosition(rand()%10+500+posX2,rand()%10+300+posY2);
 
 	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
 	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
 
 	spriteBatch->spriteList[0]->setPosition(posX,posY);
-	spriteBatch->spriteList[1]->setPosition(posX2,posY2);
+	//spriteBatch->spriteList[1]->setPosition(posX2,posY2);
 }
 
 void Engine::draw()
@@ -87,19 +87,19 @@ void Engine::KeyboardInput()
 {
 	if(input->keyPress(evo::Keys::Down))
 	{
-		viewport->moveCamera(0,5.01f);
+		viewport->moveCamera(0,5.0f);
 	}
 	if(input->keyPress(evo::Keys::Up))
 	{
-		viewport->moveCamera(0,-5.01f);
+		viewport->moveCamera(0,-5.0f);
 	}
 	if(input->keyPress(evo::Keys::Left))
 	{
-		viewport->moveCamera(5.01f,0);
+		viewport->moveCamera(5.0f,0);
 	}
 	if(input->keyPress(evo::Keys::Right))
 	{
-		viewport->moveCamera(-5.01f,0);
+		viewport->moveCamera(-5.0f,0);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))
@@ -122,14 +122,17 @@ void Engine::KeyboardInput()
 	{
 		posY2 -= 10;
 	}
+
 	if(input->keyPress(evo::Keys::W))
 	{
 		posY2 += 10;
 	}
+
 	if(input->keyPress(evo::Keys::A))
 	{
 		posX2 -= 10;
 	}
+
 	if(input->keyPress(evo::Keys::D))
 	{
 		posX2 += 10;
