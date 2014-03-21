@@ -85,19 +85,19 @@ void Engine::KeyboardInput()
 {
 	if(input->keyPress(evo::Keys::Down))
 	{
-		viewport->moveCamera(0,-5.01f);
+		viewport->moveCamera(0,-5.0f);
 	}
 	if(input->keyPress(evo::Keys::Up))
 	{
-		viewport->moveCamera(0,5.01f);
+		viewport->moveCamera(0,5.0f);
 	}
 	if(input->keyPress(evo::Keys::Left))
 	{
-		viewport->moveCamera(-5.01f,0);
+		viewport->moveCamera(-5.0f,0);
 	}
 	if(input->keyPress(evo::Keys::Right))
 	{
-		viewport->moveCamera(5.01f,0);
+		viewport->moveCamera(5.0f,0);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))
@@ -113,7 +113,8 @@ void Engine::KeyboardInput()
 
 	if(input->MouseButtonPress(evo::buttons::MouseMiddle))
 	{
-		writeLog("mouse middle");
+		viewport->moveCamera(input->getCursorPos().x,0.f);
+		viewport->moveCamera(0.f,input->getCursorPos().y);
 	}
 
 	if(input->keyPress(evo::Keys::S))

@@ -7,6 +7,7 @@
 #include "Platform/Win/Keyboard.h"
 #include "Platform/Win/Mouse.h"
 #include <incl/glm/glm.hpp>
+#include "Platform/Viewport.h"
 
 class Input
 {
