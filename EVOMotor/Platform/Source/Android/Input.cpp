@@ -76,8 +76,8 @@ glm::vec2 Input::getCursorPos()
 	int wHeigth, wWidth;
 	glfwGetWindowSize(Window::window, &wWidth, &wHeigth);
 
-	X = *posX - Viewport::camera->getPosition().x;
-	Y = wHeigth - *posY - Viewport::camera->getPosition().y;
+	Y = wHeigth - *posY;
+	X = *posX;
 	return glm::vec2(X,Y);
 #endif
 }

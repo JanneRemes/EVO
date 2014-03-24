@@ -85,6 +85,7 @@ void Engine::draw()
 
 void Engine::KeyboardInput()
 {
+	#if defined(WIN32)
 	if(input->keyPress(evo::Keys::Down))
 	{
 		viewport->moveCamera(0,5.0f);
@@ -137,4 +138,5 @@ void Engine::KeyboardInput()
 	{
 		posX2 += 10;
 	}
+	#endif
 }

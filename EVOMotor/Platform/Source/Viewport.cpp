@@ -3,7 +3,7 @@
 #include "Platform/New.h"
 #include "Platform/Leak.h"
 
-Camera* Viewport::camera =  nullptr;
+Camera* Viewport::camera =  NULL;
 
 Viewport::Viewport(float width,float height)
 {

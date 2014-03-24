@@ -72,13 +72,15 @@ bool Input::MouseButtonPress(int button)
 glm::vec2 Input::getCursorPos()
 {
 #if defined(WIN32)
+
 	glfwGetCursorPos(Window::window, posX, posY);
 	int wHeigth, wWidth;
 	glfwGetWindowSize(Window::window, &wWidth, &wHeigth);
 
-	X = *posX - Viewport::camera->getPosition().x;
-	Y = wHeigth - *posY - Viewport::camera->getPosition().y;
+	Y = wHeigth - *posY;
+	X = *posX;
 	return glm::vec2(X,Y);
+
 #endif
 }
 

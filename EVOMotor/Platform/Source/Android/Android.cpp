@@ -155,15 +155,72 @@ static void processMessage(android_app* application, int32_t message)
 	}
 }
 
-static int32_t processInput (android_app* application, AInputEvent* event)
+static int32_t processKeyInput(AInputEvent* event)
 {
+	const int32_t keyCode = AKeyEvent_getKeyCode(event);
+	const int32_t keyState = AKeyEvent_getAction(event);
 	return 0;
 }
 
+static int32_t processTouchInput(AInputEvent* event)
+{
+	float x;
+	float y;
+	const int32_t action = AMotionEvent_getAction(event);
+	int32_t index;
+	
+	switch(action & AMOTION_EVENT_ACTION_MASK)
+	{
+	case AMOTION_EVENT_ACTION_DOWN:
+	case AMOTION_EVENT_ACTION_POINTER_DOWN:
+		index = (action & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK)
+			>> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
+		x = AMotionEvent_getX(event, index);
+		y = AMotionEvent_getY(event, index);
+		writeLog("TOUCH DOWN: [%f, %f]",x,y);
+		
+		break;
+
+	case AMOTION_EVENT_ACTION_MOVE:
+		{
+			const int32_t touchCount = AMotionEvent_getPointerCount(event);
+			for(int32_t i = 0; i < touchCount; ++i)
+			{
+				x = AMotionEvent_getX(event, i);
+				y = AMotionEvent_getY(event, i);
+				writeLog("TOUCH MOVE: [%f, %f]",x,y);
+			}
 
 
+		}
+		break;
 
+	case AMOTION_EVENT_ACTION_UP:
+		index = (action & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK)
+			>> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
+		x = AMotionEvent_getX(event, index);
+		y = AMotionEvent_getY(event, index);
+		writeLog("TOUCH UP: [%f, %f]",x,y);
+		break;
 
+	default:
+		break;
+	}
 
+	return 1;
+}
 
+static int32_t processInput (android_app* application, AInputEvent* event)
+{
+	switch(AInputEvent_getType(event))
+	{
+	case AINPUT_EVENT_TYPE_KEY:
+		return processKeyInput(event);
 
+	case AINPUT_EVENT_TYPE_MOTION:
+		return processTouchInput(event);
+
+	default:
+		return 0;
+	}
+}

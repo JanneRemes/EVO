@@ -10,8 +10,11 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Platform/Include \
 PLATFORM_PATH := ../../Platform/Source
 
 LOCAL_SRC_FILES := \
+	$(PLATFORM_PATH)/Camera.cpp \
 	$(PLATFORM_PATH)/Graphics.cpp \
 	$(PLATFORM_PATH)/IndexData.cpp \
+	$(PLATFORM_PATH)/Leak.cpp \
+	$(PLATFORM_PATH)/New.cpp \
 	$(PLATFORM_PATH)/Object.cpp \
 	$(PLATFORM_PATH)/Shader.cpp \
 	$(PLATFORM_PATH)/SpriteBatch.cpp \
@@ -19,7 +22,9 @@ LOCAL_SRC_FILES := \
 	$(PLATFORM_PATH)/Texture.cpp \
 	$(PLATFORM_PATH)/VertexData.cpp \
 	$(PLATFORM_PATH)/Viewport.cpp \
-	$(PLATFORM_PATH)/Android/FileReader.cpp 
+	$(PLATFORM_PATH)/Android/FileReader.cpp \
+	$(PLATFORM_PATH)/Android/Input.cpp \
+	$(PLATFORM_PATH)/Android/Window.cpp \
 	
 
 include $(BUILD_STATIC_LIBRARY)

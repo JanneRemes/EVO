@@ -11,6 +11,8 @@
 float getTotalTime();
 int main(void)
 {
+	writeLog("main");
+
 	Leak leak;
 
     /* Initialize the library */

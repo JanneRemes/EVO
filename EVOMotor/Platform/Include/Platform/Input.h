@@ -2,6 +2,6 @@
 #include <Platform/Win/Input.h>
 
 #elif __ANDROID__
-#include <Platform/Android/AndroidInput.h>
+#include <Platform/Android/Input.h>
 
 #endif

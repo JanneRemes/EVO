@@ -2,6 +2,6 @@
 #include <Platform/Win/Window.h>
 
 #elif __ANDROID__
-#include <Platform/Android/AndroidWindow.h>
+#include <Platform/Android/Window.h>
 
 #endif

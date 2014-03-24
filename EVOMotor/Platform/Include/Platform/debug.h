@@ -1,9 +1,10 @@
 #ifndef DEBUG_H_
 #define DEBUG_H_
 
+#include <Platform/OpenGL.hpp>
+
 #if defined(WIN32)
 	#include "Platform/Win/FileReader.h"
-	#include <Platform/OpenGL.hpp>
 	#include <stdarg.h>
 	#include <iostream>
 
