@@ -140,3 +140,10 @@ void Engine::KeyboardInput()
 	}
 	#endif
 }
+
+#if defined (__ANDROID__)
+void Engine::touchInput(android_app* application)
+{
+
+}
+#endif

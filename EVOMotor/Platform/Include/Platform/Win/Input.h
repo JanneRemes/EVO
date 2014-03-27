@@ -25,9 +25,7 @@ public:
 	float X,Y;
 	double *posY;
 
-
 private:
 	
-
 };
 #endif

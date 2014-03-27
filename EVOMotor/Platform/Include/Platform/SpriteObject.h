@@ -23,6 +23,7 @@ public:
 
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
+
 private:
 
 	void init(int x,int y,int width,int height,glm::vec4 color);

@@ -63,6 +63,7 @@ void android_main(android_app* application)
 		if(engine->isInit())
 		{
 			engine->update();
+			engine->touchInput(application);
 			engine->draw();
 			eglSwapBuffers(androidEngine.display, androidEngine.surface);
 		}
@@ -188,7 +189,7 @@ static int32_t processTouchInput(AInputEvent* event)
 			{
 				x = AMotionEvent_getX(event, i);
 				y = AMotionEvent_getY(event, i);
-				writeLog("TOUCH MOVE: [%f, %f]",x,y);
+				//writeLog("TOUCH MOVE: [%f, %f]",x,y);
 			}
 
 

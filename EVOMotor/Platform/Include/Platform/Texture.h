@@ -12,17 +12,6 @@
 #include <fstream>
 #include <iostream>
 
-//struct tgaHeader
-//{
-//	GLubyte idLength;
-//	GLubyte colorMapType;
-//	GLubyte type;
-//	GLushort width;
-//	GLushort height;
-//	GLubyte depth;
-//	GLubyte descriptor;
-//};
-
 class Texture
 {
 public:
@@ -38,8 +27,6 @@ public:
 	static Texture* load(const std::string &fileName);
 	static Texture* generateBlank();
 	static Texture* blank;
-
-	//static GLubyte* loadTGA(const std::string& fileName, tgaHeader &header);
 
 private:
 	void init();
