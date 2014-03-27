@@ -12,15 +12,20 @@
 static void processMessage (android_app* application, int32_t message);
 static int32_t processInput (android_app* application, AInputEvent* event);
 
+
+
 struct android_engine
 {
 	android_app* application;
+	AInputEvent* event;
 	EGLSurface surface;
 	EGLContext context;
 	EGLDisplay display;
 	
 	Engine* engine;
 };
+
+android_engine androidEngine;
 
 void android_main(android_app* application)
 {
@@ -29,13 +34,10 @@ void android_main(android_app* application)
 	application->onInputEvent = processInput;
 	
 	
-	Engine* engine;
-	engine = new Engine();
 	FileReader::manager = application->activity->assetManager;
 
-	android_engine androidEngine;
 	androidEngine.application = application;
-	androidEngine.engine = engine;
+	androidEngine.engine = new Engine();
 	application->userData = &androidEngine;
 
 	//EGLContext context;
@@ -54,17 +56,18 @@ void android_main(android_app* application)
 			if(application->destroyRequested != 0)
 			{
 				isRunning = false;
-				engine->deInit();
+				androidEngine.engine->deInit();
 			}
 		}
 		
 		
 		/////INSERT UPDATE FUNCTIONS HERE
-		if(engine->isInit())
+		if(androidEngine.engine->isInit())
 		{
-			engine->update();
-			engine->touchInput(application);
-			engine->draw();
+			androidEngine.engine->update();
+			androidEngine.engine->touchInput();
+			//engine->touchInput(application, androidEngine.event);
+			androidEngine.engine->draw();
 			eglSwapBuffers(androidEngine.display, androidEngine.surface);
 		}
 		
@@ -213,14 +216,18 @@ static int32_t processTouchInput(AInputEvent* event)
 
 static int32_t processInput (android_app* application, AInputEvent* event)
 {
+
+
 	switch(AInputEvent_getType(event))
 	{
 	case AINPUT_EVENT_TYPE_KEY:
-		return processKeyInput(event);
-
+		return androidEngine.engine->processKeyInput(event);
+	break;
+	
 	case AINPUT_EVENT_TYPE_MOTION:
-		return processTouchInput(event);
-
+		return androidEngine.engine->processTouchInput(event);
+	break;
+	
 	default:
 		return 0;
 	}
