@@ -27,7 +27,8 @@ void Viewport::draw(Object* object)
 	//float height = Window::winHeight;
 
 	width = Window::winWidth; height = Window::winHeight;
-	projectionMatrix = glm::ortho(0.f,width,0.f,height, 0.1f, 100.f)* viewMatrix;
+	projectionMatrix = glm::ortho(0.f, width, height, 0.f, 0.1f, 100.f)* viewMatrix;
+
 	//projectionMatrix *= viewMatrix;
 	
 	object->draw(projectionMatrix);
