@@ -11,6 +11,7 @@
 #include "Platform/Viewport.h"
 #include "Platform/SpriteBatch.h"
 #include "Platform/Input.h"
+#include "Platform/Text.h"
 #include <stdlib.h>
 
 #if defined (__ANDROID__)
@@ -60,6 +61,7 @@ private:
 	SpriteBatch* spriteBatch;
 	Viewport* viewport;
 	Input* input;
+	Text* text;
 
 	bool initialized;
 

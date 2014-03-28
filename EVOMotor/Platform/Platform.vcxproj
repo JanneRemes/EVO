@@ -52,7 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)../depencies;$(ProjectDir)Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../depencies;$(ProjectDir)Include/;$(ProjectDir)../depencies/incl/freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -68,7 +68,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)../depencies;$(ProjectDir)Include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../depencies;$(ProjectDir)Include/;$(ProjectDir)../depencies/incl/freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,6 +92,7 @@
     <ClInclude Include="Include\Platform\SpriteBatch.h" />
     <ClInclude Include="Include\Platform\SpriteObject.h" />
     <ClInclude Include="Include\Platform\SpriteSheetObject.h" />
+    <ClInclude Include="Include\Platform\Text.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
     <ClInclude Include="Include\Platform\VertexData.h" />
     <ClInclude Include="Include\Platform\Viewport.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="Include\Platform\Win\Input.h" />
     <ClInclude Include="Include\Platform\Win\Keyboard.h" />
     <ClInclude Include="Include\Platform\Win\Mouse.h" />
+    <ClInclude Include="Include\Platform\Win\Text.h" />
     <ClInclude Include="Include\Platform\Win\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +120,7 @@
     <ClCompile Include="Source\Viewport.cpp" />
     <ClCompile Include="Source\Win\FileReader.cpp" />
     <ClCompile Include="Source\Win\Input.cpp" />
+    <ClCompile Include="Source\Win\Text.cpp" />
     <ClCompile Include="Source\Win\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -89,7 +89,7 @@ void SpriteObject::draw(glm::mat4 &projectionMatrix)
 	glm::vec4 gl_Position = projectionMatrix * model * glm::vec4(100,100, 0, 1.0);
 
 	_shader->setUniform("projection", glm::value_ptr(projectionMatrix)); 
-	_shader->setUniform("model", glm::value_ptr(getMatrix())); 
+	_shader->setUniform("model", glm::value_ptr(getMatrix()));
 
 	static const int stride = sizeof(GLfloat)*8;
 
