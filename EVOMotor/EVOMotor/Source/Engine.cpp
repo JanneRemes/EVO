@@ -50,6 +50,8 @@ void Engine::init()
 
 	posX2 = 0;
 	posY2 = 0;
+	touchPosX = 0;
+	touchPosY = 0;
 	initialized = true;
 }
 
@@ -67,7 +69,7 @@ void Engine::update()
 	green = rand()%2+0.01f;
 
 	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteList[1]->setPosition(rand()%10+500+posX2,rand()%10+300+posY2);
+	spriteBatch->spriteList[1]->setPosition(posX2,posY2);
 
 	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
 	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
@@ -142,8 +144,61 @@ void Engine::KeyboardInput()
 }
 
 #if defined (__ANDROID__)
-void Engine::touchInput(android_app* application)
-{
 
+int32_t Engine::processTouchInput(AInputEvent* ev)
+{
+	const int32_t action = AMotionEvent_getAction(ev);
+	int32_t index;
+	
+	switch(action & AMOTION_EVENT_ACTION_MASK)
+	{
+		case AMOTION_EVENT_ACTION_DOWN:
+		case AMOTION_EVENT_ACTION_POINTER_DOWN:
+		index = (action & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK)
+			>> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
+		touchPosX = AMotionEvent_getX(ev, index);
+		touchPosY = AMotionEvent_getY(ev, index);
+		
+		break;
+
+	case AMOTION_EVENT_ACTION_MOVE:
+		{
+			const int32_t touchCount = AMotionEvent_getPointerCount(ev);
+			for(int32_t i = 0; i < touchCount; ++i)
+			{
+				touchPosX = AMotionEvent_getX(ev, i);
+				touchPosY = AMotionEvent_getY(ev, i);
+				writeLog("Finger position: [%f, %f]",touchPosX,touchPosY);
+			}
+		}
+		break;
+
+	case AMOTION_EVENT_ACTION_UP:
+		index = (action & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK)
+			>> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
+		touchPosX = AMotionEvent_getX(ev, index);
+		touchPosY = AMotionEvent_getY(ev, index);
+		break;
+
+	default:
+		break;
+	}
+
+	return 1;
 }
+
+int32_t Engine::processKeyInput(AInputEvent* ev)
+{
+	const int32_t keyCode = AKeyEvent_getKeyCode(ev);
+	const int32_t keyState = AKeyEvent_getAction(ev);
+	return 0;
+}
+
+void Engine::touchInput()
+{
+	posX2 = touchPosX;
+	posY2 = touchPosY;
+	//writeLog("Weegee position: [%f, %f]",posX2,posY2);
+}
+
 #endif

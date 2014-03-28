@@ -36,9 +36,15 @@ public:
 	void draw();
 	void KeyboardInput();
 
+	float touchPosX, touchPosY;
+
 #if defined (__ANDROID__)
 
-	void touchInput(android_app* application);
+	int32_t processTouchInput(AInputEvent* event);
+	int32_t processKeyInput(AInputEvent* event);
+	void touchInput();
+
+	//static int32_t processInput (android_app* application, AInputEvent* event);
 
 #endif
 
@@ -58,7 +64,7 @@ private:
 
 	float red,blue,green;
 	int posX, posY;
-	int posX2, posY2;
+	float posX2, posY2;
 };
 
 #endif
