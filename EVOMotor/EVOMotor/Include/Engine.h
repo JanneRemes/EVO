@@ -6,6 +6,7 @@
 #include "Platform/FileReader.h"
 #include "Platform/Texture.h"
 #include "Platform/SpriteObject.h"
+#include "Platform/SpriteSheetObject.h"
 #include "Platform/Shader.h"
 #include "Platform/Viewport.h"
 #include "Platform/SpriteBatch.h"

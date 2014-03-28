@@ -39,7 +39,8 @@ void Engine::init()
 	
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
-	spriteBatch->addObject("Assets/Weegee.tga",170,170,0,0);
+	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10);
+	spriteBatch->spriteSheetList[0]->setAnimation(1,2,40);
 
 	red = 0;
 	blue = 0;
@@ -69,7 +70,8 @@ void Engine::update()
 	green = rand()%2+0.01f;
 
 	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteList[1]->setPosition(posX2,posY2);
+	spriteBatch->spriteSheetList[0]->setPosition(0,0);
+	spriteBatch->spriteSheetList[0]->update(0.1f);
 
 	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
 	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
@@ -90,11 +92,11 @@ void Engine::KeyboardInput()
 	#if defined(WIN32)
 	if(input->keyPress(evo::Keys::Down))
 	{
-		viewport->moveCamera(0,5.0f);
+		viewport->moveCamera(0,-5.0f);
 	}
 	if(input->keyPress(evo::Keys::Up))
 	{
-		viewport->moveCamera(0,-5.0f);
+		viewport->moveCamera(0,5.0f);
 	}
 	if(input->keyPress(evo::Keys::Left))
 	{
@@ -103,6 +105,14 @@ void Engine::KeyboardInput()
 	if(input->keyPress(evo::Keys::Right))
 	{
 		viewport->moveCamera(-5.0f,0);
+	}
+	if(input->keyPress(evo::Keys::Space))
+	{
+		spriteBatch->spriteSheetList[0]->setSpeed(1);
+	}
+	else
+	{
+		spriteBatch->spriteSheetList[0]->setSpeed(10);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))

@@ -91,6 +91,7 @@
     <ClInclude Include="Include\Platform\Shader.h" />
     <ClInclude Include="Include\Platform\SpriteBatch.h" />
     <ClInclude Include="Include\Platform\SpriteObject.h" />
+    <ClInclude Include="Include\Platform\SpriteSheetObject.h" />
     <ClInclude Include="Include\Platform\Texture.h" />
     <ClInclude Include="Include\Platform\VertexData.h" />
     <ClInclude Include="Include\Platform\Viewport.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\SpriteBatch.cpp" />
     <ClCompile Include="Source\SpriteObject.cpp" />
+    <ClCompile Include="Source\SpriteSheetObject.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\VertexData.cpp" />
     <ClCompile Include="Source\Viewport.cpp" />

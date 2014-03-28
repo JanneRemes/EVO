@@ -13,6 +13,10 @@ SpriteBatch::~SpriteBatch()
 	{
 		delete spriteList[i];
 	}
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		delete spriteSheetList[i];
+	}
 }
 
 void SpriteBatch::addObject(	std::string Path,
@@ -30,6 +34,22 @@ void SpriteBatch::addObject(	std::string Path,
 
 }
 
+void SpriteBatch::addAnimatedObject(	std::string Path,
+								float Width,
+								float Height,
+								int frames,
+								int speed
+)
+{
+	
+	checkGLError("ENNEN!!");
+	texture = Texture::load(Path);
+	checkGLError("NYT!!");
+	spriteSheet = EVO_NEW SpriteSheetObject(Width,Height,speed,frames,texture,shader);
+	spriteSheetList.push_back(spriteSheet);
+
+}
+
 void SpriteBatch::init(Shader* s)
 {
 	shader = s;
@@ -39,11 +59,17 @@ void SpriteBatch::draw(Viewport* viewport)
 {
 	for(int i = 0; i < spriteList.size(); i++)
 	{
+		viewport->draw(spriteList[i]);
+	}
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		viewport->draw(spriteSheetList[i]);
+	}
+}
+
+
+
 		//spriteList[i]->setScale(Viewport::cameraZoom);
 		//spriteList[i]->setPosition(
 		//	spriteList[i]->getPosition().x * Viewport::cameraZoom,
 		//	spriteList[i]->getPosition().y * Viewport::cameraZoom);
-		viewport->draw(spriteList[i]);
-
-	}
-}
