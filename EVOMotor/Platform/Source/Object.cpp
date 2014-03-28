@@ -2,7 +2,7 @@
 #include "Platform/Graphics.h"
 
 Object::Object():
-	_position(glm::vec3::_null), //= position = (glm::vec3::_null)
+	_position(0), //= position = (glm::vec3::_null)
 	_rotation(0),				// = rotation = 0
 	_scale(glm::vec3(1,1,1)), // = scale = (glm::vec3(1,1,1))
 	_recalculateMatrix(true) // = recalculateMatrix = true

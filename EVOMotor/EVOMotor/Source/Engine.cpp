@@ -17,11 +17,11 @@ Engine::Engine(void)
 
 Engine::~Engine(void)
 {
-	delete input;
-	delete spriteBatch;
 	delete graphics;
-	delete shader;
 	delete viewport;
+	delete spriteBatch;
+	delete input;
+	delete shader;
 }
 
 bool Engine::isInit()
@@ -36,10 +36,14 @@ void Engine::init()
 	spriteBatch =	EVO_NEW SpriteBatch();
 	input =			EVO_NEW Input();
 	shader =		EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
+	text =			EVO_NEW Text("arial.ttf",20.f,viewport);
 	
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
 	spriteBatch->addObject("Assets/Weegee.tga",170,170,0,0);
+
+	wchar_t *teksti = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
+	text->addText(teksti,glm::vec4(1,1,1,1));
 
 	red = 0;
 	blue = 0;
@@ -81,7 +85,7 @@ void Engine::update()
 void Engine::draw()
 {	
 	graphics->clear(0.0f,0.0f,0.0f);
-
+	text->draw(viewport->projectionMatrix);
 	spriteBatch->draw(viewport);
 }
 
