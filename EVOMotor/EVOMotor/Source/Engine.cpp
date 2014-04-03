@@ -22,6 +22,7 @@ Engine::~Engine(void)
 	delete spriteBatch;
 	delete input;
 	delete shader;
+	delete text;
 }
 
 bool Engine::isInit()
@@ -36,15 +37,17 @@ void Engine::init()
 	spriteBatch =	EVO_NEW SpriteBatch();
 	input =			EVO_NEW Input();
 	shader =		EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
-	text =			EVO_NEW Text("arial.ttf",20.f,viewport);
+	text =			EVO_NEW Text("arial.ttf",44.f,viewport);
 	
 	spriteBatch->init(shader);
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10);
 	spriteBatch->spriteSheetList[0]->setAnimation(1,2,40);
-
+	spriteBatch->spriteSheetList[0]->setPosition(100,200);
+	
 	wchar_t *teksti = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
 	text->addText(teksti,glm::vec4(1,1,1,1));
+	text->setPosition(0,0);
 
 	red = 0;
 	blue = 0;
@@ -74,7 +77,7 @@ void Engine::update()
 	green = rand()%2+0.01f;
 
 	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteSheetList[0]->setPosition(0,0);
+	//spriteBatch->spriteSheetList[0]->setPosition(0,0);
 	spriteBatch->spriteSheetList[0]->update(0.1f);
 
 	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
@@ -86,7 +89,7 @@ void Engine::update()
 
 void Engine::draw()
 {	
-	graphics->clear(0.0f,0.0f,0.0f);
+	graphics->clear(0.0f,0.0f,1.0f);
 	text->draw(viewport->projectionMatrix);
 	spriteBatch->draw(viewport);
 }

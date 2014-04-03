@@ -9,7 +9,7 @@ Text::Text(const std::string& fontPath, const float fontSize, Viewport* viewport
 	m_path = "Assets/Fonts/" + fontPath;
 	_viewport = viewport;
 	m_atlas = texture_atlas_new(1024, 1024, 1);
-	setScale(fontSize);
+	//setScale(fontSize);
 	shader = shader_load("Assets/Shaders/v3f-t2f-c4f.vert",
                          "Assets/Shaders/v3f-t2f-c4f.frag");
 
@@ -22,7 +22,7 @@ Text::~Text()
 
 void Text::addText(wchar_t* text, const glm::vec4& color)
 {
-	glm::vec2 pos;
+	glm::vec2 pos = m_lastPos;
 
 	texture_font_t* font = texture_font_new_from_file(m_atlas, m_fontSize, m_path.c_str());
 
@@ -48,32 +48,37 @@ void Text::addText(wchar_t* text, const glm::vec4& color)
             float s1 = glyph->s1;
             float t1 = glyph->t1;
             GLuint indices[6] = {0,1,2, 0,2,3};
-            vertex_t vertices[4] = { { x0,y0,0,  s0,t0,  r,g,b,a },
-                                     { x0,y1,0,  s0,t1,  r,g,b,a },
-                                     { x1,y1,0,  s1,t1,  r,g,b,a },
-                                     { x1,y0,0,  s1,t0,  r,g,b,a } };
+            vertex_t vertices[4] = { { x0,-y0,-1,  s0,t0,  r,g,b,a },
+                                     { x0,-y1,-1,  s0,t1,  r,g,b,a },
+                                     { x1,-y1,-1,  s1,t1,  r,g,b,a },
+                                     { x1,-y0,-1,  s1,t0,  r,g,b,a } };
             vertex_buffer_push_back( buffer, vertices, 4, indices, 6 );
             pos.x += glyph->advance_x;
         }
     }
+	m_lastPos = pos;
 	texture_font_delete(font);
 }
 
 void Text::draw(glm::mat4 &projectionMatrix)
 {
 	glm::mat4 model		 =  getMatrix();
-	glm::mat4 view		 = _viewport->viewMatrix;
+	//glm::mat4 view		 = _viewport->viewMatrix;
 	glm::mat4 projection = projectionMatrix;
 	glUseProgram(shader);
 
 	glBindTexture( GL_TEXTURE_2D, m_atlas->id );
 
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+
 	glUniform1i( glGetUniformLocation( shader, "texture" ),
                      0 );
 	glUniformMatrix4fv( glGetUniformLocation( shader, "model" ),
                             1, 0, glm::value_ptr(model));
-	glUniformMatrix4fv( glGetUniformLocation( shader, "view" ),
-							1, 0, glm::value_ptr(view));
+	//glUniformMatrix4fv( glGetUniformLocation( shader, "view" ),
+	//						1, 0, glm::value_ptr(view));
 	glUniformMatrix4fv( glGetUniformLocation( shader, "projection" ),
 							1, 0, glm::value_ptr(projection));
 	vertex_buffer_render( buffer, GL_TRIANGLES );
