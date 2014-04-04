@@ -36,10 +36,16 @@ void WindowsGame::init()
 	text =			EVO_NEW Text("arial.ttf",44.f,viewport);
 	
 	spriteBatch->init(shader);
+
+	spriteBatch->addObject("Assets/grass.tga",1000,1000,300,300);
+	grass = spriteBatch->Sprite(0);
+
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
+	waluigi = spriteBatch->Sprite(1);
+
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10);
-	spriteBatch->spriteSheetList[0]->setAnimation(1,2,40);
-	spriteBatch->spriteSheetList[0]->setPosition(100,200);
+	praystation = spriteBatch->SpriteAnimation(0);
+	praystation->setAnimation(1,2,40);
 	
 	wchar_t *teksti = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
 	text->addText(teksti,glm::vec4(1,1,1,1));
@@ -72,22 +78,24 @@ void WindowsGame::update()
 	blue = rand()%2+0.01f;
 	green = rand()%2+0.01f;
 
-	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	//spriteBatch->spriteSheetList[0]->setPosition(0,0);
-	spriteBatch->spriteSheetList[0]->update(0.1f);
+	waluigi->setPosition(0,0);
 
-	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
-	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
+	posY += 10;
+	grass->setPosition(300,posY);
 
-	spriteBatch->spriteList[0]->setPosition(posX,posY);
-	//spriteBatch->spriteList[1]->setPosition(posX2,posY2);
+	//You must update spriteBatch
+	spriteBatch->update(0.1f);
+
 }
 
 void WindowsGame::draw()
-{	
+{
 	graphics->clear(0.0f,0.0f,1.0f);
-	text->draw(viewport->projectionMatrix);
+	//You must draw spriteBatch
 	spriteBatch->draw(viewport);
+
+	//Draw text here
+	text->draw(viewport->projectionMatrix);
 }
 
 void WindowsGame::KeyboardInput()

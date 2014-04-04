@@ -1,6 +1,7 @@
 #ifndef WINDOWSGAME_H_
 #define WINDOWSGAME_H_
 
+//Platform includes
 #include "Platform/Window.h"
 #include "Platform/Graphics.h"
 #include "Platform/FileReader.h"
@@ -14,7 +15,8 @@
 #include "Platform/Text.h"
 #include "Include/Game.h"
 #include <stdlib.h>
-
+//Game includes
+#include "Include/Background.h"
 
 class WindowsGame
 {
@@ -33,14 +35,18 @@ public:
 	float touchPosX, touchPosY;
 
 private:
+	//Platform objects
 	Graphics* graphics;
-	//Engine* engine;
 	Shader* shader;
 	FileReader* fileReader;
 	SpriteBatch* spriteBatch;
 	Viewport* viewport;
 	Input* input;
 	Text* text;
+	//Game objects
+	SpriteObject* waluigi;
+	SpriteObject* grass;
+	SpriteSheetObject* praystation;
 
 	bool initialized;
 

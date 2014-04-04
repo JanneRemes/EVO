@@ -25,13 +25,17 @@ public:
 					int frames,
 					int speed);
 	void init(Shader* shader);
+	void update(float dt);
 	void draw(Viewport* viewport);
+	SpriteObject* Sprite(int id);
+	SpriteSheetObject* SpriteAnimation(int id);
 
 	SpriteObject* sprite;
 	SpriteSheetObject* spriteSheet;
 	Texture* texture;
 	Shader* shader;
 	Viewport* viewport;
+
 
 	std::vector<SpriteObject*> spriteList;
 	std::vector<SpriteSheetObject*> spriteSheetList;

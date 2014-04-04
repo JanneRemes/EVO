@@ -57,17 +57,41 @@ void SpriteBatch::init(Shader* s)
 
 void SpriteBatch::draw(Viewport* viewport)
 {
+	//Draw all spriteObjects
 	for(int i = 0; i < spriteList.size(); i++)
 	{
 		viewport->draw(spriteList[i]);
 	}
+	//Draw all spriteSheetObjects
 	for(int i = 0; i < spriteSheetList.size(); i++)
 	{
 		viewport->draw(spriteSheetList[i]);
 	}
 }
 
+SpriteObject* SpriteBatch::Sprite(int id)
+{
+	return spriteList[id];
+}
 
+SpriteSheetObject* SpriteBatch::SpriteAnimation(int id)
+{
+	return spriteSheetList[id];
+}
+
+void SpriteBatch::update(float dt)
+{
+	//Update all spriteObjects
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		spriteList[i]->update(dt);
+	}
+	//Update all spriteSheetObjects
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		spriteSheetList[i]->update(dt);
+	}
+}
 
 		//spriteList[i]->setScale(Viewport::cameraZoom);
 		//spriteList[i]->setPosition(
