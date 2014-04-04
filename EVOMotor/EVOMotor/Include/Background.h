@@ -19,11 +19,12 @@ public:
 	void update(float dt);
 
 	SpriteObject* grass_1;
+	SpriteObject* grass_2;
+	SpriteBatch* _spriteBatch;
+
+	float posX, posY, posY2, posX2;
 
 private:
-
-
-
 
 };
 

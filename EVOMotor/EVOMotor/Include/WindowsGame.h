@@ -43,10 +43,13 @@ private:
 	Viewport* viewport;
 	Input* input;
 	Text* text;
+
 	//Game objects
 	SpriteObject* waluigi;
 	SpriteObject* grass;
 	SpriteSheetObject* praystation;
+
+	Background* background;
 
 	bool initialized;
 
