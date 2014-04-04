@@ -6,9 +6,10 @@
 #include "Platform/New.h"
 #include "Platform/Leak.h"
 
-SpriteSheetObject::SpriteSheetObject(int frameWidth, int frameHeight, int frameSpeed, int frames, Texture* texture, Shader* shader):
+SpriteSheetObject::SpriteSheetObject(int frameWidth, int frameHeight, int frameSpeed, int frames, Texture* texture, Shader* shader, std::string n):
 	_shader(shader),
-	_texture(texture)
+	_texture(texture),
+	_name(n)
 {
 	_frames   = frames;
 	_curFrame = 0;

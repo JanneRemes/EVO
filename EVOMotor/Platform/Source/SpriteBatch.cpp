@@ -23,29 +23,30 @@ void SpriteBatch::addObject(	std::string Path,
 								float Width,
 								float Height,
 								float PosX,
-								float PosY )
+								float PosY,
+								std::string name)
 {
 	
 	checkGLError("ENNEN!!");
 	texture = Texture::load(Path);
 	checkGLError("NYT!!");
-	sprite = EVO_NEW SpriteObject(PosX,PosY,Width,Height,texture,shader);
+	sprite = EVO_NEW SpriteObject(PosX,PosY,Width,Height,texture,shader,name);
 	spriteList.push_back(sprite);
 
 }
 
 void SpriteBatch::addAnimatedObject(	std::string Path,
-								float Width,
-								float Height,
-								int frames,
-								int speed
-)
+										float Width,
+										float Height,
+										int frames,
+										int speed,
+										std::string name)
 {
 	
 	checkGLError("ENNEN!!");
 	texture = Texture::load(Path);
 	checkGLError("NYT!!");
-	spriteSheet = EVO_NEW SpriteSheetObject(Width,Height,speed,frames,texture,shader);
+	spriteSheet = EVO_NEW SpriteSheetObject(Width,Height,speed,frames,texture,shader,name);
 	spriteSheetList.push_back(spriteSheet);
 
 }
@@ -69,16 +70,6 @@ void SpriteBatch::draw(Viewport* viewport)
 	}
 }
 
-SpriteObject* SpriteBatch::Sprite(int id)
-{
-	return spriteList[id];
-}
-
-SpriteSheetObject* SpriteBatch::SpriteAnimation(int id)
-{
-	return spriteSheetList[id];
-}
-
 void SpriteBatch::update(float dt)
 {
 	//Update all spriteObjects
@@ -90,6 +81,29 @@ void SpriteBatch::update(float dt)
 	for(int i = 0; i < spriteSheetList.size(); i++)
 	{
 		spriteSheetList[i]->update(dt);
+	}
+}
+
+SpriteObject* SpriteBatch::Sprite(std::string name)
+{
+	int i = 0;
+	for(i = 0; i < spriteList.size(); i++)
+	{
+		if(spriteList[i]->_name == name)
+		{
+			return spriteList[i];
+		}
+	}
+}
+SpriteSheetObject* SpriteBatch::SpriteAnimation(std::string name)
+{	
+	int i = 0;
+	for(i = 0; i < spriteSheetList.size(); i++)
+	{
+		if(spriteSheetList[i]->_name == name)
+		{
+			return spriteSheetList[i];
+		}
 	}
 }
 

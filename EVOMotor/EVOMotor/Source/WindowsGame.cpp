@@ -37,14 +37,14 @@ void WindowsGame::init()
 	
 	spriteBatch->init(shader);
 
-	spriteBatch->addObject("Assets/grass.tga",1000,1000,300,300);
-	grass = spriteBatch->Sprite(0);
+	spriteBatch->addObject("Assets/grass.tga",1000,1000,300,300,"grass");
+	grass = spriteBatch->Sprite("grass");
 
-	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
-	waluigi = spriteBatch->Sprite(1);
+	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,"waluigi");
+	waluigi = spriteBatch->Sprite("waluigi");
 
-	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10);
-	praystation = spriteBatch->SpriteAnimation(0);
+	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10, "animu");
+	praystation = spriteBatch->SpriteAnimation("animu");
 	praystation->setAnimation(1,2,40);
 	
 	wchar_t *teksti = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";

@@ -16,7 +16,7 @@ class SpriteSheetObject : public Object
 {
 public:
 	~SpriteSheetObject(void);
-	SpriteSheetObject(int frameWidth ,int frameHeight,int frameSpeed,int frames, Texture* texture, Shader *shader);
+	SpriteSheetObject(int frameWidth ,int frameHeight,int frameSpeed,int frames, Texture* texture, Shader *shader, std::string name);
 
 	void setVertexData(VertexData* vertexData);
 	void setColor(glm::vec4 color);
@@ -30,6 +30,8 @@ public:
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
 
+	std::string _name;
+
 private:
 	
 	void init(int frameWidth,int frameHeight,int frames,glm::vec4 color);
@@ -39,6 +41,7 @@ private:
 	IndexData* _indexData;
 	Shader* _shader;
 	Texture* _texture;
+
 };
 
 

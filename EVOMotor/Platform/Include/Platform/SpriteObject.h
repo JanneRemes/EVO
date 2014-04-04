@@ -16,13 +16,14 @@ class SpriteObject : public Object
 {
 public:
 	~SpriteObject(void);
-	SpriteObject(int x,int y,int width ,int height, Texture* texture, Shader *shader);
+	SpriteObject(int x,int y,int width ,int height, Texture* texture, Shader *shader, std::string name);
 
 	void setVertexData(VertexData* vertexData);
 	void setColor(glm::vec4 color);
 
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
+	std::string _name;
 
 private:
 
@@ -32,6 +33,8 @@ private:
 	IndexData* _indexData;
 	Shader* _shader;
 	Texture* _texture;
+	
+
 	
 };
 #endif
