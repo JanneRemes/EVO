@@ -18,18 +18,15 @@ Viewport::Viewport(float width,float height)
 
 Viewport::~Viewport()
 {
-
+	delete camera;
 }
 
 void Viewport::draw(Object* object)
 {
-	//float width = Window::winWidth;
-	//float height = Window::winHeight;
+	width = Window::winWidth;
+	height = Window::winHeight;
+	projectionMatrix = glm::ortho(0.f, width, height, 0.f, 0.1f, 100.f) * viewMatrix;
 
-	width = Window::winWidth; height = Window::winHeight;
-	projectionMatrix = glm::ortho(0.f, width, height, 0.f, 0.1f, 100.f)* viewMatrix;
-
-	//projectionMatrix *= viewMatrix;
 	
 	object->draw(projectionMatrix);
 }

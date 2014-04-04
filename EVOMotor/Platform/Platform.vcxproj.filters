@@ -81,6 +81,13 @@
     <ClInclude Include="Include\Platform\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Platform\SpriteSheetObject.h">
+    <ClInclude Include="Include\Platform\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Platform\Win\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Texture.cpp">
@@ -126,6 +133,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpriteSheetObject.cpp">
+    <ClCompile Include="Source\Win\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

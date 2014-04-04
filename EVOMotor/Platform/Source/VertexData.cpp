@@ -46,7 +46,7 @@ void VertexData::setAttribute(int location, int components, int stride, int offs
 {
 	bindBuffers();
 
-	glVertexAttribPointer(location, components, GL_FLOAT, GL_FALSE,stride, (void*)offset);
+	glVertexAttribPointer(location, components, GL_FLOAT, GL_FALSE, stride, (void*)offset);
 	checkGLError("glVertexAttribPointer");
 
 	glEnableVertexAttribArray(location);

@@ -7,7 +7,7 @@
 
 void* operator new(const unsigned int size)
 {
-	writeLog("NEW %i\n", size);
+	//writeLog("NEW %i\n", size);
 
 	void* object = malloc(size);
 	//TODO check errors
@@ -35,7 +35,7 @@ void* operator new[](const unsigned int size, const char* file, const unsigned i
 
 void operator delete(void* object)
 {
-	writeLog("DELETE\n");
+	//writeLog("DELETE\n");
 
 	if(object != NULL)
 		Leak::removePointer(object);

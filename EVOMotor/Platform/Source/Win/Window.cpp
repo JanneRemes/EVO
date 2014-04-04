@@ -56,9 +56,7 @@ bool Window::isOpen()
 
 void Window::pollEvents()
 {
-	//swapbuffer
     glfwPollEvents();
-	//PositionCheck(winPosX,winPosY);
 }
 
 void Window::SwapBuffers()
@@ -77,6 +75,5 @@ void Window::window_size_callback(GLFWwindow* window, int width, int height)
 	winWidth = width;
 	winHeight = height;
 	glViewport(0,0,width,height);
-	//glfwSetFramebufferSizeCallback(Window::window, width, height);
 }
 

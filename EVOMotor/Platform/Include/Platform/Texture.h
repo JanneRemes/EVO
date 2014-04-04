@@ -1,3 +1,8 @@
+/*Texture.h
+*
+*
+*/
+
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
 
@@ -20,11 +25,15 @@ public:
 	Texture(GLubyte* data);
 	~Texture(void);
 
+	//Binds texture to shader
 	void bind(Shader* shader);
+	//Gets textureID
 	GLuint getTextureObject() const;
-
+	//Generates random texture
 	static Texture* generateRandom(glm::vec2& size);
+	//Loads texture and returns Texture
 	static Texture* load(const std::string &fileName);
+	//Creates blank texture
 	static Texture* generateBlank();
 	static Texture* blank;
 
@@ -40,4 +49,3 @@ private:
 };
 
 #endif
-

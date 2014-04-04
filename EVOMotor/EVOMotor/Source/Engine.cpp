@@ -6,7 +6,6 @@
 #include <iostream>
 #include <time.h>
 
-
 int Engine::windowWidth =  0;
 int Engine::windowHeight = 0;
 
@@ -17,11 +16,17 @@ Engine::Engine(void)
 
 Engine::~Engine(void)
 {
-	delete input;
-	delete spriteBatch;
-	delete graphics;
-	delete shader;
-	delete viewport;
+	#if defined (WIN32)
+
+	winGame->deInit();
+	winGame->~WindowsGame();
+
+	#endif
+	#if defined (__ANDROID__)
+
+	androidGame->deInit();
+
+	#endif
 }
 
 bool Engine::isInit()
@@ -31,27 +36,19 @@ bool Engine::isInit()
 
 void Engine::init()
 {
-	graphics =		EVO_NEW Graphics(Window::winWidth,Window::winHeight);
-	viewport =		EVO_NEW Viewport(Window::winWidth,Window::winHeight);
-	spriteBatch =	EVO_NEW SpriteBatch();
-	input =			EVO_NEW Input();
-	shader =		EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
-	
-	spriteBatch->init(shader);
-	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0);
-	spriteBatch->addObject("Assets/Weegee.tga",170,170,0,0);
+	#if defined (WIN32)
 
-	red = 0;
-	blue = 0;
-	green = 0;
+	winGame = new WindowsGame();
+	winGame->init();
 
-	posX = 0;
-	posY = 0;
+	#endif
+	#if defined (__ANDROID__)
 
-	posX2 = 0;
-	posY2 = 0;
-	touchPosX = 0;
-	touchPosY = 0;
+	androidGame= new AndroidGame();
+	androidGame->init();
+
+	#endif
+
 	initialized = true;
 }
 
@@ -62,84 +59,29 @@ void Engine::deInit()
 
 void Engine::update()
 {
-	KeyboardInput();
+	#if defined (WIN32)
 
-	red = rand()%2+0.01f;
-	blue = rand()%2+0.01f;
-	green = rand()%2+0.01f;
+	winGame->update();
 
-	//spriteBatch->spriteList[0]->setColor(glm::vec4(red,blue,green,1.f));
-	spriteBatch->spriteList[1]->setPosition(posX2,posY2);
+	#endif
+	#if defined (__ANDROID__)
 
-	//spriteBatch->spriteList[1]->setColor(glm::vec4(red,blue,green,1.f));
-	//spriteBatch->spriteList[0]->setPosition((rand()%10+100)+posX,(rand()%10+100)+posY);
+	androidGame->update();
 
-	spriteBatch->spriteList[0]->setPosition(posX,posY);
-	//spriteBatch->spriteList[1]->setPosition(posX2,posY2);
+	#endif
 }
 
 void Engine::draw()
 {	
-	graphics->clear(0.0f,0.0f,0.0f);
+	#if defined (WIN32)
 
-	spriteBatch->draw(viewport);
-}
+	winGame->draw();
 
-void Engine::KeyboardInput()
-{
-	#if defined(WIN32)
-	if(input->keyPress(evo::Keys::Down))
-	{
-		viewport->moveCamera(0,5.0f);
-	}
-	if(input->keyPress(evo::Keys::Up))
-	{
-		viewport->moveCamera(0,-5.0f);
-	}
-	if(input->keyPress(evo::Keys::Left))
-	{
-		viewport->moveCamera(5.0f,0);
-	}
-	if(input->keyPress(evo::Keys::Right))
-	{
-		viewport->moveCamera(-5.0f,0);
-	}
+	#endif
+	#if defined (__ANDROID__)
 
-	if(input->MouseButtonPress(evo::buttons::MouseLeft))
-	{
-		posX = input->getCursorPos().x;
-		posY = input->getCursorPos().y;
-	}
+	androidGame->draw();
 
-	if(input->MouseButtonPress(evo::buttons::MouseRight))
-	{
-		writeLog("mouse right");
-	}
-
-	if(input->MouseButtonPress(evo::buttons::MouseMiddle))
-	{
-		writeLog("mouse middle");
-	}
-
-	if(input->keyPress(evo::Keys::S))
-	{
-		posY2 -= 10;
-	}
-
-	if(input->keyPress(evo::Keys::W))
-	{
-		posY2 += 10;
-	}
-
-	if(input->keyPress(evo::Keys::A))
-	{
-		posX2 -= 10;
-	}
-
-	if(input->keyPress(evo::Keys::D))
-	{
-		posX2 += 10;
-	}
 	#endif
 }
 

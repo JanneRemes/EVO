@@ -60,7 +60,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir)/;$(ProjectDir)../depencies/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;Platform.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;Platform.lib;freetype-gl.lib;freetype253.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,17 +80,19 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir)/;$(ProjectDir)../depencies/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;Platform.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;Platform.lib;freetype-gl.lib;freetype253.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\AndroidGame.cpp" />
+    <ClCompile Include="Source\Background.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\WindowsGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\AndroidGame.h" />
+    <ClInclude Include="Include\Background.h" />
     <ClInclude Include="Include\Engine.h" />
     <ClInclude Include="Include\Game.h" />
     <ClInclude Include="Include\WindowsGame.h" />

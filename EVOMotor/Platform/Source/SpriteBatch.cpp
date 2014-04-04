@@ -13,20 +13,41 @@ SpriteBatch::~SpriteBatch()
 	{
 		delete spriteList[i];
 	}
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		delete spriteSheetList[i];
+	}
 }
 
 void SpriteBatch::addObject(	std::string Path,
 								float Width,
 								float Height,
 								float PosX,
-								float PosY )
+								float PosY,
+								std::string name)
 {
 	
 	checkGLError("ENNEN!!");
 	texture = Texture::load(Path);
 	checkGLError("NYT!!");
-	sprite = EVO_NEW SpriteObject(PosX,PosY,Width,Height,texture,shader);
+	sprite = EVO_NEW SpriteObject(PosX,PosY,Width,Height,texture,shader,name);
 	spriteList.push_back(sprite);
+
+}
+
+void SpriteBatch::addAnimatedObject(	std::string Path,
+										float Width,
+										float Height,
+										int frames,
+										int speed,
+										std::string name)
+{
+	
+	checkGLError("ENNEN!!");
+	texture = Texture::load(Path);
+	checkGLError("NYT!!");
+	spriteSheet = EVO_NEW SpriteSheetObject(Width,Height,speed,frames,texture,shader,name);
+	spriteSheetList.push_back(spriteSheet);
 
 }
 
@@ -37,13 +58,56 @@ void SpriteBatch::init(Shader* s)
 
 void SpriteBatch::draw(Viewport* viewport)
 {
+	//Draw all spriteObjects
 	for(int i = 0; i < spriteList.size(); i++)
 	{
+		viewport->draw(spriteList[i]);
+	}
+	//Draw all spriteSheetObjects
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		viewport->draw(spriteSheetList[i]);
+	}
+}
+
+void SpriteBatch::update(float dt)
+{
+	//Update all spriteObjects
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		spriteList[i]->update(dt);
+	}
+	//Update all spriteSheetObjects
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		spriteSheetList[i]->update(dt);
+	}
+}
+
+SpriteObject* SpriteBatch::Sprite(std::string name)
+{
+	int i = 0;
+	for(i = 0; i < spriteList.size(); i++)
+	{
+		if(spriteList[i]->_name == name)
+		{
+			return spriteList[i];
+		}
+	}
+}
+SpriteSheetObject* SpriteBatch::SpriteAnimation(std::string name)
+{	
+	int i = 0;
+	for(i = 0; i < spriteSheetList.size(); i++)
+	{
+		if(spriteSheetList[i]->_name == name)
+		{
+			return spriteSheetList[i];
+		}
+	}
+}
+
 		//spriteList[i]->setScale(Viewport::cameraZoom);
 		//spriteList[i]->setPosition(
 		//	spriteList[i]->getPosition().x * Viewport::cameraZoom,
 		//	spriteList[i]->getPosition().y * Viewport::cameraZoom);
-		viewport->draw(spriteList[i]);
-
-	}
-}

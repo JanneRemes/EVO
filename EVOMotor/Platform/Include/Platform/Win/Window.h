@@ -1,3 +1,8 @@
+/* Window.h (Win32)
+** Creates and handles Win32 window 
+** 
+**
+*/
 #ifndef WINDOW_H_
 #define WINDOW_H_
 
@@ -13,18 +18,26 @@ class Window
 public:
 	Window(void);
 	~Window(void);
+
+//Creates window. Takes height,width and window's title as parameters 
 	int createWindow(int height, int width, const char* name);
-	bool isOpen();
-	void pollEvents();
-	static GLFWwindow* window;
+//Calls glfwSwapBuffer()
 	void SwapBuffers();
-	int wHeigth, wWidth;
+//Check if window is open
+	bool isOpen();
+//Calls glfwPollEvents()
+	void pollEvents();
+//Get window's size as vector2D
 	glm::vec2 getWindowSize();
+//Callback function when window size is changed
 	static void window_size_callback(GLFWwindow* window, int width, int height);
+
+	static GLFWwindow* window;
+	int wHeigth;
+	int wWidth;
 	static int winHeight;
 	static int winWidth;
 
-	void PositionCheck(int, int);
 
 private:
 };

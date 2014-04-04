@@ -81,6 +81,8 @@ Texture* Texture::load(const std::string &fileName)
 {
 	tgaHeader header;
 	GLubyte* data = FileReader::loadTGA(fileName, header);
-	writeLog("\ntexturesize: %d\n",sizeof(*data));
 	return EVO_NEW Texture(data, header.width, header.height, header.depth);
+
+	//writeLog("\ntexturesize: %d\n",sizeof(*data)); //Prints size of texture to debugger
 }
+
