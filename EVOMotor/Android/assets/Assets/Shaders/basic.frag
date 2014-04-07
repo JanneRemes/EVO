@@ -1,4 +1,4 @@
-precision mediump float;
+//precision mediump float;
 
 varying vec4 finalColor;
 varying vec2 finalTexCoords;

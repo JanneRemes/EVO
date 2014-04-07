@@ -101,13 +101,13 @@
     <ClInclude Include="Include\Platform\Win\Input.h" />
     <ClInclude Include="Include\Platform\Win\Keyboard.h" />
     <ClInclude Include="Include\Platform\Win\Mouse.h" />
-    <ClInclude Include="Include\Platform\Win\Text.h" />
     <ClInclude Include="Include\Platform\Win\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\IndexData.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Leak.cpp" />
     <ClCompile Include="Source\New.cpp" />
     <ClCompile Include="Source\Object.cpp" />
@@ -115,12 +115,12 @@
     <ClCompile Include="Source\SpriteBatch.cpp" />
     <ClCompile Include="Source\SpriteObject.cpp" />
     <ClCompile Include="Source\SpriteSheetObject.cpp" />
+    <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\VertexData.cpp" />
     <ClCompile Include="Source\Viewport.cpp" />
     <ClCompile Include="Source\Win\FileReader.cpp" />
     <ClCompile Include="Source\Win\Input.cpp" />
-    <ClCompile Include="Source\Win\Text.cpp" />
     <ClCompile Include="Source\Win\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

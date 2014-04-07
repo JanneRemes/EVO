@@ -11,9 +11,15 @@
 #include "Platform/Viewport.h"
 #include "Platform/SpriteBatch.h"
 #include "Platform/Input.h"
-#include "Platform/Text.h"
-#include "Game.h"
 #include <stdlib.h>
+//Game includes
+#include "Include/Background.h"
+
+#if defined (WIN32)
+
+#include "Platform/Text.h"
+
+#endif
 
 #if defined (__ANDROID__)
 
@@ -31,50 +37,51 @@ public:
 	~Engine(void);
 
 	bool isInit();
-
 	void init();
 	void deInit();
 	void update();
 	void draw();
-	//void KeyboardInput();
+	void KeyboardInput();
 
-	//float touchPosX, touchPosY;
+	float touchPosX, touchPosY;
 
 #if defined (__ANDROID__)
 
 	int32_t processTouchInput(AInputEvent* event);
 	int32_t processKeyInput(AInputEvent* event);
 	void touchInput();
-
-	AndroidGame* androidGame;
 	//static int32_t processInput (android_app* application, AInputEvent* event);
-
-#endif
-#if defined (WIN32)
-
-	WindowsGame* winGame;
 
 #endif
 
 	static int windowWidth;
 	static int windowHeight;
 
-//private:
-//	Graphics* graphics;
-//	Engine* engine;
-//	Shader* shader;
-//	FileReader* fileReader;
-//	SpriteBatch* spriteBatch;
-//	Viewport* viewport;
-//	Input* input;
-//	Text* text; 
-//	Text* text2;
-//
+private:
+//Platform objects
+	Graphics* graphics;
+	Shader* shader;
+	FileReader* fileReader;
+	SpriteBatch* spriteBatch;
+	Viewport* viewport;
+	Input* input;
+
+	//Game objects
+	SpriteObject* waluigi;
+	SpriteObject* grass;
+	SpriteSheetObject* praystation;
+
+	Background* background;
+
 	bool initialized;
-//
-//	float red,blue,green;
-//	int posX, posY;
-//	float posX2, posY2;
+
+	float red,blue,green;
+	int posX, posY;
+	float posX2, posY2;
+
+	#if defined (WIN32)
+	Text* text;
+	#endif
 };
 
 #endif

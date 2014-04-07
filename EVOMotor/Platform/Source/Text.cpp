@@ -1,4 +1,4 @@
-#include "Platform/Win/Text.h"
+#include "Platform/Text.h"
 #include "Platform/Viewport.h"
 #include <incl/glm/gtc/type_ptr.hpp>
 #include <incl/freetype-gl/shader.h>

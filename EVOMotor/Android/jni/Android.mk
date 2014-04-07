@@ -19,6 +19,7 @@ LOCAL_SRC_FILES := \
 	$(PLATFORM_PATH)/Shader.cpp \
 	$(PLATFORM_PATH)/SpriteBatch.cpp \
 	$(PLATFORM_PATH)/SpriteObject.cpp \
+	$(PLATFORM_PATH)/SpriteSheetObject.cpp \
 	$(PLATFORM_PATH)/Texture.cpp \
 	$(PLATFORM_PATH)/VertexData.cpp \
 	$(PLATFORM_PATH)/Viewport.cpp \
@@ -47,6 +48,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Platform/Include \
 
 LOCAL_SRC_FILES := \
 					../../EVOMotor/Source/Engine.cpp\
+					../../EVOMotor/Source/Background.cpp\
 					$(PLATFORM_PATH)/Android/android_native_app_glue.c \
 					$(PLATFORM_PATH)/Android/Android.cpp
 	 

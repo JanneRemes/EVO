@@ -58,7 +58,10 @@ std::string FileReader::loadFile(const std::string &fileName)
 GLubyte* FileReader::loadTGA(const std::string &fileName, tgaHeader &header)
 {
 	AAsset* asset = AAssetManager_open(FileReader::manager, fileName.c_str(), AASSET_MODE_UNKNOWN);
-
+	if(asset == NULL)
+	{
+		writeLog("Asset = NULL");
+	}
     AAsset_read(asset, &header.idLength, 1);
     AAsset_read(asset, &header.colorMapType, 1);
     AAsset_read(asset, &header.type, 1);
