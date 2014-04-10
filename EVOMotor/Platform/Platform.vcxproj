@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\Platform\Camera.h" />
+    <ClInclude Include="Include\Platform\Collision.h" />
     <ClInclude Include="Include\Platform\debug.h" />
     <ClInclude Include="Include\Platform\FileReader.h" />
     <ClInclude Include="Include\Platform\Graphics.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="Include\Platform\New.h" />
     <ClInclude Include="Include\Platform\Object.h" />
     <ClInclude Include="Include\Platform\OpenGL.hpp" />
+    <ClInclude Include="Include\Platform\Rectangle.h" />
     <ClInclude Include="Include\Platform\Shader.h" />
     <ClInclude Include="Include\Platform\SpriteBatch.h" />
     <ClInclude Include="Include\Platform\SpriteObject.h" />
@@ -105,12 +107,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\IndexData.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Leak.cpp" />
     <ClCompile Include="Source\New.cpp" />
     <ClCompile Include="Source\Object.cpp" />
+    <ClCompile Include="Source\Rectangle.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\SpriteBatch.cpp" />
     <ClCompile Include="Source\SpriteObject.cpp" />

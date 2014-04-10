@@ -19,6 +19,8 @@
     <ClCompile Include="Source\Win\Window.cpp" />
     <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Input.cpp" />
+    <ClCompile Include="Source\Rectangle.cpp" />
+    <ClCompile Include="Source\Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Platform\Camera.h" />
@@ -45,5 +47,7 @@
     <ClInclude Include="Include\Platform\Win\Keyboard.h" />
     <ClInclude Include="Include\Platform\Win\Mouse.h" />
     <ClInclude Include="Include\Platform\Win\Window.h" />
+    <ClInclude Include="Include\Platform\Rectangle.h" />
+    <ClInclude Include="Include\Platform\Collision.h" />
   </ItemGroup>
 </Project>

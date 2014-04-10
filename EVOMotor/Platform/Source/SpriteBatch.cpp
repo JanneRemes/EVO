@@ -9,11 +9,11 @@ SpriteBatch::SpriteBatch()
 
 SpriteBatch::~SpriteBatch()
 {	
-	for(int i = 0; i < spriteList.size(); i++)
+	for(size_t i = 0; i < spriteList.size(); i++)
 	{
 		delete spriteList[i];
 	}
-	for(int i = 0; i < spriteSheetList.size(); i++)
+	for(size_t i = 0; i < spriteSheetList.size(); i++)
 	{
 		delete spriteSheetList[i];
 	}
@@ -73,14 +73,15 @@ void SpriteBatch::draw(Viewport* viewport)
 void SpriteBatch::update(float dt)
 {
 	//Update all spriteObjects
-	for(int i = 0; i < spriteSheetList.size(); i++)
+	for(auto it = spriteList.begin(); it != spriteList.end(); ++it)
 	{
-		spriteList[i]->update(dt);
+		(*it)->update(dt);
 	}
 	//Update all spriteSheetObjects
-	for(int i = 0; i < spriteSheetList.size(); i++)
+	for(auto it = spriteSheetList.begin(); it != spriteSheetList.end(); ++it)
 	{
-		spriteSheetList[i]->update(dt);
+		//spriteSheetList[i]->update(dt);
+		(*it)->update(dt);
 	}
 }
 

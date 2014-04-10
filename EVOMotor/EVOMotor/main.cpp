@@ -25,6 +25,7 @@ int main(void)
 	float deltaTime = 0.0f;
 	float newTime = 0.0f;
 	float oldTime = 0.0f;
+	float time = 0.0f;
 
     /* Create a windowed mode window and its OpenGL context */
 	while(window->isOpen())
@@ -32,8 +33,9 @@ int main(void)
 		oldTime = newTime;
 		newTime = getTotalTime();
 		deltaTime = newTime - oldTime;
+		writeLog("%f\n",deltaTime);
 		window->pollEvents();
-		engine->update();
+		engine->update(deltaTime);
 		engine->draw();
 		window->SwapBuffers();
 	}
