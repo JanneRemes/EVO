@@ -22,6 +22,7 @@ Engine::~Engine(void)
 	delete spriteBatch;
 	delete input;
 	delete shader;
+	delete background;
 
 	#if defined (WIN32)
 	delete text;
@@ -50,14 +51,22 @@ void Engine::init()
 	//Add starting size and positions to sprite, also filepath and name must be set
 	//spriteBatch->addObject("Assets/grass.tga",1000,1000,300,300,"grass");
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,"waluigi");
+	spriteBatch->addObject("Assets/Weegee.tga",200,200,0,0,"weegee");
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10, "animu");
+
+	spriteBatch->addAnimatedObject("Assets/testi.tga",128,128,4,50, "knight");
 
 	//Set sprites to spriteBatch so we can update and draw them
 	//grass		= spriteBatch->Sprite("grass");
 	waluigi		= spriteBatch->Sprite("waluigi");
+	weegee		= spriteBatch->Sprite("weegee");
 	praystation = spriteBatch->SpriteAnimation("animu");
 
+	knight		= spriteBatch->SpriteAnimation("knight");
+
 	praystation->setAnimation(1,2,40);
+
+	knight->setAnimation(0,3,40);
 	
 	#if defined (WIN32)
 	text =			EVO_NEW Text("arial.ttf",44.f,viewport);
@@ -71,12 +80,13 @@ void Engine::init()
 	green = 0;
 
 	posX = 350;
-	posY = 900;
+	posY = 850;
 
 	posX2 = 0;
 	posY2 = 0;
 	touchPosX = 0;
 	touchPosY = 0;
+	rot = 0;
 	initialized = true;
 }
 
@@ -85,14 +95,14 @@ void Engine::deInit()
 	initialized = false;
 }
 
-void Engine::update()
+void Engine::update(float dt)
 {
 	//Update Keyboard input
 	KeyboardInput();
 #if defined (__ANDROID__)
 	touchInput();
 #endif
-
+	rot += 1.f;
 	//Random color generator
 	red = rand()%2+0.01f;
 	blue = rand()%2+0.01f;
@@ -100,12 +110,32 @@ void Engine::update()
 
 	//Object updates here
 	waluigi->setPosition(posX2,posY2);
-	praystation->setPosition(posX2,posY2);
+	//praystation->setPosition(posX2,posY2);
 
-	background->update(0.1f);
+	weegee->setPosition(400,400);
+
+	//knight->setPosition(350,850);
+
+	knight->setPosition(posX,posY);
+
+	if(knight->getPosition().x >= 641)
+	{
+		posX=640;
+		knight->setPosition(posX,posY);
+	}
+	if(knight->getPosition().x <= 99)
+	{
+		posX=100;
+		knight->setPosition(posX,posY);
+	}
+	
+	//waluigi->setRotationZ(rot);
+	background->update(dt);
 
 	//You must update spriteBatch
-	spriteBatch->update(0.1f);
+	spriteBatch->update(dt);
+
+	checkCollision();
 }
 
 void Engine::draw()
@@ -113,13 +143,13 @@ void Engine::draw()
 	//Set graphics and clearcolor
 	graphics->clear(0.0f,0.0f,1.0f);
 
-	//You must draw spriteBatch
-	spriteBatch->draw(viewport);
-
 	#if defined (WIN32)
 	//Draw text here
 	text->draw(viewport->projectionMatrix);
 	#endif
+	//You must draw spriteBatch
+	spriteBatch->draw(viewport);
+
 }
 
 void Engine::KeyboardInput()
@@ -168,24 +198,64 @@ void Engine::KeyboardInput()
 
 	if(input->keyPress(evo::Keys::S))
 	{
-		posY += 10;
+		//posY += 10;
 	}
 
 	if(input->keyPress(evo::Keys::W))
 	{
-		posY -= 10;
+		//posY -= 10;
 	}
 
 	if(input->keyPress(evo::Keys::A))
 	{
-		posX -= 10;
+		posX -= 7;
 	}
 
 	if(input->keyPress(evo::Keys::D))
 	{
-		posX += 10;
+		posX += 7;
+	}
+	//-----------------------------------
+	if(input->keyPress(evo::Keys::J))
+	{
+		posX2 -= 7;
+	}
+
+	if(input->keyPress(evo::Keys::I))
+	{
+		posY2 -= 7;
+	}
+	if(input->keyPress(evo::Keys::K))
+	{
+		posY2 += 7;
+	}
+	if(input->keyPress(evo::Keys::L))
+	{
+		posX2 += 7;
 	}
 	#endif
+}
+
+void Engine::checkCollision()
+{
+	//for(size_t i = 0; i < spriteBatch->spriteList.size(); ++i)
+	//{
+	//	for(size_t j = i + 1; j < spriteBatch->spriteList.size(); ++j)
+	//	{
+	//		auto& rect1 = spriteBatch->spriteList[i]->getRectangle();
+	//		auto& rect2 = spriteBatch->spriteList[j]->getRectangle();
+	//		if(rect1.checkCol(rect2))
+	//		{
+	//			// Do collision related things
+	//			writeLog("*ExplosionNoise!*");
+	//		}
+	//	}
+	//}
+
+	if(weegee->getRectangle().checkCol(waluigi->getRectangle()))
+	{
+		writeLog("Poks\n");
+	}
 }
 
 #if defined (__ANDROID__)

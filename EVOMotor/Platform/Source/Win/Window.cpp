@@ -27,6 +27,8 @@ int Window::createWindow(int height, int width,const char* name)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
+	glfwSwapInterval(1);
+
 	window = glfwCreateWindow(width, height, name , NULL, NULL);
     if (!window)
     {

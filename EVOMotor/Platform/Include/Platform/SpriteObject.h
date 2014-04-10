@@ -6,11 +6,12 @@
 #include <string>
 #include <stdlib.h>
 #include <incl/glm/glm.hpp>
-#include "Platform/Shader.h"
-#include "Platform/Texture.h"
-#include "Platform/VertexData.h"
-#include "Platform/IndexData.h"
-#include "Platform/Object.h"
+#include <Platform/Shader.h>
+#include <Platform/Texture.h>
+#include <Platform/VertexData.h>
+#include <Platform/IndexData.h>
+#include <Platform/Object.h>
+#include <Platform/Rectangle.h>
 
 class SpriteObject : public Object
 {
@@ -20,6 +21,7 @@ public:
 
 	void setVertexData(VertexData* vertexData);
 	void setColor(glm::vec4 color);
+	const Rectangle& getRectangle();
 
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
@@ -33,6 +35,7 @@ private:
 	IndexData* _indexData;
 	Shader* _shader;
 	Texture* _texture;
+	Rectangle _rectangle;
 	
 
 	

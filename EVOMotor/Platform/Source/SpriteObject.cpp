@@ -9,9 +9,11 @@
 SpriteObject::SpriteObject(int x,int y,int width,int height,Texture* texture, Shader* shader, std::string n):
 	_shader(shader),
 	_texture(texture),
-	_name(n)
+	_name(n),
+	_rectangle(width,height,glm::vec2(x,y))
 {
 	init(x,y,width,height,glm::vec4(1.f,1.f,1.f,1.f));
+	// = EVO_NEW Rectangle(width,height,glm::vec2(x,y));
 }
 
 /*SpriteObject::SpriteObject(int x,int y,int width,int height,glm::vec4 Color, Shader *shader):
@@ -27,6 +29,7 @@ SpriteObject::~SpriteObject(void)
 	delete _texture;
 	delete _vertexData;
 	delete _indexData;
+	/*delete _rectangle;*/
 }
 
 void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
@@ -34,13 +37,6 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 	setPosition(glm::vec3(x, y, 0));
 
 	std::vector<GLfloat> data(32);
-
-	//x							//y
-	//data[0] = -width / 2.0f;	data[1] = height / 2.0f;
-	//data[8] = data[0];			data[9] = data[1] - height;
-
-	//data[16] = data[0] + width;	data[17] = data[1];
-	//data[24] = data[0] + width; data[25] = data[1] - height;
 
 	data[0] = -width / 2.0f;	data[1] =  -height / 2.0f;
 	data[8] = -width / 2.0f;	data[9] =   height / 2.0f;
@@ -80,6 +76,11 @@ void SpriteObject::setColor(glm::vec4 color)
 	}
 }
 
+const Rectangle& SpriteObject::getRectangle()
+{
+	return _rectangle;
+}
+
 void SpriteObject::draw(glm::mat4 &projectionMatrix)
 {
 	glUseProgram(_shader->program());
@@ -109,4 +110,5 @@ void SpriteObject::draw(glm::mat4 &projectionMatrix)
 
 void SpriteObject::update(float dt)
 {
+	_rectangle.setPosition(_position);
 }

@@ -39,7 +39,7 @@ public:
 	bool isInit();
 	void init();
 	void deInit();
-	void update();
+	void update(float dt);
 	void draw();
 	void KeyboardInput();
 
@@ -69,15 +69,19 @@ private:
 	//Game objects
 	SpriteObject* waluigi;
 	SpriteObject* grass;
+	SpriteObject* weegee;
 	SpriteSheetObject* praystation;
+	SpriteSheetObject* knight;
 
 	Background* background;
 
 	bool initialized;
 
-	float red,blue,green;
+	float red,blue,green, rot;
 	int posX, posY;
 	float posX2, posY2;
+
+	void checkCollision();
 
 	#if defined (WIN32)
 	Text* text;
