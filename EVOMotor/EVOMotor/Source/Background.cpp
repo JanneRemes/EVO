@@ -5,8 +5,9 @@
 
 
 Background::Background(SpriteBatch* spriteBatch)
+	:_spriteBatch(spriteBatch)
 {
-	_spriteBatch = spriteBatch;
+	
 }
 
 Background::~Background()
@@ -15,8 +16,8 @@ Background::~Background()
 
 void Background::init()
 {
-	_spriteBatch->addObject("Assets/grass.tga",1000,1000,500,500, "grass_1");
-	_spriteBatch->addObject("Assets/grass.tga",1000,1000,500,500, "grass_2");
+	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500, "grass_1");
+	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500, "grass_2");
 	grass_1	= _spriteBatch->Sprite("grass_1");
 	grass_2	= _spriteBatch->Sprite("grass_2");
 
@@ -28,17 +29,17 @@ void Background::init()
 }
 void Background::update(float dt)
 {
-	if(posY >= 1500)
+	if(posY >= 1525)
 	{
-		posY = posY2 - 1000.f;
+		posY = posY2 - 1050.f;
 	}
-	if(posY2 >= 1500)
+	if(posY2 >= 1525)
 	{
-		posY2 = posY - 1000.f;
+		posY2 = posY - 1050.f;
 	}
 
-	posY += 20;
-	posY2 += 20;
+	posY += 500*dt;
+	posY2 += 500*dt;
 	grass_1->setPosition(500,posY);
 	grass_2->setPosition(500,posY2);
 }

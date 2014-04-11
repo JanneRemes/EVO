@@ -15,23 +15,27 @@ public:
 	SpriteBatch();
 	~SpriteBatch();
 
-	void addObject( std::string texFilePath,
+	void addObject( const std::string& texFilePath,
 					float spriteWidth,
 					float spriteHeight,
 					float spritePosX,
 					float spritePosY,
-					std::string name);
-	void addAnimatedObject( std::string texFilePath,
+					const std::string& name);
+	void addAnimatedObject(const std::string& texFilePath,
 					float spriteWidth,
 					float spriteHeight,
 					int frames,
 					int speed,
-					std::string name);
+					const std::string& name);
+
 	void init(Shader* shader);
 	void update(float dt);
 	void draw(Viewport* viewport);
-	SpriteObject* Sprite(std::string name);
-	SpriteSheetObject* SpriteAnimation(std::string name);
+	void destroy(const std::string& name);
+	//void destroySpriteSheet(const std::string& name);
+
+	SpriteObject* Sprite(const std::string& name);
+	SpriteSheetObject* SpriteAnimation(const std::string& name);
 
 	SpriteObject* sprite;
 	SpriteSheetObject* spriteSheet;

@@ -42,31 +42,44 @@ void Engine::init()
 	spriteBatch =	EVO_NEW SpriteBatch();
 	input =			EVO_NEW Input();
 	shader =		EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
-	background =	EVO_NEW Background(spriteBatch);
+	//fireball =		EVO_NEW Fireball(spriteBatch);
 
 	//Initialize
 	spriteBatch->init(shader);
+	background =	EVO_NEW Background(spriteBatch);
+	//-----
+	//fireball->init();
+	//fireball->Add(glm::vec2(100.f,100.f));
+	//-----
 	background->init();
 
 	//Add starting size and positions to sprite, also filepath and name must be set
 	//spriteBatch->addObject("Assets/grass.tga",1000,1000,300,300,"grass");
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,"waluigi");
 	spriteBatch->addObject("Assets/Weegee.tga",200,200,0,0,"weegee");
+
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10, "animu");
 
 	spriteBatch->addAnimatedObject("Assets/testi.tga",128,128,4,50, "knight");
+	spriteBatch->addAnimatedObject("Assets/ossi.tga",128,128,2,50, "ossi");
+	//spriteBatch->addObject("Assets/fire.tga",16,16,0,0,"fire");
 
 	//Set sprites to spriteBatch so we can update and draw them
 	//grass		= spriteBatch->Sprite("grass");
 	waluigi		= spriteBatch->Sprite("waluigi");
 	weegee		= spriteBatch->Sprite("weegee");
-	praystation = spriteBatch->SpriteAnimation("animu");
+	//fire		= spriteBatch->Sprite("fire");
 
+
+
+	praystation = spriteBatch->SpriteAnimation("animu");
 	knight		= spriteBatch->SpriteAnimation("knight");
+	ossi		= spriteBatch->SpriteAnimation("ossi");
 
 	praystation->setAnimation(1,2,40);
 
 	knight->setAnimation(0,3,40);
+	ossi->setAnimation(0,0,40);
 	
 	#if defined (WIN32)
 	text =			EVO_NEW Text("arial.ttf",44.f,viewport);
@@ -88,6 +101,8 @@ void Engine::init()
 	touchPosY = 0;
 	rot = 0;
 	initialized = true;
+
+	totalTime = 0;
 }
 
 void Engine::deInit()
@@ -103,6 +118,8 @@ void Engine::update(float dt)
 	touchInput();
 #endif
 	rot += 1.f;
+	totalTime += dt;
+	
 	//Random color generator
 	red = rand()%2+0.01f;
 	blue = rand()%2+0.01f;
@@ -110,9 +127,11 @@ void Engine::update(float dt)
 
 	//Object updates here
 	waluigi->setPosition(posX2,posY2);
-	//praystation->setPosition(posX2,posY2);
 
-	weegee->setPosition(400,400);
+	weegee->setPosition(700,980);
+	ossi->setPosition(350,100);
+
+	//fireball->Update(dt);
 
 	//knight->setPosition(350,850);
 
@@ -128,6 +147,8 @@ void Engine::update(float dt)
 		posX=100;
 		knight->setPosition(posX,posY);
 	}
+
+	ossi->setPosition(cosf(1.f+totalTime/2)*275+350, sinf(1.f+totalTime*2)*50+150);
 	
 	//waluigi->setRotationZ(rot);
 	background->update(dt);

@@ -13,23 +13,13 @@ SpriteObject::SpriteObject(int x,int y,int width,int height,Texture* texture, Sh
 	_rectangle(width,height,glm::vec2(x,y))
 {
 	init(x,y,width,height,glm::vec4(1.f,1.f,1.f,1.f));
-	// = EVO_NEW Rectangle(width,height,glm::vec2(x,y));
 }
-
-/*SpriteObject::SpriteObject(int x,int y,int width,int height,glm::vec4 Color, Shader *shader):
-_shader(shader)
-_texture(0)
-{
-
-}
-*/
 
 SpriteObject::~SpriteObject(void)
 {
 	delete _texture;
 	delete _vertexData;
 	delete _indexData;
-	/*delete _rectangle;*/
 }
 
 void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
@@ -43,7 +33,6 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 
 	data[16] = width / 2.0f;	data[17] = -height / 2.0f;
 	data[24] = width / 2.0f;	data[25] =  height / 2.0f;
-
 
 	for(int i = 2; i< 32; i+= 8)
 	{
@@ -64,7 +53,6 @@ void SpriteObject::init(int x,int y,int width, int height,glm::vec4 color)
 	std::vector<GLushort> indexData(iData, iData+6);
 
 	_indexData = EVO_NEW IndexData(indexData);
-
 }
 
 void SpriteObject::setColor(glm::vec4 color)
@@ -105,7 +93,6 @@ void SpriteObject::draw(glm::mat4 &projectionMatrix)
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
 	//glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	checkGLError("glDrawElements");
-
 }
 
 void SpriteObject::update(float dt)

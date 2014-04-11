@@ -14,6 +14,7 @@
 #include <stdlib.h>
 //Game includes
 #include "Include/Background.h"
+#include "Include/Fireball.h"
 
 #if defined (WIN32)
 
@@ -70,8 +71,11 @@ private:
 	SpriteObject* waluigi;
 	SpriteObject* grass;
 	SpriteObject* weegee;
+	SpriteObject* fire;
+	Fireball* fireball;
 	SpriteSheetObject* praystation;
 	SpriteSheetObject* knight;
+	SpriteSheetObject* ossi;
 
 	Background* background;
 
@@ -80,6 +84,8 @@ private:
 	float red,blue,green, rot;
 	int posX, posY;
 	float posX2, posY2;
+
+	float totalTime;
 
 	void checkCollision();
 

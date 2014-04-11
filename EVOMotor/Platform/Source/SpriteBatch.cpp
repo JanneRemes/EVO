@@ -19,12 +19,12 @@ SpriteBatch::~SpriteBatch()
 	}
 }
 
-void SpriteBatch::addObject(	std::string Path,
+void SpriteBatch::addObject(	const std::string& Path,
 								float Width,
 								float Height,
 								float PosX,
 								float PosY,
-								std::string name)
+								const std::string& name)
 {
 	
 	checkGLError("ENNEN!!");
@@ -35,12 +35,12 @@ void SpriteBatch::addObject(	std::string Path,
 
 }
 
-void SpriteBatch::addAnimatedObject(	std::string Path,
+void SpriteBatch::addAnimatedObject(	const std::string& Path,
 										float Width,
 										float Height,
 										int frames,
 										int speed,
-										std::string name)
+										const std::string& name)
 {
 	
 	checkGLError("ENNEN!!");
@@ -70,6 +70,36 @@ void SpriteBatch::draw(Viewport* viewport)
 	}
 }
 
+void SpriteBatch::destroy(const std::string& name)
+{
+	for(int i = 0; i < spriteList.size(); i++)
+	{
+		if(spriteList[i]->_name == name)
+		{
+			spriteList.erase(spriteList.begin()+i);
+		}
+	}
+	
+	for(int i = 0; i < spriteSheetList.size(); i++)
+	{
+		if(spriteSheetList[i]->_name == name)
+		{
+			spriteSheetList.erase(spriteSheetList.begin()+i);
+		}
+	}
+}
+//
+//void SpriteBatch::destroySpriteSheet(const std::string& name)
+//{
+//	for(int i = 0; i < spriteSheetList.size(); i++)
+//	{
+//		if(spriteSheetList[i]->_name == name)
+//		{
+//			spriteSheetList.erase(spriteSheetList.begin()+i);
+//		}
+//	}
+//}
+
 void SpriteBatch::update(float dt)
 {
 	//Update all spriteObjects
@@ -85,7 +115,7 @@ void SpriteBatch::update(float dt)
 	}
 }
 
-SpriteObject* SpriteBatch::Sprite(std::string name)
+SpriteObject* SpriteBatch::Sprite(const std::string& name)
 {
 	int i = 0;
 	for(i = 0; i < spriteList.size(); i++)
@@ -96,7 +126,8 @@ SpriteObject* SpriteBatch::Sprite(std::string name)
 		}
 	}
 }
-SpriteSheetObject* SpriteBatch::SpriteAnimation(std::string name)
+
+SpriteSheetObject* SpriteBatch::SpriteAnimation(const std::string& name)
 {	
 	int i = 0;
 	for(i = 0; i < spriteSheetList.size(); i++)

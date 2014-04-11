@@ -23,7 +23,7 @@ class FileReader
 {
 public:
 	FileReader();
-	FileReader(const std::string filePath);
+	FileReader(const std::string& filePath);
 	~FileReader(void);
 
 	void open(bool isBinary);
