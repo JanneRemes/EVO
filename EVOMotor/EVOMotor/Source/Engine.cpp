@@ -23,6 +23,7 @@ Engine::~Engine(void)
 	delete input;
 	delete shader;
 	delete background;
+	delete fireball;
 
 	#if defined (WIN32)
 	delete text;
@@ -42,14 +43,14 @@ void Engine::init()
 	spriteBatch =	EVO_NEW SpriteBatch();
 	input =			EVO_NEW Input();
 	shader =		EVO_NEW Shader("Assets/Shaders/basic.vert", "Assets/Shaders/basic.frag");
-	//fireball =		EVO_NEW Fireball(spriteBatch);
+	fireball =		EVO_NEW Fireball(spriteBatch);
 
 	//Initialize
 	spriteBatch->init(shader);
 	background =	EVO_NEW Background(spriteBatch);
 	//-----
-	//fireball->init();
-	//fireball->Add(glm::vec2(100.f,100.f));
+	fireball->init();
+	fireball->Add(glm::vec2(100.f,100.f));
 	//-----
 	background->init();
 
@@ -82,9 +83,8 @@ void Engine::init()
 	ossi->setAnimation(0,0,40);
 	
 	#if defined (WIN32)
-	text =			EVO_NEW Text("arial.ttf",44.f,viewport);
-	wchar_t *teksti = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
-	text->addText(teksti,glm::vec4(1,1,1,1));
+	text =	EVO_NEW Text("arial.ttf",44.f,viewport);
+	text->addText(L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789",glm::vec4(1,1,1,1));
 	text->setPosition(0,0);
 	#endif
 
@@ -131,7 +131,7 @@ void Engine::update(float dt)
 	weegee->setPosition(700,980);
 	ossi->setPosition(350,100);
 
-	//fireball->Update(dt);
+	fireball->Update(dt);
 
 	//knight->setPosition(350,850);
 

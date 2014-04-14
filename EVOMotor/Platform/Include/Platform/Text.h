@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 #include <Platform/OpenGL.hpp>
 #include <incl/glm/glm.hpp>
 
@@ -24,7 +25,7 @@ class Text : public Object
 public:
 	Text(const std::string& fontPath, const float fontSize, Viewport* viewport);
 	~Text();
-	void addText(wchar_t* text, const glm::vec4& color = glm::vec4(1,1,1,1));
+	void addText(const std::wstring& text, const glm::vec4& color = glm::vec4(1,1,1,1));
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
 private:

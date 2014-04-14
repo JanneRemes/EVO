@@ -18,9 +18,10 @@ Text::Text(const std::string& fontPath, const float fontSize, Viewport* viewport
 
 Text::~Text()
 {
+	texture_atlas_delete(m_atlas);
 }
 
-void Text::addText(wchar_t* text, const glm::vec4& color)
+void Text::addText(const std::wstring& text, const glm::vec4& color)
 {
 	glm::vec2 pos = m_lastPos;
 
@@ -28,7 +29,7 @@ void Text::addText(wchar_t* text, const glm::vec4& color)
 
     size_t i;
 	float r = color.x, g = color.y, b = color.z, a = color.w;
-    for( i=0; i<wcslen(text); ++i )
+	for( i=0; i<text.size(); ++i )
     {
         texture_glyph_t *glyph = texture_font_get_glyph( font, text[i] );
         if( glyph != NULL )

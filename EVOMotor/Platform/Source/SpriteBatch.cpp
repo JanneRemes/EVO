@@ -11,10 +11,12 @@ SpriteBatch::~SpriteBatch()
 {	
 	for(size_t i = 0; i < spriteList.size(); i++)
 	{
+		//spriteList.erase(spriteList.begin()+i);
 		delete spriteList[i];
 	}
 	for(size_t i = 0; i < spriteSheetList.size(); i++)
 	{
+		//spriteSheetList.erase(spriteSheetList.begin()+i);
 		delete spriteSheetList[i];
 	}
 }
@@ -77,6 +79,7 @@ void SpriteBatch::destroy(const std::string& name)
 		if(spriteList[i]->_name == name)
 		{
 			spriteList.erase(spriteList.begin()+i);
+			break;
 		}
 	}
 	
@@ -85,20 +88,11 @@ void SpriteBatch::destroy(const std::string& name)
 		if(spriteSheetList[i]->_name == name)
 		{
 			spriteSheetList.erase(spriteSheetList.begin()+i);
+			break;
 		}
 	}
 }
-//
-//void SpriteBatch::destroySpriteSheet(const std::string& name)
-//{
-//	for(int i = 0; i < spriteSheetList.size(); i++)
-//	{
-//		if(spriteSheetList[i]->_name == name)
-//		{
-//			spriteSheetList.erase(spriteSheetList.begin()+i);
-//		}
-//	}
-//}
+
 
 void SpriteBatch::update(float dt)
 {
