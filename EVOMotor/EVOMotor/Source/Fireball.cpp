@@ -31,19 +31,16 @@ void Fireball::Add(glm::vec2 position)
 
 void Fireball::Update(float dt)
 {
-	for(int i = 0; i < Fireballs.size(); i++)
+	for(int i = Fireballs.size() -1; i >= 0; i--)
 	{
 		x += Fireballs[i]->getPosition().x;
 		y += Fireballs[i]->getPosition().y + 50;
 		Fireballs[i]->setPosition(x,y);
 
 		if(Fireballs[i]->getPosition().y >= 1050.f)
-			Delete(Fireballs[i],i);
+		{
+			_spriteBatch->destroySpriteObject(Fireballs[i]);
+			Fireballs.erase(Fireballs.begin()+i);
+		}
 	}
-}
-
-void Fireball::Delete(SpriteObject* _fireball,int id)
-{
-	_spriteBatch->destroy("fire" + std::to_string((long double)id));
-	delete _fireball;
 }

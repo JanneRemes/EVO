@@ -72,14 +72,15 @@ void SpriteBatch::draw(Viewport* viewport)
 	}
 }
 
-void SpriteBatch::destroy(const std::string& name)
+void SpriteBatch::destroy(const std::string& name)	//Kannattaa jakaa kahdeksi funktioksi
 {
 	for(int i = 0; i < spriteList.size(); i++)
 	{
 		if(spriteList[i]->_name == name)
 		{
+			delete spriteList[i];
 			spriteList.erase(spriteList.begin()+i);
-			break;
+			return;	//Palauta, ‰l‰ breakkaa, koska joutuu k‰ym‰‰n koko funktion l‰pi breakin kanssa
 		}
 	}
 	
@@ -87,12 +88,25 @@ void SpriteBatch::destroy(const std::string& name)
 	{
 		if(spriteSheetList[i]->_name == name)
 		{
+			delete spriteSheetList[i];
 			spriteSheetList.erase(spriteSheetList.begin()+i);
-			break;
+			return; //Palauta, ‰l‰ breakkaa, koska joutuu k‰ym‰‰n koko funktion l‰pi breakin kanssa
 		}
 	}
 }
-
+void SpriteBatch::destroySpriteObject(SpriteObject* spriteObject) //Poista tietty spriteobject
+{
+	for(int i = 0; i < spriteList.size(); i++)
+	{
+		if(spriteList[i] == spriteObject)	
+		{
+			delete spriteList[i];	//Poistetaan haluttu objekti
+			spriteList.erase(spriteList.begin()+i);	//Poistetaan j‰sen listasta
+			return;
+		}
+	}
+	
+}
 
 void SpriteBatch::update(float dt)
 {

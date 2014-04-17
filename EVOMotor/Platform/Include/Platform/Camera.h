@@ -10,11 +10,11 @@
 class Camera : public Object
 {
 public:
-	Camera();
-	~Camera();
+	Camera();//Konstruktori
+	~Camera();//Destruktori
 
-	void update(float dt){}
-	void draw(glm::mat4 &projectionMatrix){}
+	void update(float dt){} //Tyhjä update
+	void draw(glm::mat4 &projectionMatrix){} //Tyhjä piirtofunktio, parametrinä projektiomatriisi
 };
 
 

@@ -23,7 +23,7 @@ Engine::~Engine(void)
 	delete input;
 	delete shader;
 	delete background;
-	delete fireball;
+//	delete fireball;
 
 	#if defined (WIN32)
 	delete text;
@@ -63,13 +63,13 @@ void Engine::init()
 
 	spriteBatch->addAnimatedObject("Assets/testi.tga",128,128,4,50, "knight");
 	spriteBatch->addAnimatedObject("Assets/ossi.tga",128,128,2,50, "ossi");
-	//spriteBatch->addObject("Assets/fire.tga",16,16,0,0,"fire");
+	spriteBatch->addObject("Assets/fire.tga",16,16,0,0,"fire");
 
 	//Set sprites to spriteBatch so we can update and draw them
 	//grass		= spriteBatch->Sprite("grass");
 	waluigi		= spriteBatch->Sprite("waluigi");
 	weegee		= spriteBatch->Sprite("weegee");
-	//fire		= spriteBatch->Sprite("fire");
+	fire		= spriteBatch->Sprite("fire");
 
 
 

@@ -32,6 +32,8 @@ public:
 	void update(float dt);
 	void draw(Viewport* viewport);
 	void destroy(const std::string& name);
+	void destroySpriteObject(SpriteObject*);
+	//void destroySpriteSheetObject(SpriteSheetObject*);
 	//void destroySpriteSheet(const std::string& name);
 
 	SpriteObject* Sprite(const std::string& name);

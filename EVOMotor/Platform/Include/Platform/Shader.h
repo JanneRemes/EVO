@@ -13,20 +13,20 @@ class Shader
 {
 public:
 	//Shader();
-	Shader(const std::string&, const std::string& fragmentFilePath);
-	~Shader();
+	Shader(const std::string&, const std::string& fragmentFilePath); // Konstruktori, k‰ytt‰‰ alustusfunktiota
+	~Shader(); // Destruktori
 
-	bool init();
-	GLuint getUniformLocation(const char* name) const;
-	void setUniform(const char* name, float value);
-	void setUniform(const char* name, int value);
-	void setUniform(const char* name, const float* matrixData);
-	GLuint program() const;
+	bool init(); // Alustusfunktio, k‰ytt‰‰ createProgram() funktiota
+	GLuint getUniformLocation(const char* name) const; // Funktio, joka palauttaa objektin uniform variable:n sijainnin 
+	void setUniform(const char* name, float value); // Funktio, jolla voidaan asettaa uniform variable liukulukuna
+	void setUniform(const char* name, int value); // Funktio, jolla voidaan asettaa uniform variable kokonaislukuna
+	void setUniform(const char* name, const float* matrixData); // Funktio, jolla voidaan asettaa uniform variable 4x4 matriisina
+	GLuint program() const; // Palauttaa shader-ohjelman
 
 private:
 
-	GLuint loadShader(GLenum shaderType, const char* source);
-	void createProgram();
+	GLuint loadShader(GLenum shaderType, const char* source); // Shaderin lataus
+	void createProgram(); // Shader-ohjelman luonti
 
 	FileReader fileReader;
 	std::string _vertexFilePath;

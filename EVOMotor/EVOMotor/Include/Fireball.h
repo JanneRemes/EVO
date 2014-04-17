@@ -17,7 +17,7 @@ public:
 	void init();
 	void Add(glm::vec2 position);
 	void Update(float dt);
-	void Delete(SpriteObject*,int);
+//	void Delete(SpriteObject*); Turha funktio, voidaan poistaa spritebatchin avulla
 	std::vector <SpriteObject*> Fireballs;
 
 	float x,y;
