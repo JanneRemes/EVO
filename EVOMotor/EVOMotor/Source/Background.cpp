@@ -25,6 +25,7 @@ void Background::init()
 	posY2 = posY - 1000.f;
 	posX = 500.f;
 	posX2 = 500.f;
+	posZ = -0.9f;
 
 }
 void Background::update(float dt)

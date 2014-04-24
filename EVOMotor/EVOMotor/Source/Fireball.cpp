@@ -8,6 +8,7 @@ Fireball::Fireball(SpriteBatch* spriteBatch)
 	x   = 0;
 	y   = 0;
 	ID  = 0;
+	movement = 0;
 }
 
 Fireball::~Fireball()
@@ -22,19 +23,19 @@ void Fireball::init()
 
 void Fireball::Add(glm::vec2 position)
 {
-	_spriteBatch->addObject("Assets/fire.tga",16,16,500,500, "fire" + std::to_string((long double)ID));
+	_spriteBatch->addObject("Assets/fire.tga",16,16,position.x,position.y, "fire" + std::to_string((long double)ID));
 	fireball = _spriteBatch->Sprite("fire" + std::to_string((long double)ID));
 	Fireballs.push_back(fireball);
 	++ID;
-
 }
 
 void Fireball::Update(float dt)
 {
 	for(int i = Fireballs.size() -1; i >= 0; i--)
 	{
-		x += Fireballs[i]->getPosition().x;
-		y += Fireballs[i]->getPosition().y + 50;
+		movement += 1*dt;
+		y = Fireballs[i]->getPosition().y + movement;
+		x = Fireballs[i]->getPosition().x;
 		Fireballs[i]->setPosition(x,y);
 
 		if(Fireballs[i]->getPosition().y >= 1050.f)
