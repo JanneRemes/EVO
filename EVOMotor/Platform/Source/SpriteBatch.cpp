@@ -132,21 +132,31 @@ void SpriteBatch::update(float dt)
 
 Object* SpriteBatch::Obj(const std::string& name)
 {
-	int i = 0;
-	for(i = 0; i < spriteList.size(); i++)
+	for(int i = 0; i < spriteList.size(); i++)
 	{
 		if(spriteList[i]->_name == name)
 		{
-			
 			return spriteList[i];
 		}
 	}
 }
 
+Text* SpriteBatch::TextObj(const std::string& name)
+{
+	for(int i = 0; i < spriteList.size(); i++)
+	{
+		if(spriteList[i]->_name == name)
+		{
+			assert(spriteList[i]->_type == OBJECT_TYPE::TEXT);
+			return static_cast<Text*>(spriteList[i]);
+		}
+	}
+}
+
+
 SpriteObject* SpriteBatch::Sprite(const std::string& name)
 {
-	int i = 0;
-	for(i = 0; i < spriteList.size(); i++)
+	for(int i = 0; i < spriteList.size(); i++)
 	{
 		if(spriteList[i]->_name == name)
 		{

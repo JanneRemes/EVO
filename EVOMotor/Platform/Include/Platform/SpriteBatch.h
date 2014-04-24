@@ -16,10 +16,10 @@ public:
 	SpriteBatch();
 	~SpriteBatch();
 	
-	Text* addText(	const std::string& fontFilePath,
-					float fontSize,
-					const int layer,
-					const std::string& name);
+	Text* addText(	const std::string& fontFilePath = "arial.ttf",
+					float fontSize = 44.f,
+					const int layer = 20,
+					const std::string& name = "");
 	void addObject( const std::string& texFilePath,
 					float spriteWidth,
 					float spriteHeight,

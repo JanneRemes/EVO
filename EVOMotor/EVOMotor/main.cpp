@@ -33,7 +33,6 @@ int main(void)
 		oldTime = newTime;
 		newTime = getTotalTime();
 		deltaTime = newTime - oldTime;
-		//writeLog("%f\n",deltaTime);
 		window->pollEvents();
 		engine->update(deltaTime);
 		engine->draw();

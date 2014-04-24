@@ -8,11 +8,11 @@ Text::Text(const std::string& fontPath, const float fontSize)
 {
 	m_path = "Assets/Fonts/" + fontPath;
 	m_atlas = texture_atlas_new(1024, 1024, 1);
-	//setScale(fontSize);
 	shader = shader_load("Assets/Shaders/v3f-t2f-c4f.vert",
                          "Assets/Shaders/v3f-t2f-c4f.frag");
 
 	buffer = vertex_buffer_new( "vertex:3f,tex_coord:2f,color:4f" );
+	_type = OBJECT_TYPE::TEXT;
 }
 
 Text::~Text()

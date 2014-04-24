@@ -39,7 +39,7 @@ attribute vec2 tex_coord;
 attribute vec4 color;
 void main()
 {
-    gl_Position       = projection*(model*vec4(vertex,1.0));
+    gl_Position       = projection*(model*vec4(vertex.xy, -0.1,1.0));
     gl_TexCoord[0].xy = tex_coord.xy;
     gl_FrontColor     = color;
 }

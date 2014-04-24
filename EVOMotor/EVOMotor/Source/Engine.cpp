@@ -55,32 +55,20 @@ void Engine::init()
 	background->init();
 
 	//Add starting size and positions to sprite, also filepath and name must be set
-	//spriteBatch->addObject("Assets/grass.tga",1000,1000,300,300,"grass");
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,10,"waluigi");
 	spriteBatch->addObject("Assets/Weegee.tga",200,200,0,0,11,"weegee");
-	spriteBatch->addObject("Assets/fire.tga",16,16,0,0,15,"fire");
 
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10,12, "animu");
 	spriteBatch->addAnimatedObject("Assets/testi.tga",128,128,4,50,13, "knight");
 	spriteBatch->addAnimatedObject("Assets/ossi.tga",128,128,2,50,14, "ossi");
 
 	//Set sprites to spriteBatch so we can update and draw them
-	//grass		= spriteBatch->Sprite("grass");
 	waluigi		= spriteBatch->Sprite("waluigi");
 	weegee		= spriteBatch->Sprite("weegee");
-	fire		= spriteBatch->Sprite("fire");
 
 	praystation = spriteBatch->SpriteAnimation("animu");
 	knight		= spriteBatch->SpriteAnimation("knight");
 	ossi		= spriteBatch->SpriteAnimation("ossi");
-
-	//waluigi->setLayer(10);
-	//weegee->setLayer(11);
-	//fire->setLayer(12);
-	//praystation->setLayer(13);
-	//knight->setLayer(14);
-	//ossi->setLayer(15);
-
 
 	praystation->setAnimation(1,2,40);
 
@@ -170,8 +158,7 @@ void Engine::draw()
 	graphics->clear(0.0f,0.0f,1.0f);
 
 	#if defined (WIN32)
-	//Draw text here
-	//text->draw(viewport->projectionMatrix);
+
 	#endif
 	//You must draw spriteBatch
 	spriteBatch->draw(viewport);
