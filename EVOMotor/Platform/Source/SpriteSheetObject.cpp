@@ -8,12 +8,14 @@
 
 SpriteSheetObject::SpriteSheetObject(int frameWidth, int frameHeight, int frameSpeed, int frames, Texture* texture, Shader* shader, std::string n):
 	_shader(shader),
-	_texture(texture),
-	_name(n)
+	_texture(texture)
 {
-	_frames   = frames;
-	_curFrame = 0;
-	 time     = 0;
+	_frames		= frames;
+	_curFrame	= 0;
+	time		= 0;
+	
+	_name = n;
+	_type = OBJECT_TYPE::SPRITESHEET;
 
 	setAnimation(0, frames, frameSpeed);
 	init(frameWidth, frameHeight, frames, glm::vec4(1.f,1.f,1.f,1.f));

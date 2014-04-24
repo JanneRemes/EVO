@@ -5,7 +5,8 @@ Object::Object():
 	_position(0), //= position = (glm::vec3::_null)
 	_rotation(0),				// = rotation = 0
 	_scale(glm::vec3(1,1,1)), // = scale = (glm::vec3(1,1,1))
-	_recalculateMatrix(true) // = recalculateMatrix = true
+	_recalculateMatrix(true), // = recalculateMatrix = true
+	_layer(0)
 {
 	setScale(_scale);
 }
@@ -19,9 +20,9 @@ void Object::setPosition(const glm::vec3& position)
 	_recalculateMatrix = true;
 }
 
-void Object::setPosition(const float x, const float y, const float z)
+void Object::setLayer(const int layer)
 {
-	setPosition(glm::vec3(x,y,z));
+	_layer = layer;
 }
 
 void Object::setPosition(const float x, const float y)

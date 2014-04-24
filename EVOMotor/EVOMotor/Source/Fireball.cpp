@@ -23,7 +23,7 @@ void Fireball::init()
 
 void Fireball::Add(glm::vec2 position)
 {
-	_spriteBatch->addObject("Assets/fire.tga",16,16,position.x,position.y, "fire" + std::to_string((long double)ID));
+	_spriteBatch->addObject("Assets/fire.tga",16,16,position.x,position.y,20, "fire" + std::to_string((long double)ID));
 	fireball = _spriteBatch->Sprite("fire" + std::to_string((long double)ID));
 	Fireballs.push_back(fireball);
 	++ID;
@@ -40,7 +40,7 @@ void Fireball::Update(float dt)
 
 		if(Fireballs[i]->getPosition().y >= 1050.f)
 		{
-			_spriteBatch->destroySpriteObject(Fireballs[i]);
+			_spriteBatch->destroy(Fireballs[i]);
 			Fireballs.erase(Fireballs.begin()+i);
 		}
 	}

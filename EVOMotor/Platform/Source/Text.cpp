@@ -3,11 +3,10 @@
 #include <incl/glm/gtc/type_ptr.hpp>
 #include <incl/freetype-gl/shader.h>
 
-Text::Text(const std::string& fontPath, const float fontSize, Viewport* viewport)
+Text::Text(const std::string& fontPath, const float fontSize)
 	: m_fontSize(fontSize)
 {
 	m_path = "Assets/Fonts/" + fontPath;
-	_viewport = viewport;
 	m_atlas = texture_atlas_new(1024, 1024, 1);
 	//setScale(fontSize);
 	shader = shader_load("Assets/Shaders/v3f-t2f-c4f.vert",
@@ -64,7 +63,6 @@ void Text::addText(const std::wstring& text, const glm::vec4& color)
 void Text::draw(glm::mat4 &projectionMatrix)
 {
 	glm::mat4 model		 =  getMatrix();
-	//glm::mat4 view		 = _viewport->viewMatrix;
 	glm::mat4 projection = projectionMatrix;
 	glUseProgram(shader);
 

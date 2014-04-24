@@ -23,7 +23,7 @@ typedef struct {
 class Text : public Object
 {
 public:
-	Text(const std::string& fontPath, const float fontSize, Viewport* viewport);
+	Text(const std::string& fontPath, const float fontSize);
 	~Text();
 	void addText(const std::wstring& text, const glm::vec4& color = glm::vec4(1,1,1,1));
 	virtual void draw(glm::mat4 &projectionMatrix);
@@ -41,7 +41,6 @@ private:
 	glm::vec2 m_lastPos;
 
 	GLuint shader; 
-	Viewport* _viewport;
 
 };
 

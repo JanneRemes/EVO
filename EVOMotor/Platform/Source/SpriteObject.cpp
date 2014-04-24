@@ -9,9 +9,10 @@
 SpriteObject::SpriteObject(int x,int y,int width,int height,Texture* texture, Shader* shader, std::string n):
 	_shader(shader),
 	_texture(texture),
-	_name(n),
 	_rectangle(width,height,glm::vec2(x,y))
 {
+	_name = n;
+	_type = OBJECT_TYPE::SPRITE;
 	init(x,y,width,height,glm::vec4(1.f,1.f,1.f,1.f));
 }
 

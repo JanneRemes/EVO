@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <Platform/OpenGL.hpp>
-#include <string>
 #include <stdlib.h>
 #include <incl/glm/glm.hpp>
 #include "Platform/Shader.h"
@@ -30,7 +29,6 @@ public:
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
 
-	std::string _name;
 
 private:
 	

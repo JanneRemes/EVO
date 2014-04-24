@@ -1,9 +1,18 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <string>
 #include <incl/glm/glm.hpp>
 #include <incl/glm/gtx/transform.hpp>
 #include "incl/glm/matrix.hpp"
+
+enum OBJECT_TYPE
+{
+	UNDEFINED,
+	SPRITE,
+	SPRITESHEET,
+	TEXT
+};
 
 class Object
 {
@@ -17,8 +26,8 @@ public:
 
 	void setPosition(const glm::vec3& position);
 	void setPosition(const glm::vec2& position);
-	void setPosition(const float x, const float y, const float z);
 	void setPosition(const float x, const float y);
+	void setLayer(const int layer);
 	void setScale(const glm::vec3& scale);
 	void setScale(const float scale);
 	void setRotationX(float rotation);
@@ -27,21 +36,26 @@ public:
 	void setProjectionMatrix(glm::mat4& matrix);
 
 	float getRotation() const;
+	float getWidth();
+	float getHeight();
 	glm::vec3& getScale();
 	glm::vec3& getPosition();
 	glm::mat4& getMatrix();
-	float getWidth();
-	float getHeight();
 
+	std::string _name;
+
+	int _type;
+	int _layer;
 
 protected:
 
 	void calculateMatrix();
 
-	glm::vec3 _position;
 	float _rotation;
-	glm::vec3 _scale;
 	bool _recalculateMatrix;
+
+	glm::vec3 _position;
+	glm::vec3 _scale;
 
 	glm::mat4 _translationMatrix;
 	glm::mat4 _rotationMatrix;

@@ -16,8 +16,8 @@ Background::~Background()
 
 void Background::init()
 {
-	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500, "grass_1");
-	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500, "grass_2");
+	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500,0, "grass_1");
+	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500,0, "grass_2");
 	grass_1	= _spriteBatch->Sprite("grass_1");
 	grass_2	= _spriteBatch->Sprite("grass_2");
 
