@@ -6,6 +6,7 @@
 #include <string>
 #include <stdlib.h>
 #include <incl/glm/glm.hpp>
+#include <Platform/Texture.h>
 #include <Platform/SpriteObject.h>
 #include <Platform/SpriteBatch.h>
 
@@ -24,6 +25,7 @@ public:
 	int ID;
 
 	SpriteObject* fireball;
+	Texture* _texture;
 	SpriteBatch* _spriteBatch;
 };
 

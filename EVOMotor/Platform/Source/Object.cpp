@@ -6,12 +6,15 @@ Object::Object():
 	_rotation(0),				// = rotation = 0
 	_scale(glm::vec3(1,1,1)), // = scale = (glm::vec3(1,1,1))
 	_recalculateMatrix(true), // = recalculateMatrix = true
-	_layer(0)
+	_layer(0),
+	_speed(0.f)
 {
 	setScale(_scale);
 }
 
-Object::~Object() {}
+Object::~Object() 
+{
+}
 
 void Object::setPosition(const glm::vec3& position)
 {
@@ -45,6 +48,11 @@ void Object::setScale(const glm::vec3& scale)
 void Object::setScale(const float scale)
 {
 	setScale(glm::vec3(scale, scale, scale));
+}
+
+void Object::setSpeed(float speed)
+{
+	_speed = speed;
 }
 
 void Object::setRotationX(float rotation)
@@ -96,6 +104,11 @@ glm::mat4& Object::getMatrix()
 		_recalculateMatrix = false;
 	}
 	return _combinedMatrix;
+}
+
+float Object::getSpeed()
+{
+	return _speed;
 }
 
 void Object::calculateMatrix()

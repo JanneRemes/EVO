@@ -35,6 +35,7 @@ public:
 	void setRotationY(float rotation);
 	void setRotationZ(float rotation);
 	void setProjectionMatrix(glm::mat4& matrix);
+	void setSpeed(float speed);
 
 	float getRotation() const;
 	//float getWidth() const;
@@ -44,11 +45,13 @@ public:
 	glm::vec3& getScale();
 	glm::vec3& getPosition();
 	glm::mat4& getMatrix();
+	float getSpeed();
 
 	std::string _name;
 
 	int _type;
 	int _layer;
+	float _speed;
 
 protected:
 

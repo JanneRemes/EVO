@@ -96,7 +96,8 @@ void Engine::init()
 	rot = 0;
 	initialized = true;
 
-
+	hand = 1.0f;
+	fireRate = 0.f;
 
 	totalTime = 0;
 }
@@ -153,6 +154,15 @@ void Engine::update(float dt)
 	spriteBatch->update(dt);
 
 	checkCollision();
+
+	fireRate += dt;
+	if(fireRate >= 2)
+	{
+		fireball->Add(glm::vec2(ossi->getPosition().x-(45.f*hand),ossi->getPosition().y+30.f));
+		hand = hand * -1.0f;
+		fireRate = 0.f;
+	}
+
 }
 
 void Engine::draw()
@@ -191,8 +201,7 @@ void Engine::KeyboardInput()
 	{
 		praystation->setSpeed(1);
 		
-		fireball->Add(glm::vec2(ossi->getPosition().x-45.f,ossi->getPosition().y+30.f));
-
+		
 	}
 	else
 	{
@@ -280,8 +289,15 @@ void Engine::checkCollision()
 	{
 		if(knight->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
 		{
-			writeLog("Poksis\n");
+			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
+			writeLog("KIMMOTUSSSSS\n");
 		}
+
+		/*if(ossi->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
+		{
+			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
+			writeLog("KIMMOTUSSSSS\n");
+		}*/
 	}
 }
 
