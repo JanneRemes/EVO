@@ -33,7 +33,8 @@ void Fireball::Update(float dt)
 {
 	for(int i = Fireballs.size() -1; i >= 0; i--)
 	{
-		movement += 1*dt;
+		movement = 5.f;
+		
 		y = Fireballs[i]->getPosition().y + movement;
 		x = Fireballs[i]->getPosition().x;
 		Fireballs[i]->setPosition(x,y);
@@ -42,6 +43,7 @@ void Fireball::Update(float dt)
 		{
 			_spriteBatch->destroy(Fireballs[i]);
 			Fireballs.erase(Fireballs.begin()+i);
+			//movement = 0;
 		}
 	}
 }

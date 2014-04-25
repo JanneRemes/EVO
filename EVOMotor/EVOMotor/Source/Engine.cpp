@@ -96,6 +96,8 @@ void Engine::init()
 	rot = 0;
 	initialized = true;
 
+
+
 	totalTime = 0;
 }
 
@@ -188,6 +190,9 @@ void Engine::KeyboardInput()
 	if(input->keyPress(evo::Keys::Space))
 	{
 		praystation->setSpeed(1);
+		
+		fireball->Add(glm::vec2(ossi->getPosition().x-45.f,ossi->getPosition().y+30.f));
+
 	}
 	else
 	{
@@ -266,11 +271,17 @@ void Engine::checkCollision()
 	//	}
 	//}
 
-	
-
 	if(knight->getRectangle().checkCol(ossi->getRectangle()))
 	{
 		writeLog("Poks\n");
+	}
+
+	for(int i = fireball->Fireballs.size() -1; i >= 0; i--)
+	{
+		if(knight->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
+		{
+			writeLog("Poksis\n");
+		}
 	}
 }
 
