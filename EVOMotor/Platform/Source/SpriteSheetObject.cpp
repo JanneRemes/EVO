@@ -8,7 +8,8 @@
 
 SpriteSheetObject::SpriteSheetObject(int frameWidth, int frameHeight, int frameSpeed, int frames, Texture* texture, Shader* shader, std::string n):
 	_shader(shader),
-	_texture(texture)
+	_texture(texture),
+	_rectangle(frameWidth,frameHeight,glm::vec2(0,0))
 {
 	_frames		= frames;
 	_curFrame	= 0;
@@ -118,6 +119,7 @@ void SpriteSheetObject::update(float dt)
 	}
 
 	time++;
+	_rectangle.setPosition(_position);
 
 	if(_curFrame > _endFrame)
 		_curFrame = _startFrame;
@@ -140,4 +142,9 @@ void SpriteSheetObject::setAnimation(int startFrame, int endFrame, int speed)
 	_curFrame = startFrame;
 	_endFrame = endFrame;
 	_speed = speed;
+}
+
+const Rect& SpriteSheetObject::getRectangle()
+{
+	return _rectangle;
 }

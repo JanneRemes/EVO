@@ -88,16 +88,6 @@ glm::vec3& Object::getPosition()
 	return _position;
 }
 
-float Object::getWidth()
-{
-	return 0;
-
-}
-float Object::getHeight()
-{
-	return 0;
-}
-
 glm::mat4& Object::getMatrix()
 {
 	if(_recalculateMatrix)

@@ -10,6 +10,7 @@
 #include "Platform/VertexData.h"
 #include "Platform/IndexData.h"
 #include "Platform/Object.h"
+#include "Platform/Rectangle.h"
 
 class SpriteSheetObject : public Object
 {
@@ -25,10 +26,10 @@ public:
 //Set new Animation
 	void setAnimation(int startFrame, int endFrame, int speed);
 
-
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
 
+	const Rect& getRectangle();
 
 private:
 	
@@ -39,15 +40,8 @@ private:
 	IndexData* _indexData;
 	Shader* _shader;
 	Texture* _texture;
+	Rect _rectangle;
 
 };
-
-
-
-
-
-
-
-
 
 #endif

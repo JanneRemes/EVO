@@ -5,6 +5,7 @@
 #include <incl/glm/glm.hpp>
 #include <incl/glm/gtx/transform.hpp>
 #include "incl/glm/matrix.hpp"
+//#include "Platform/Rectangle.h"
 
 enum OBJECT_TYPE
 {
@@ -36,8 +37,10 @@ public:
 	void setProjectionMatrix(glm::mat4& matrix);
 
 	float getRotation() const;
-	float getWidth();
-	float getHeight();
+	//float getWidth() const;
+	//float getHeight() const;
+	//Rectangle getRect() const;
+
 	glm::vec3& getScale();
 	glm::vec3& getPosition();
 	glm::mat4& getMatrix();

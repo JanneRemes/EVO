@@ -20,7 +20,7 @@ public:
 
 	void setVertexData(VertexData* vertexData);
 	void setColor(glm::vec4 color);
-	const Rectangle& getRectangle();
+	const Rect& getRectangle();
 
 	virtual void draw(glm::mat4 &projectionMatrix);
 	virtual void update(float dt);
@@ -33,9 +33,7 @@ private:
 	IndexData* _indexData;
 	Shader* _shader;
 	Texture* _texture;
-	Rectangle _rectangle;
-	
-
+	Rect _rectangle;
 	
 };
 #endif

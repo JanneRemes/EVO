@@ -65,7 +65,7 @@ void SpriteObject::setColor(glm::vec4 color)
 	}
 }
 
-const Rectangle& SpriteObject::getRectangle()
+const Rect& SpriteObject::getRectangle()
 {
 	return _rectangle;
 }
@@ -99,4 +99,4 @@ void SpriteObject::draw(glm::mat4 &projectionMatrix)
 void SpriteObject::update(float dt)
 {
 	_rectangle.setPosition(_position);
-}
+} 

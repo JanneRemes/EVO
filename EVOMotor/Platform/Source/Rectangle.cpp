@@ -4,29 +4,38 @@
 #include "Platform/Leak.h"
 
 
-Rectangle::Rectangle(float width, float height, glm::vec2 position)
+Rect::Rect(){}
+
+Rect::Rect(float width, float height, glm::vec2 position)
 {
 	m_dimensions = glm::vec2(width,height);
 	setPosition(position);
 }
-Rectangle::~Rectangle()
+Rect::~Rect()
 {
 
 }
-void Rectangle::init()
+void Rect::init()
 {
 
 }
-void Rectangle::update(float dt)
+void Rect::update(float dt)
 {
 
 }
-void Rectangle::draw(glm::mat4 &projectionMatrix)
+void Rect::draw(glm::mat4 &projectionMatrix)
 {
 
 }
-bool Rectangle::checkCol(const Rectangle& rec) const
+bool Rect::checkCol(const Rect& rec) const
 {
+	//wtf is this, fix it later
+	/*return _position.x+m_dimensions.x/2 < rec._position.x-rec.m_dimensions.x/2 ||
+		_position.x-m_dimensions.x/2 > rec._position.x+rec.m_dimensions.x/2 ||
+		_position.y-m_dimensions.y/2 > rec._position.y+rec.m_dimensions.y/2 ||
+		_position.y+m_dimensions.y/2 < rec._position.y-rec.m_dimensions.y/2;*/
+
+
 	if(_position.x+m_dimensions.x/2 < rec._position.x-rec.m_dimensions.x/2)
 		return false;
 	else if(_position.x-m_dimensions.x/2 > rec._position.x+rec.m_dimensions.x/2)

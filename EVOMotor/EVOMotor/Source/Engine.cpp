@@ -2,6 +2,7 @@
 #include "Platform/debug.h"
 #include "Platform/New.h"
 #include "Platform/Leak.h"
+#include "Platform/Rectangle.h"
 
 #include <iostream>
 #include <time.h>
@@ -76,9 +77,9 @@ void Engine::init()
 	ossi->setAnimation(0,0,40);
 	
 	#if defined (WIN32)
-	text = spriteBatch->addText("arial.ttf",44.f,1,"testiTeksti");
-	text->addText(L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789",glm::vec4(1,1,1,1));
-	text->setPosition(0,0);
+	text = spriteBatch->addText("arial.ttf",23.f,1,"testiTeksti");
+	text->addText(L"Juokseva haiskore: 100",glm::vec4(1,1,1,1));
+	text->setPosition(500,100);
 	#endif
 
 	red = 0;
@@ -255,8 +256,8 @@ void Engine::checkCollision()
 	//{
 	//	for(size_t j = i + 1; j < spriteBatch->spriteList.size(); ++j)
 	//	{
-	//		auto& rect1 = spriteBatch->spriteList[i]->getRectangle();
-	//		auto& rect2 = spriteBatch->spriteList[j]->getRectangle();
+	//		auto& rect1 = spriteBatch->spriteList[i]->getRect();
+	//		auto& rect2 = spriteBatch->spriteList[j]->getRect();
 	//		if(rect1.checkCol(rect2))
 	//		{
 	//			// Do collision related things
@@ -265,7 +266,9 @@ void Engine::checkCollision()
 	//	}
 	//}
 
-	if(weegee->getRectangle().checkCol(waluigi->getRectangle()))
+	
+
+	if(knight->getRectangle().checkCol(ossi->getRectangle()))
 	{
 		writeLog("Poks\n");
 	}
