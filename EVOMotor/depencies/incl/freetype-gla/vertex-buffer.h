@@ -42,7 +42,6 @@ extern "C" {
 #include "vector.h"
 #include "vertex-attribute.h"
 
-
 /**
  * @file   vertex-buffer.h
  * @author Nicolas Rougier (Nicolas.Rougier@inria.fr)
@@ -64,6 +63,11 @@ typedef struct vertex_buffer_t
 
     /** Vector of vertices. */
     vector_t * vertices;
+
+#ifdef FREETYPE_GL_USE_VAO
+    /** GL identity of the Vertex Array Object */
+    GLuint VAO_id;
+#endif
 
     /** GL identity of the vertices buffer. */
     GLuint vertices_id;
@@ -323,7 +327,7 @@ typedef struct vertex_buffer_t
  */
   size_t
   vertex_buffer_insert( vertex_buffer_t * self,
-                        size_t index,
+                        const size_t index,
                         const void * vertices, const size_t vcount,  
                         const GLuint * indices, const size_t icount );
 

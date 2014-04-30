@@ -2,6 +2,16 @@
 #include "Platform/debug.h"
 #include "Platform/New.h"
 #include "Platform/Leak.h"
+#include <string>
+#include <sstream>
+
+template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream os ;
+    os << value ;
+    return os.str() ;
+}
 
 Fireball::Fireball(SpriteBatch* spriteBatch)
 	: fireball(nullptr)
@@ -22,13 +32,12 @@ Fireball::~Fireball()
 void Fireball::init()
 {
 	//_texture = Texture::load("Assets/fire.tga");
-	
 }
 
 void Fireball::Add(glm::vec2 position)
 {
-	_spriteBatch->addObject("Assets/fire.tga",16,16,position.x,position.y,20, "fire" + std::to_string((long double)ID));
-	fireball = _spriteBatch->Sprite("fire" + std::to_string((long double)ID));
+	_spriteBatch->addObject("Assets/fire.tga",16,16,position.x,position.y,20, "fire" + to_string(ID));
+	fireball = _spriteBatch->Sprite("fire" + to_string(ID));
 	Fireballs.push_back(fireball);
 	fireball->setSpeed(500.f);
 	++ID;

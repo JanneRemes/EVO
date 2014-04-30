@@ -8,9 +8,18 @@
 #include <Platform/OpenGL.hpp>
 #include <incl/glm/glm.hpp>
 
+#if defined (__ANDROID__)
+//#include <incl/freetype-gl-a/libfreetype.a>
+//#include <incl/freetype-gl-a/libfreetypegl_static.a>
+#endif
+
+//#if defined (WIN32)
 #include <incl/freetype-gl/freetype-gl.h>
 #include <incl/freetype-gl/vertex-buffer.h>
+//#endif
+
 #include "Platform/Shader.h"
+#include "Platform/VertexData.h"
 #include "Platform/Viewport.h"
 #include "Platform/Camera.h"
 
@@ -39,8 +48,9 @@ private:
 
 	texture_atlas_t* m_atlas;
 	glm::vec2 m_lastPos;
-
-	GLuint shader; 
+	FileReader fr;
+	Shader* shader;
+	//VertexData vertexdata;
 
 };
 

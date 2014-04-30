@@ -27,6 +27,15 @@ struct android_engine
 
 android_engine androidEngine;
 
+inline long TimeDifference(const struct timespec& last, const struct timespec& current)
+{
+    // Note: There are 1000000000 nanoseconds in each second
+    if (current.tv_sec > last.tv_sec)
+        return (1000000000 - last.tv_nsec) + current.tv_nsec;
+    else
+        return current.tv_nsec - last.tv_nsec;
+}
+
 void android_main(android_app* application)
 {
 	app_dummy();
@@ -39,6 +48,11 @@ void android_main(android_app* application)
 	androidEngine.application = application;
 	androidEngine.engine = new Engine();
 	application->userData = &androidEngine;
+
+	// Set the current time
+    struct timespec lastTime;
+
+	float dt = 0;
 
 	//EGLContext context;
 	//engine->init();
@@ -64,11 +78,18 @@ void android_main(android_app* application)
 		/////INSERT UPDATE FUNCTIONS HERE
 		if(androidEngine.engine->isInit())
 		{
-			androidEngine.engine->update();
+			androidEngine.engine->update(dt);
 			androidEngine.engine->touchInput();
 			//engine->touchInput(application, androidEngine.event);
 			androidEngine.engine->draw();
 			eglSwapBuffers(androidEngine.display, androidEngine.surface);
+
+			// Set the current time
+			timespec timeNow;
+			clock_gettime( CLOCK_MONOTONIC, &timeNow );
+			dt = TimeDifference(lastTime, timeNow) / 1e9;
+			writeLog("%f", dt);
+			lastTime = timeNow;
 		}
 		
 		/////UPDATE FUNCTIONS ENDS HERE
@@ -148,6 +169,9 @@ static void processMessage(android_app* application, int32_t message)
 			CheckEGLError("eglQuerySurface");
 				writeLog("eglQuerySurface");
 				
+			Window::winWidth = w;
+			Window::winHeight = h;
+
 			androidEngine->engine->init();
 		}
 			break;

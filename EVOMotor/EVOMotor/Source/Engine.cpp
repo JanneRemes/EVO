@@ -71,10 +71,9 @@ void Engine::init()
 	knight		= spriteBatch->SpriteAnimation("knight");
 	ossi		= spriteBatch->SpriteAnimation("ossi");
 
-	praystation->setAnimation(1,2,40);
-
-	knight->setAnimation(0,3,40);
-	ossi->setAnimation(0,0,40);
+	praystation->setAnimation(1,2,1);
+	knight->setAnimation(0,3,4);
+	ossi->setAnimation(0,0,1);
 	
 	#if defined (WIN32)
 	text = spriteBatch->addText("arial.ttf",23.f,1,"testiTeksti");
@@ -199,7 +198,7 @@ void Engine::KeyboardInput()
 	}
 	if(input->keyPress(evo::Keys::Space))
 	{
-		praystation->setSpeed(1);
+		praystation->setSpeed(0.5f);
 		
 		
 	}

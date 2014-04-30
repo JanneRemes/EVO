@@ -6,7 +6,7 @@ FileReader::FileReader(const char* path)
 {
 	//asset = AAssetManager_open(FileReader::manager,path,2);
 	//_length = AAsset_getLength(asset);
-
+	//loadFile(path);
 }
 
 FileReader::~FileReader()
@@ -23,6 +23,7 @@ bool FileReader::seek(int offset, int relation)
 
 bool FileReader::read(unsigned int count, void*buffer)
 {
+	writeLog("%d %x", count, buffer);
 	if(asset != NULL)
 		if(AAsset_read(asset, buffer,count) >=0)
 			return true;
@@ -33,6 +34,7 @@ std::string FileReader::loadFile(const std::string &fileName)
 {	
 	//TODO: check for invalid filenames
 	AAsset* asset = AAssetManager_open(FileReader::manager, fileName.c_str(), AASSET_MODE_UNKNOWN);
+	writeLog("%s", fileName.c_str());
 	if(asset == NULL)
 	{
 		writeLog("Asset = NULL");

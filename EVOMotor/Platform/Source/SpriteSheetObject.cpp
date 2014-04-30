@@ -118,7 +118,7 @@ void SpriteSheetObject::update(float dt)
 		_curFrame++;
 	}
 
-	time++;
+	time += 60*dt;
 	_rectangle.setPosition(_position);
 
 	if(_curFrame > _endFrame)

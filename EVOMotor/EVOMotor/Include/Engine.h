@@ -16,11 +16,9 @@
 #include "Include/Background.h"
 #include "Include/Fireball.h"
 
-#if defined (WIN32)
 
 #include "Platform/Text.h"
 
-#endif
 
 #if defined (__ANDROID__)
 
