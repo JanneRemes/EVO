@@ -57,7 +57,7 @@ void Engine::init()
 
 	//Add starting size and positions to sprite, also filepath and name must be set
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,10,"waluigi");
-	spriteBatch->addObject("Assets/Weegee.tga",200,200,0,0,11,"weegee");
+	spriteBatch->addObject("Assets/Weegee.tga",200,200,Window::winWidth,Window::winHeight,11,"weegee");
 
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10,12, "animu");
 	spriteBatch->addAnimatedObject("Assets/testi.tga",128,128,4,50,13, "knight");
@@ -78,15 +78,15 @@ void Engine::init()
 	#if defined (WIN32)
 	text = spriteBatch->addText("arial.ttf",23.f,1,"testiTeksti");
 	text->addText(L"Juokseva haiskore: 100",glm::vec4(1,1,1,1));
-	text->setPosition(500,100);
+	text->setPosition(50,200);
 	#endif
 
 	red = 0;
 	blue = 0;
 	green = 0;
 
-	posX = 350;
-	posY = 850;
+	posX = Window::winWidth/2;
+	posY = Window::winHeight-Window::winHeight/5;
 
 	posX2 = 0;
 	posY2 = 0;
@@ -124,8 +124,8 @@ void Engine::update(float dt)
 	//Object updates here
 	waluigi->setPosition(posX2,posY2);
 
-	weegee->setPosition(700,980);
-	ossi->setPosition(350,100);
+	weegee->setPosition(Window::winWidth,Window::winHeight);
+	//ossi->setPosition(Window::winWidth/2,100);
 
 	fireball->Update(dt);
 
@@ -133,18 +133,19 @@ void Engine::update(float dt)
 
 	knight->setPosition(posX,posY);
 
-	if(knight->getPosition().x >= 641)
+	if(knight->getPosition().x >= Window::winWidth)
 	{
-		posX=640;
+		posX=Window::winWidth;
 		knight->setPosition(posX,posY);
 	}
-	if(knight->getPosition().x <= 99)
+	if(knight->getPosition().x <= 0)
 	{
-		posX=100;
+		posX=0;
 		knight->setPosition(posX,posY);
 	}
 
-	ossi->setPosition(cosf(1.f+totalTime/2)*275+350, sinf(1.f+totalTime*2)*50+150);
+	ossi->setPosition(cosf(1.f+totalTime/2)*Window::winWidth/3 + Window::winWidth/2/*275+350*/,
+		sinf(1.f+totalTime*2)*Window::winHeight/20+Window::winHeight/6);
 	
 	//waluigi->setRotationZ(rot);
 	background->update(dt);
@@ -161,7 +162,6 @@ void Engine::update(float dt)
 		hand = hand * -1.0f;
 		fireRate = 0.f;
 	}
-
 }
 
 void Engine::draw()
@@ -353,8 +353,8 @@ int32_t Engine::processKeyInput(AInputEvent* ev)
 
 void Engine::touchInput()
 {
-	posX2 = touchPosX;
-	posY2 = touchPosY;
+	posX = touchPosX;
+	//posY = touchPosY;
 	//writeLog("Weegee position: [%f, %f]",posX2,posY2);
 }
 

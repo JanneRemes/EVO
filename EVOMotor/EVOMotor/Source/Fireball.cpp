@@ -2,6 +2,7 @@
 #include "Platform/debug.h"
 #include "Platform/New.h"
 #include "Platform/Leak.h"
+#include "Platform/Window.h"
 #include <string>
 #include <sstream>
 
@@ -46,13 +47,12 @@ void Fireball::Add(glm::vec2 position)
 void Fireball::Update(float dt)
 {
 	for(int i = Fireballs.size() -1; i >= 0; i--)
-	{	
-
+	{
 		y = Fireballs[i]->getPosition().y + Fireballs[i]->getSpeed()*dt;
 		x = Fireballs[i]->getPosition().x;
 		Fireballs[i]->setPosition(x,y);
 
-		if(Fireballs[i]->getPosition().y >= 1050.f)
+		if(Fireballs[i]->getPosition().y >= Window::winHeight || Fireballs[i]->getPosition().y <= 0)
 		{
 			_spriteBatch->destroy(Fireballs[i]);
 			Fireballs.erase(Fireballs.begin()+i);

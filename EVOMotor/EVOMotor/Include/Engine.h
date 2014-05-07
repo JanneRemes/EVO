@@ -84,7 +84,7 @@ private:
 	float posX2, posY2;
 
 	float totalTime;
-	float hand, fireRate; //PELILLE TARKOITETTU PASKAMUUTTUJA
+	float hand, fireRate; //PELILLE TARKOITETTU "PASKA"MUUTTUJA
 	void checkCollision();
 
 	#if defined (WIN32)

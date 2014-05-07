@@ -23,7 +23,7 @@ public:
 	SpriteBatch* _spriteBatch;
 
 	float posX, posY, posY2, posX2;
-	float posZ;
+	float width,height;
 
 private:
 

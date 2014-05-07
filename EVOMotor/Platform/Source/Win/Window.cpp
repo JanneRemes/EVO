@@ -20,6 +20,8 @@ int Window::createWindow(int height, int width,const char* name)
 {
     if (!glfwInit())
         return -1;
+	
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	winWidth = width;
 	winHeight = height;

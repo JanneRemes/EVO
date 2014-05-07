@@ -39,20 +39,18 @@ std::string FileReader::loadFile(const std::string &fileName)
 	{
 		writeLog("Asset = NULL");
 	}
-	_length = AAsset_getLength(asset);
-	//off_t length = AAsset_getLength(asset);
 
-	char* text = new char[_length+1];
-	if(AAsset_read(asset, text, _length) < 1)
+	_length = AAsset_getLength(asset);
+	writeLog("FILE SIZE: %u", _length);
+	char* text = new char[_length];
+	if(AAsset_read(asset, text, _length) < 0)
 	{
 		writeLog("File not loaded! Error! Error!");
 	}
 
-	text[_length] = 0;
-
 	AAsset_close(asset);
-	text[_length] = 0;
-	std::string r(text);
+	std::string r(text, _length);
+	delete[] text;
 
 	return r;
 }

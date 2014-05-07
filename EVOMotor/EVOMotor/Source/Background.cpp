@@ -16,31 +16,33 @@ Background::~Background()
 
 void Background::init()
 {
-	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500,0, "grass_1");
-	_spriteBatch->addObject("Assets/grass.tga",1000,1050,500,500,0, "grass_2");
+	width = Window::winWidth;
+	height = Window::winHeight * 1.5f;
+	_spriteBatch->addObject("Assets/grassbg.tga",width,height,width,height,0, "grass_1");
+	_spriteBatch->addObject("Assets/grassbg.tga",width,height,width/2,height/2,0, "grass_2");
 	grass_1	= _spriteBatch->Sprite("grass_1");
 	grass_2	= _spriteBatch->Sprite("grass_2");
 
 	posY = 500.f;
-	posY2 = posY - 1000.f;
-	posX = 500.f;
-	posX2 = 500.f;
-	posZ = -0.9f;
+	posY2 = posY - Window::winHeight*1.5f;
+	posX = Window::winWidth/2;
+	posX2 = Window::winWidth/2;
+	//posZ = -0.9f;
 
 }
 void Background::update(float dt)
 {
-	if(posY >= 1525)
+	if(posY >= Window::winHeight*2)
 	{
-		posY = posY2 - 1050.f;
+		posY = posY2 - height;
 	}
-	if(posY2 >= 1525)
+	if(posY2 >= Window::winHeight*2)
 	{
-		posY2 = posY - 1050.f;
+		posY2 = posY - height;
 	}
 
 	posY += 500*dt;
 	posY2 += 500*dt;
-	grass_1->setPosition(500,posY);
-	grass_2->setPosition(500,posY2);
+	grass_1->setPosition(Window::winWidth/2,posY);
+	grass_2->setPosition(Window::winWidth/2,posY2);
 }

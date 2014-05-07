@@ -3,7 +3,7 @@ precision mediump float;
 #endif
 
 uniform float time;
-uniform vec2 mouse;
+uniform vec2 position;
 uniform vec2 resolution;
 
 void main( void ) {
@@ -11,7 +11,7 @@ void main( void ) {
 	vec2 position = gl_FragCoord.xy;
 	float color;
 	
-	vec2 lightpos = resolution * mouse;
+	vec2 lightpos = resolution * position;
 	
 	vec2 norm = lightpos - position;
 	float sdist = norm.x * norm.x + norm.y * norm.y;

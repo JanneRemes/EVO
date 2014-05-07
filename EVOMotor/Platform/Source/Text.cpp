@@ -19,13 +19,18 @@ Text::Text(const std::string& fontPath, const float fontSize)
 	_type = OBJECT_TYPE::TEXT;
 
 #ifdef __ANDROID__
-	fr.loadFile(m_path);
-	void* fontBuffer = malloc(fr.length());
-	writeLog("fb length %d", fr.length());
-	fr.read(fr.length(), fontBuffer);
-	font = texture_font_new_from_memory(m_atlas, m_fontSize, fontBuffer, fr.length());
+	std::string data = fr.loadFile(m_path);
+	//void* fontBuffer = malloc(fr.length());
+	writeLog("fb length %d", data.length());
+	//fr.read(fr.length(), fontBuffer);
+	font = texture_font_new_from_memory(m_atlas, m_fontSize, data.c_str(), data.length());
+
+	if(font == NULL)
+		writeLog("NULL PTR");
 #else
+	//std::string data = fr.loadFile(m_path);
 	font = texture_font_new_from_file(m_atlas, m_fontSize, m_path.c_str());
+	//font = texture_font_new_from_memory(m_atlas, m_fontSize, data.c_str(), data.length());
 #endif
 }
 
@@ -45,14 +50,16 @@ void Text::addText(const std::wstring& text, const glm::vec4& color)
     {
 		writeLog("%s", text.c_str());
 		writeLog("%p", font);
+		writeLog("fonttiongelma 1/2");
         texture_glyph_t *glyph = texture_font_get_glyph( font, text[i] );
-
+		writeLog("fonttiongelma 1");
         if( glyph != NULL )
         {
             int kerning = 0;
             if( i > 0)
             {
                 kerning = texture_glyph_get_kerning( glyph, text[i-1] );
+				writeLog("fonttiongelma 2");
             }
             pos.x += kerning;
             int x0  = (int)( pos.x + glyph->offset_x );
