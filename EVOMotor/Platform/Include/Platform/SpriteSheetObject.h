@@ -31,11 +31,11 @@ public:
 
 	const Rect& getRectangle();
 
+	int _frames, _curFrame, _speed, time, _startFrame, _endFrame;
 private:
 	
 	void init(int frameWidth,int frameHeight,int frames,glm::vec4 color);
 	
-	int _frames, _curFrame, _speed, time, _startFrame, _endFrame;
 	VertexData* _vertexData;
 	IndexData* _indexData;
 	Shader* _shader;

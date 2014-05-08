@@ -38,6 +38,7 @@ Text::~Text()
 {
 	texture_font_delete(font);
 	texture_atlas_delete(m_atlas);
+	delete shader;
 }
 
 void Text::addText(const std::wstring& text, const glm::vec4& color)

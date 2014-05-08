@@ -72,7 +72,7 @@ void Engine::init()
 	ossi		= spriteBatch->SpriteAnimation("ossi");
 
 	praystation->setAnimation(1,2,1);
-	knight->setAnimation(0,3,4);
+	knight->setAnimation(2,3,4);
 	ossi->setAnimation(0,0,1);
 	
 	//#if defined (WIN32)
@@ -88,11 +88,12 @@ void Engine::init()
 	blue = 0;
 	green = 0;
 
-	posX = Window::winWidth/2;
-	posY = Window::winHeight-Window::winHeight/5;
+	knightPos.x = Window::winWidth/2;
+	knightPos.y = Window::winHeight-Window::winHeight/5;
 
-	posX2 = 0;
-	posY2 = 0;
+	targetPos.x = 0;
+	targetPos.y = 0;
+	targetSpeed = 0;
 	touchPosX = 0;
 	touchPosY = 0;
 	rot = 0;
@@ -125,7 +126,7 @@ void Engine::update(float dt)
 	green = rand()%2+0.01f;
 
 	//Object updates here
-	waluigi->setPosition(posX2,posY2);
+	//waluigi->setPosition(posX2,posY2);
 
 	weegee->setPosition(Window::winWidth,Window::winHeight);
 	//ossi->setPosition(Window::winWidth/2,100);
@@ -133,24 +134,33 @@ void Engine::update(float dt)
 	fireball->Update(dt);
 
 	//knight->setPosition(350,850);
+///////////////////////////////////////////////KNIGHT//
+	targetPos= input->getCursorPos();
+	const float speedMult = 5.f;
+	targetSpeed = speedMult *  abs((targetPos - knightPos).x);
 
-	knight->setPosition(posX,posY);
+	//knight liikkuu kursorin mukaan
+	if(knightPos.x <= targetPos.x)
+		knightPos.x += targetSpeed * dt;
+	else
+		knightPos.x -= targetSpeed * dt;
+	knight->setPosition(knightPos.x,knightPos.y);
 
-	if(knight->getPosition().x >= Window::winWidth)
+	if(knight->getPosition().x >= Window::winWidth) //ei saa mennä reunan yli
 	{
-		posX=Window::winWidth;
-		knight->setPosition(posX,posY);
+		knightPos.x=Window::winWidth;
+		knight->setPosition(knightPos.x,knightPos.y);
 	}
-	if(knight->getPosition().x <= 0)
+	if(knight->getPosition().x <= 0) //ei saa mennä reunan yli
 	{
-		posX=0;
-		knight->setPosition(posX,posY);
+		knightPos.x=0;
+		knight->setPosition(knightPos.x,knightPos.y);
 	}
 
-	ossi->setPosition(cosf(1.f+totalTime/2)*Window::winWidth/3 + Window::winWidth/2/*275+350*/,
+////////////////////////////////////////////////OSSI//
+	ossi->setPosition(cosf(1.f+totalTime/2)*Window::winWidth/3 + Window::winWidth/2,
 		sinf(1.f+totalTime*2)*Window::winHeight/20+Window::winHeight/6);
 	
-	//waluigi->setRotationZ(rot);
 	background->update(dt);
 
 	//You must update spriteBatch
@@ -165,6 +175,7 @@ void Engine::update(float dt)
 		hand = hand * -1.0f;
 		fireRate = 0.f;
 	}
+
 }
 
 void Engine::draw()
@@ -202,8 +213,6 @@ void Engine::KeyboardInput()
 	if(input->keyPress(evo::Keys::Space))
 	{
 		praystation->setSpeed(0.5f);
-		
-		
 	}
 	else
 	{
@@ -212,8 +221,8 @@ void Engine::KeyboardInput()
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))
 	{
-		posX = input->getCursorPos().x;
-		posY = input->getCursorPos().y;
+		//posX = input->getCursorPos().x;
+		//posY = input->getCursorPos().y;
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseRight))
@@ -238,31 +247,14 @@ void Engine::KeyboardInput()
 
 	if(input->keyPress(evo::Keys::A))
 	{
-		posX -= 7;
+		knightPos.x -= 7;
 	}
 
 	if(input->keyPress(evo::Keys::D))
 	{
-		posX += 7;
-	}
-	//-----------------------------------
-	if(input->keyPress(evo::Keys::J))
-	{
-		posX2 -= 7;
+		knightPos.x += 7;
 	}
 
-	if(input->keyPress(evo::Keys::I))
-	{
-		posY2 -= 7;
-	}
-	if(input->keyPress(evo::Keys::K))
-	{
-		posY2 += 7;
-	}
-	if(input->keyPress(evo::Keys::L))
-	{
-		posX2 += 7;
-	}
 	#endif
 }
 
@@ -291,10 +283,18 @@ void Engine::checkCollision()
 	{
 		if(knight->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
 		{
+			fireball->Fireballs[i]->setPosition(fireball->Fireballs[i]->getPosition().x,
+												knight->getPosition().y - knight->getRectangle().m_dimensions.y); 
 			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
+			knight->setAnimation(0,2,4);
 			writeLog("KIMMOTUSSSSS\n");
 		}
-
+		if(knight->_curFrame == 1)
+		{	
+			knight->setAnimation(2,3,4);
+		}
+		else
+		{}
 		/*if(ossi->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
 		{
 			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
@@ -356,7 +356,7 @@ int32_t Engine::processKeyInput(AInputEvent* ev)
 
 void Engine::touchInput()
 {
-	posX = touchPosX;
+	targetPos.x = touchPosX;
 	//posY = touchPosY;
 	//writeLog("Weegee position: [%f, %f]",posX2,posY2);
 }

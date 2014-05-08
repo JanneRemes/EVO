@@ -80,8 +80,10 @@ private:
 	bool initialized;
 
 	float red,blue,green, rot;
-	int posX, posY;
-	float posX2, posY2;
+	//float posX, posY;
+	float targetSpeed;
+	glm::vec2 targetPos;
+	glm::vec2 knightPos;
 
 	float totalTime;
 	float hand, fireRate; //PELILLE TARKOITETTU "PASKA"MUUTTUJA
