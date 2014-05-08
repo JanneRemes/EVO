@@ -60,8 +60,9 @@ void Engine::init()
 	spriteBatch->addObject("Assets/Weegee.tga",200,200,Window::winWidth,Window::winHeight,11,"weegee");
 
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10,12, "animu");
-	spriteBatch->addAnimatedObject("Assets/testi.tga",128,128,4,50,13, "knight");
-	spriteBatch->addAnimatedObject("Assets/ossi.tga",128,128,2,50,14, "ossi");
+	spriteBatch->addAnimatedObject("Assets/knight.tga",128,82,4,50,13, "knight");
+	spriteBatch->addAnimatedObject("Assets/ossispritesheetflame.tga",128,82,5,50,14, "ossi");
+	spriteBatch->addAnimatedObject("Assets/audiencespritesheet.tga",700,100,2,4,12,"audience");
 
 	//Set sprites to spriteBatch so we can update and draw them
 	waluigi		= spriteBatch->Sprite("waluigi");
@@ -69,11 +70,13 @@ void Engine::init()
 
 	praystation = spriteBatch->SpriteAnimation("animu");
 	knight		= spriteBatch->SpriteAnimation("knight");
+	audience	= spriteBatch->SpriteAnimation("audience");
 	ossi		= spriteBatch->SpriteAnimation("ossi");
 
 	praystation->setAnimation(1,2,1);
 	knight->setAnimation(2,3,4);
-	ossi->setAnimation(0,0,1);
+	audience->setAnimation(0,1,2);
+	ossi->setAnimation(0,1,2);
 	
 	//#if defined (WIN32)
 	writeLog("before");
@@ -90,6 +93,8 @@ void Engine::init()
 
 	knightPos.x = Window::winWidth/2;
 	knightPos.y = Window::winHeight-Window::winHeight/5;
+
+	audience->setPosition(Window::winWidth/2,Window::winHeight-50);
 
 	targetPos.x = 0;
 	targetPos.y = 0;
@@ -274,10 +279,7 @@ void Engine::checkCollision()
 	//	}
 	//}
 
-	if(knight->getRectangle().checkCol(ossi->getRectangle()))
-	{
-		writeLog("Poks\n");
-	}
+
 
 	for(int i = fireball->Fireballs.size() -1; i >= 0; i--)
 	{
@@ -286,20 +288,18 @@ void Engine::checkCollision()
 			fireball->Fireballs[i]->setPosition(fireball->Fireballs[i]->getPosition().x,
 												knight->getPosition().y - knight->getRectangle().m_dimensions.y); 
 			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
-			knight->setAnimation(0,2,4);
+			knight->setAnimation(1,4,2);
+			
 			writeLog("KIMMOTUSSSSS\n");
 		}
-		if(knight->_curFrame == 1)
+		if(knight->_curFrame == 4)
 		{	
 			knight->setAnimation(2,3,4);
 		}
+		if(fireball->Fireballs[i]->getRectangle().checkCol(ossi->getRectangle()) && fireball->Fireballs[i]->getSpeed() <= 0)
+			ossi->setAnimation(4,4,2);
 		else
-		{}
-		/*if(ossi->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
-		{
-			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
-			writeLog("KIMMOTUSSSSS\n");
-		}*/
+			ossi->setAnimation(0,0,2);
 	}
 }
 

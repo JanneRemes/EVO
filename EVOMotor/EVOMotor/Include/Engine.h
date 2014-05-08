@@ -73,6 +73,7 @@ private:
 	Fireball* fireball;
 	SpriteSheetObject* praystation;
 	SpriteSheetObject* knight;
+	SpriteSheetObject* audience;
 	SpriteSheetObject* ossi;
 
 	Background* background;
