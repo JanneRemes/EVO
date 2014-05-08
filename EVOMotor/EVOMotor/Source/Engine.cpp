@@ -75,11 +75,14 @@ void Engine::init()
 	knight->setAnimation(0,3,4);
 	ossi->setAnimation(0,0,1);
 	
-	#if defined (WIN32)
+	//#if defined (WIN32)
+	writeLog("before");
 	text = spriteBatch->addText("arial.ttf",23.f,1,"testiTeksti");
+	writeLog("after");
 	text->addText(L"Juokseva haiskore: 100",glm::vec4(1,1,1,1));
+	writeLog("sexond");
 	text->setPosition(50,200);
-	#endif
+	//#endif
 
 	red = 0;
 	blue = 0;

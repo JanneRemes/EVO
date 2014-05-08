@@ -87,9 +87,9 @@ private:
 	float hand, fireRate; //PELILLE TARKOITETTU "PASKA"MUUTTUJA
 	void checkCollision();
 
-	#if defined (WIN32)
+	//#if defined (WIN32)
 	Text* text;
-	#endif
+	//#endif
 };
 
 #endif

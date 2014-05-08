@@ -12,7 +12,8 @@ std::string FileReader::loadFile(const std::string& fileName)
 	{
 		stream << file.rdbuf();
 		file.close();
-		return stream.str();
+		std::string asd = stream.str();
+		return asd;
 	}
 	else
 	{

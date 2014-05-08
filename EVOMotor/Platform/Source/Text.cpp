@@ -24,7 +24,7 @@ Text::Text(const std::string& fontPath, const float fontSize)
 	writeLog("fb length %d", data.length());
 	//fr.read(fr.length(), fontBuffer);
 	font = texture_font_new_from_memory(m_atlas, m_fontSize, data.c_str(), data.length());
-
+	writeLog("font size: %d", font->memory.size);
 	if(font == NULL)
 		writeLog("NULL PTR");
 #else
@@ -42,18 +42,28 @@ Text::~Text()
 
 void Text::addText(const std::wstring& text, const glm::vec4& color)
 {
+	writeLog("as %d", font->memory.size);
 	glm::vec2 pos = m_lastPos;
+
+	texture_font_load_glyphs(font, text.c_str());
 
     size_t i;
 	float r = color.x, g = color.y, b = color.z, a = color.w;
 	for( i=0; i<text.size(); ++i )
     {
-		writeLog("%s", text.c_str());
-		writeLog("%p", font);
+        texture_glyph_t *glyph = nullptr;
+		writeLog("null glyph");
+		if (text.at(i) == L'\n')
+			writeLog("NewLine");
+		else
+			writeLog("no NewLine");
+
 		writeLog("fonttiongelma 1/2");
-        texture_glyph_t *glyph = texture_font_get_glyph( font, text[i] );
+		glyph = texture_font_get_glyph(font, text.at(i));
 		writeLog("fonttiongelma 1");
-        if( glyph != NULL )
+
+
+        if( glyph != nullptr )
         {
             int kerning = 0;
             if( i > 0)
@@ -62,10 +72,10 @@ void Text::addText(const std::wstring& text, const glm::vec4& color)
 				writeLog("fonttiongelma 2");
             }
             pos.x += kerning;
-            int x0  = (int)( pos.x + glyph->offset_x );
-            int y0  = (int)( pos.y + glyph->offset_y );
-            int x1  = (int)( x0 + glyph->width );
-            int y1  = (int)( y0 - glyph->height );
+            float x0  = ( pos.x + glyph->offset_x );
+            float y0  = ( pos.y + glyph->offset_y );
+            float x1  = ( x0 + glyph->width );
+            float y1  = ( y0 - glyph->height );
             float s0 = glyph->s0;
             float t0 = glyph->t0;
             float s1 = glyph->s1;

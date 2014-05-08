@@ -33,6 +33,7 @@ public:
 	unsigned int length();
 	int tell();
 	std::string loadFile(const std::string& fileName);
+
 	static GLubyte* loadTGA(const std::string &fileName, tgaHeader &header);
 
 private:
