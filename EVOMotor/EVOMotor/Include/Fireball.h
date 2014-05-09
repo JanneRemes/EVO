@@ -21,7 +21,7 @@ public:
 //	void Delete(SpriteObject*); Turha funktio, voidaan poistaa spritebatchin avulla
 	std::vector <SpriteObject*> Fireballs;
 
-	float x,y,movement;
+	float x,y,movement,totalTime;
 	int ID;
 
 	SpriteObject* fireball;
