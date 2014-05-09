@@ -17,4 +17,5 @@ int Window::createWindow(int height, int width,const char* name)
 {
 	winHeight = 800;
 	winWidth = 480;
+	return 0;
 }

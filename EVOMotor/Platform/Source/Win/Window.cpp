@@ -16,7 +16,7 @@ Window::~Window(void)
     glfwTerminate();
 }
 
-int Window::createWindow(int height, int width,const char* name)
+int Window::createWindow(int height, int width, const char* name)
 {
     if (!glfwInit())
         return -1;

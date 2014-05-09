@@ -9,7 +9,7 @@ Viewport::Viewport(float width,float height)
 {
 	this->width = width;
 	this->height = height;
-	projectionMatrix = glm::ortho(0.f,width,0.f,height, 0.1f, 100.f);
+	projectionMatrix = glm::ortho(0.f,width,height, 0.f, 0.1f, 100.f);
 	movement = glm::vec3(0.f,0.f,0.f);
 	viewMatrix = glm::translate(movement); 
 	camera = EVO_NEW Camera();
@@ -23,9 +23,9 @@ Viewport::~Viewport()
 
 void Viewport::draw(Object* object)
 {
-	width = Window::winWidth;
-	height = Window::winHeight;
-	projectionMatrix = glm::ortho(0.f, width, height, 0.f, 0.1f, 100.f) * viewMatrix;
+	//width = Window::winWidth;
+	//height = Window::winHeight;
+	//projectionMatrix = glm::ortho(0.f, width, height, 0.f, 0.1f, 100.f) * viewMatrix;
 
 	
 	object->draw(projectionMatrix);
