@@ -32,7 +32,7 @@ Text* SpriteBatch::addText(	const std::string& fontFilePath,
 	_obj = EVO_NEW Text(fontFilePath,fontSize);
 	_obj->_layer = layer;
 	spriteList.push_back(_obj);
-	return static_cast<Text*>(_obj);
+	return dynamic_cast<Text*>(_obj);
 }
 void SpriteBatch::addObject(	const std::string& Path,
 								float Width,

@@ -52,7 +52,7 @@ void Fireball::Update(float dt)
 	for(int i = Fireballs.size() -1; i >= 0; i--)
 	{
 		y = Fireballs[i]->getPosition().y + Fireballs[i]->getSpeed()*dt;
-		x = Fireballs[i]->getPosition().x*cosf(1.f+totalTime/2)+Window::winWidth/2;
+		x = Fireballs[i]->getPosition().x+cosf(1.f+totalTime*10)*6;
 		Fireballs[i]->setPosition(x,y);
 
 		if(Fireballs[i]->getPosition().y >= Window::winHeight || Fireballs[i]->getPosition().y <= 0)

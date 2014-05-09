@@ -3,6 +3,7 @@
 AAssetManager* FileReader::manager = 0;
 
 FileReader::FileReader(const char* path)
+	: asset(nullptr)
 {
 	//asset = AAssetManager_open(FileReader::manager,path,2);
 	//_length = AAsset_getLength(asset);
@@ -23,17 +24,25 @@ bool FileReader::seek(int offset, int relation)
 
 bool FileReader::read(unsigned int count, void*buffer)
 {
-	writeLog("%d %x", count, buffer);
-	if(asset != NULL)
+	writeLog("%d %x %x", count, buffer, asset);
+	if(asset != nullptr)
+	{
+		writeLog("not null or sumthin");
 		if(AAsset_read(asset, buffer,count) >=0)
+		{
+			writeLog("everything went better than expedition");
 			return true;
+		}
+	}
+
+	writeLog("Null asset");
 	return false;
 }
 
 std::string FileReader::loadFile(const std::string &fileName)
 {	
 	//TODO: check for invalid filenames
-	AAsset* asset = AAssetManager_open(FileReader::manager, fileName.c_str(), AASSET_MODE_UNKNOWN);
+	asset = AAssetManager_open(FileReader::manager, fileName.c_str(), AASSET_MODE_UNKNOWN);
 	writeLog("%s", fileName.c_str());
 	if(asset == NULL)
 	{

@@ -58,6 +58,7 @@ void Engine::init()
 	//Add starting size and positions to sprite, also filepath and name must be set
 	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,10,"waluigi");
 	spriteBatch->addObject("Assets/Weegee.tga",200,200,Window::winWidth,Window::winHeight,11,"weegee");
+	spriteBatch->addObject("Assets/ul.tga",256,256,-500,-500,19,"ul");
 
 	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10,12, "animu");
 	spriteBatch->addAnimatedObject("Assets/knight.tga",128,82,4,50,13, "knight");
@@ -67,6 +68,8 @@ void Engine::init()
 	//Set sprites to spriteBatch so we can update and draw them
 	waluigi		= spriteBatch->Sprite("waluigi");
 	weegee		= spriteBatch->Sprite("weegee");
+	ul			= spriteBatch->Sprite("ul");
+
 
 	praystation = spriteBatch->SpriteAnimation("animu");
 	knight		= spriteBatch->SpriteAnimation("knight");
@@ -78,14 +81,14 @@ void Engine::init()
 	audience->setAnimation(0,1,2);
 	ossi->setAnimation(0,1,2);
 	
-	//#if defined (WIN32)
+	#if defined (WIN32)
 	writeLog("before");
 	text = spriteBatch->addText("arial.ttf",23.f,1,"testiTeksti");
 	writeLog("after");
 	text->addText(L"Juokseva haiskore: 100",glm::vec4(1,1,1,1));
 	writeLog("sexond");
 	text->setPosition(50,200);
-	//#endif
+	#endif
 
 	red = 0;
 	blue = 0;
@@ -106,6 +109,7 @@ void Engine::init()
 
 	hand = 1.0f;
 	fireRate = 0.f;
+	oHealth = 50.f;
 
 	totalTime = 0;
 }
@@ -117,70 +121,79 @@ void Engine::deInit()
 
 void Engine::update(float dt)
 {
-	//Update Keyboard input
-	KeyboardInput();
-#if defined (__ANDROID__)
-	touchInput();
-#endif
-	rot += 1.f;
-	totalTime += dt;
-	
-	//Random color generator
-	red = rand()%2+0.01f;
-	blue = rand()%2+0.01f;
-	green = rand()%2+0.01f;
-
-	//Object updates here
-	//waluigi->setPosition(posX2,posY2);
-
-	weegee->setPosition(Window::winWidth,Window::winHeight);
-	//ossi->setPosition(Window::winWidth/2,100);
-
-	fireball->Update(dt);
-
-	//knight->setPosition(350,850);
-///////////////////////////////////////////////KNIGHT//
-	targetPos= input->getCursorPos();
-	const float speedMult = 5.f;
-	targetSpeed = speedMult *  abs((targetPos - knightPos).x);
-
-	//knight liikkuu kursorin mukaan
-	if(knightPos.x <= targetPos.x)
-		knightPos.x += targetSpeed * dt;
+	if(oHealth <= 0)
+	{
+		ul->setPosition(Window::winWidth/2,Window::winHeight/2);
+	}
 	else
-		knightPos.x -= targetSpeed * dt;
-	knight->setPosition(knightPos.x,knightPos.y);
-
-	if(knight->getPosition().x >= Window::winWidth) //ei saa mennä reunan yli
 	{
-		knightPos.x=Window::winWidth;
-		knight->setPosition(knightPos.x,knightPos.y);
-	}
-	if(knight->getPosition().x <= 0) //ei saa mennä reunan yli
-	{
-		knightPos.x=0;
-		knight->setPosition(knightPos.x,knightPos.y);
-	}
-
-////////////////////////////////////////////////OSSI//
-	ossi->setPosition(cosf(1.f+totalTime/2)*Window::winWidth/3 + Window::winWidth/2,
-		sinf(1.f+totalTime*2)*Window::winHeight/20+Window::winHeight/6);
+		//Update Keyboard input
+		KeyboardInput();
+	#if defined (__ANDROID__)
+		touchInput();
+	#endif
+		rot += 1.f;
+		totalTime += dt;
 	
-	background->update(dt);
+		//Random color generator
+		red = rand()%2+0.01f;
+		blue = rand()%2+0.01f;
+		green = rand()%2+0.01f;
 
-	//You must update spriteBatch
-	spriteBatch->update(dt);
+		//Object updates here
+		//waluigi->setPosition(posX2,posY2);
 
-	checkCollision();
+		weegee->setPosition(Window::winWidth,Window::winHeight);
+		//ossi->setPosition(Window::winWidth/2,100);
 
-	fireRate += dt;
-	if(fireRate >= 2)
-	{
-		fireball->Add(glm::vec2(ossi->getPosition().x-(45.f*hand),ossi->getPosition().y+30.f));
-		hand = hand * -1.0f;
-		fireRate = 0.f;
+		fireball->Update(dt);
+
+		//knight->setPosition(350,850);
+	///////////////////////////////////////////////KNIGHT//
+		const float speedMult = 5.f;
+		targetSpeed = speedMult *  abs((targetPos - knightPos).x);
+
+		//knight liikkuu kursorin mukaan
+		if(knightPos.x <= targetPos.x)
+			knightPos.x += targetSpeed * dt;
+		else
+			knightPos.x -= targetSpeed * dt;
+		knight->setPosition(knightPos.x,knightPos.y);
+
+		if(knight->getPosition().x >= Window::winWidth) //ei saa mennä reunan yli
+		{
+			knightPos.x=Window::winWidth;
+			knight->setPosition(knightPos.x,knightPos.y);
+		}
+		if(knight->getPosition().x <= 0) //ei saa mennä reunan yli
+		{
+			knightPos.x=0;
+			knight->setPosition(knightPos.x,knightPos.y);
+		}
+
+	////////////////////////////////////////////////OSSI//
+		ossi->setPosition(cosf(1.f+totalTime/2)*Window::winWidth/3 + Window::winWidth/2,
+			sinf(1.f+totalTime*2)*Window::winHeight/20+Window::winHeight/6);
+	
+		background->update(dt);
+
+		//You must update spriteBatch
+		spriteBatch->update(dt);
+
+		checkCollision();
+
+		fireRate += dt;
+		if(fireRate >= 1)
+		{
+			fireball->Add(glm::vec2(ossi->getPosition().x-(45.f*hand),ossi->getPosition().y+30.f));
+			hand = hand * -1.0f;
+			fireRate = 0.f;
+			if(hand < 0)
+				ossi->setAnimation(2,2,0.01f);
+			else
+				ossi->setAnimation(3,3,0.01f);
+		}
 	}
-
 }
 
 void Engine::draw()
@@ -188,9 +201,6 @@ void Engine::draw()
 	//Set graphics and clearcolor
 	graphics->clear(0.0f,0.0f,1.0f);
 
-	#if defined (WIN32)
-
-	#endif
 	//You must draw spriteBatch
 	spriteBatch->draw(viewport);
 
@@ -199,6 +209,9 @@ void Engine::draw()
 void Engine::KeyboardInput()
 {
 	#if defined (WIN32)
+	
+	targetPos= input->getCursorPos();
+
 	if(input->keyPress(evo::Keys::Down))
 	{
 		viewport->moveCamera(0,-5.0f);
@@ -265,22 +278,6 @@ void Engine::KeyboardInput()
 
 void Engine::checkCollision()
 {
-	//for(size_t i = 0; i < spriteBatch->spriteList.size(); ++i)
-	//{
-	//	for(size_t j = i + 1; j < spriteBatch->spriteList.size(); ++j)
-	//	{
-	//		auto& rect1 = spriteBatch->spriteList[i]->getRect();
-	//		auto& rect2 = spriteBatch->spriteList[j]->getRect();
-	//		if(rect1.checkCol(rect2))
-	//		{
-	//			// Do collision related things
-	//			writeLog("*ExplosionNoise!*");
-	//		}
-	//	}
-	//}
-
-
-
 	for(int i = fireball->Fireballs.size() -1; i >= 0; i--)
 	{
 		if(knight->getRectangle().checkCol(fireball->Fireballs[i]->getRectangle()))
@@ -289,15 +286,18 @@ void Engine::checkCollision()
 												knight->getPosition().y - knight->getRectangle().m_dimensions.y); 
 			fireball->Fireballs[i]->setSpeed(fireball->Fireballs[i]->getSpeed()*-1);
 			knight->setAnimation(1,4,2);
-			
-			writeLog("KIMMOTUSSSSS\n");
+			//writeLog("KIMMOTUSSSSS\n");
 		}
 		if(knight->_curFrame == 4)
 		{	
 			knight->setAnimation(2,3,4);
 		}
 		if(fireball->Fireballs[i]->getRectangle().checkCol(ossi->getRectangle()) && fireball->Fireballs[i]->getSpeed() <= 0)
+		{
 			ossi->setAnimation(4,4,2);
+			oHealth--;
+			writeLog("%f\n", oHealth);
+		}
 		else
 			ossi->setAnimation(0,0,2);
 	}
@@ -357,6 +357,7 @@ int32_t Engine::processKeyInput(AInputEvent* ev)
 void Engine::touchInput()
 {
 	targetPos.x = touchPosX;
+	writeLog("%f",touchPosX);
 	//posY = touchPosY;
 	//writeLog("Weegee position: [%f, %f]",posX2,posY2);
 }

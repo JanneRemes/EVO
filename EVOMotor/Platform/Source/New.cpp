@@ -48,16 +48,16 @@ void operator delete[](void* object)
 	::operator delete(object);
 }
 
-void operator delete(void* object, const char* file, const unsigned int line)
+void operator delete(void* object, const char*, const unsigned int)
 {
-	file;
-	line;
+	//file;
+	//line;
 	::operator delete(object);
 }
 
-void operator delete[](void* object, const char* file, const unsigned int line)
+void operator delete[](void* object, const char*, const unsigned int)
 {
-	file;
-	line;
+	//file;
+	//line;
 	::operator delete(object);
 }

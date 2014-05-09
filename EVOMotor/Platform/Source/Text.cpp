@@ -19,11 +19,13 @@ Text::Text(const std::string& fontPath, const float fontSize)
 	_type = OBJECT_TYPE::TEXT;
 
 #ifdef __ANDROID__
-	std::string data = fr.loadFile(m_path);
-	//void* fontBuffer = malloc(fr.length());
-	writeLog("fb length %d", data.length());
-	//fr.read(fr.length(), fontBuffer);
-	font = texture_font_new_from_memory(m_atlas, m_fontSize, data.c_str(), data.length());
+	//std::string data = fr.loadFile(m_path);
+	fr.loadFile(m_path);
+	const int length = fr.length();
+	unsigned char* fontBuffer = new unsigned char[length] /*malloc(length)*/;
+	writeLog("fb length %d", length);
+	fr.read(fr.length(), fontBuffer);
+	font = texture_font_new_from_memory(m_atlas, m_fontSize, fontBuffer, length);
 	writeLog("font size: %d", font->memory.size);
 	if(font == NULL)
 		writeLog("NULL PTR");

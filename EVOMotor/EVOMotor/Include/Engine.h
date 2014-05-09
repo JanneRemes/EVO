@@ -70,6 +70,7 @@ private:
 	SpriteObject* grass;
 	SpriteObject* weegee;
 	SpriteObject* fire;
+	SpriteObject* ul;
 	Fireball* fireball;
 	SpriteSheetObject* praystation;
 	SpriteSheetObject* knight;
@@ -87,7 +88,7 @@ private:
 	glm::vec2 knightPos;
 
 	float totalTime;
-	float hand, fireRate; //PELILLE TARKOITETTU "PASKA"MUUTTUJA
+	float hand, fireRate, oHealth; //PELILLE TARKOITETTU "PASKA"MUUTTUJA
 	void checkCollision();
 
 	//#if defined (WIN32)

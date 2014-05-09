@@ -40,9 +40,8 @@ bool Input::keyPress(int key)
 		return false;
 	}
 	//isKeyPressed = glfwGetKey(Window::window,key) == GLFW_PRESS;
-	return false;
-
 #endif
+	return false;
 }
 
 
@@ -64,9 +63,8 @@ bool Input::MouseButtonPress(int button)
 		}
 		return false;
 	}
-	return false;
-
 #endif
+	return false;
 }
 
 glm::vec2 Input::getCursorPos()
@@ -80,6 +78,7 @@ glm::vec2 Input::getCursorPos()
 	X = *posX;
 	return glm::vec2(X,Y);
 #endif
+	return glm::vec2(0,0);
 }
 
 void Input::Update()
