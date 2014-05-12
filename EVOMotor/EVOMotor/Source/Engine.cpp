@@ -56,37 +56,35 @@ void Engine::init()
 	background->init();
 
 	//Add starting size and positions to sprite, also filepath and name must be set
-	spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,10,"waluigi");
-	spriteBatch->addObject("Assets/Weegee.tga",200,200,Window::winWidth,Window::winHeight,11,"weegee");
-	spriteBatch->addObject("Assets/ul.tga",256,256,-500,-500,19,"ul");
+	//spriteBatch->addObject("Assets/Waluigi.tga",200,200,0,0,10,"waluigi");
+	//spriteBatch->addObject("Assets/Weegee.tga",200,200,Window::winWidth,Window::winHeight,11,"weegee");
+	spriteBatch->addObject("Assets/yw.tga",256,256,-500,-500,19,"yw");
 
-	spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10,12, "animu");
+	//spriteBatch->addAnimatedObject("Assets/anim.tga",64,64,4,10,12, "animu");
 	spriteBatch->addAnimatedObject("Assets/knight.tga",128,82,4,50,13, "knight");
 	spriteBatch->addAnimatedObject("Assets/ossispritesheetflame.tga",128,82,5,50,14, "ossi");
 	spriteBatch->addAnimatedObject("Assets/audiencespritesheet.tga",700,100,2,4,12,"audience");
 
 	//Set sprites to spriteBatch so we can update and draw them
-	waluigi		= spriteBatch->Sprite("waluigi");
-	weegee		= spriteBatch->Sprite("weegee");
-	ul			= spriteBatch->Sprite("ul");
+	//waluigi		= spriteBatch->Sprite("waluigi");
+	//weegee		= spriteBatch->Sprite("weegee");
+	ul			= spriteBatch->Sprite("yw");
 
 
-	praystation = spriteBatch->SpriteAnimation("animu");
+	//praystation = spriteBatch->SpriteAnimation("animu");
 	knight		= spriteBatch->SpriteAnimation("knight");
 	audience	= spriteBatch->SpriteAnimation("audience");
 	ossi		= spriteBatch->SpriteAnimation("ossi");
 
-	praystation->setAnimation(1,2,1);
+	//praystation->setAnimation(1,2,1);
 	knight->setAnimation(2,3,4);
 	audience->setAnimation(0,1,2);
 	ossi->setAnimation(0,1,2);
 	
 	#if defined (WIN32)
-	writeLog("before");
 	text = spriteBatch->addText("arial.ttf",23.f,1,"testiTeksti");
-	writeLog("after");
-	text->addText(L"Juokseva haiskore: 100",glm::vec4(1,1,1,1));
-	writeLog("sexond");
+	//std::wstring hoopee = static_cast<std::wstring>(oHealth);
+	text->addText(L"Hello world! Samu katsoi c++ referenceä",glm::vec4(1,1,1,1));
 	text->setPosition(50,200);
 	#endif
 
@@ -109,7 +107,7 @@ void Engine::init()
 
 	hand = 1.0f;
 	fireRate = 0.f;
-	oHealth = 50.f;
+	oHealth = 1.f;
 
 	totalTime = 0;
 }
@@ -123,7 +121,11 @@ void Engine::update(float dt)
 {
 	if(oHealth <= 0)
 	{
-		ul->setPosition(Window::winWidth/2,Window::winHeight/2);
+		ul->setPosition(Window::winWidth/2+rand()%25,Window::winHeight/2+rand()%25);
+		ul->setColor(glm::vec4(red,blue,green,1));
+		red = rand()%2+dt;
+		blue = rand()%2+dt;
+		green = rand()%2+dt;
 	}
 	else
 	{
@@ -143,9 +145,9 @@ void Engine::update(float dt)
 		//Object updates here
 		//waluigi->setPosition(posX2,posY2);
 
-		weegee->setPosition(Window::winWidth,Window::winHeight);
+		//weegee->setPosition(Window::winWidth,Window::winHeight);
 		//ossi->setPosition(Window::winWidth/2,100);
-
+						
 		fireball->Update(dt);
 
 		//knight->setPosition(350,850);
@@ -230,11 +232,12 @@ void Engine::KeyboardInput()
 	}
 	if(input->keyPress(evo::Keys::Space))
 	{
-		praystation->setSpeed(0.5f);
+		//praystation->setSpeed(0.5f);
+		oHealth=0;
 	}
 	else
 	{
-		praystation->setSpeed(10);
+		//praystation->setSpeed(10);
 	}
 
 	if(input->MouseButtonPress(evo::buttons::MouseLeft))

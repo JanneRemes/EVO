@@ -16,7 +16,6 @@
 #include "Include/Background.h"
 #include "Include/Fireball.h"
 
-
 #include "Platform/Text.h"
 
 
@@ -66,13 +65,13 @@ private:
 	Input* input;
 
 	//Game objects
-	SpriteObject* waluigi;
+	//SpriteObject* waluigi;
 	SpriteObject* grass;
-	SpriteObject* weegee;
-	SpriteObject* fire;
+	//SpriteObject* weegee;
+	//SpriteObject* fire;
 	SpriteObject* ul;
 	Fireball* fireball;
-	SpriteSheetObject* praystation;
+	//SpriteSheetObject* praystation;
 	SpriteSheetObject* knight;
 	SpriteSheetObject* audience;
 	SpriteSheetObject* ossi;
@@ -88,7 +87,8 @@ private:
 	glm::vec2 knightPos;
 
 	float totalTime;
-	float hand, fireRate, oHealth; //PELILLE TARKOITETTU "PASKA"MUUTTUJA
+	//PELILLE TARKOITETTU MUUTTUJA
+	float hand, fireRate, oHealth; 
 	void checkCollision();
 
 	//#if defined (WIN32)
