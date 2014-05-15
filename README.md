@@ -7,4 +7,6 @@ Credits
 ===
 GLEW
 
+GLFW
+
 Freetype
